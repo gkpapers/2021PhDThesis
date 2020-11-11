@@ -69,7 +69,7 @@
 \renewcommand{\thesupsec}{Ch.0 - S\arabic{supsec}}%
 
 \titleclass{\secnonum}{straight}[\section]
-\setcounter{secnumdepth}{3}
+\setcounter{secnumdepth}{5}
 \titleformat{\secnonum}
   {}{}{}{}
 \titlespacing*{\secnonum}{0pt}{}{}
@@ -102,32 +102,69 @@
 %	ABSTRACT
 %----------------------------------------------------------------------------------------
 
-\Abstract{blnk}
+\AbstractEN{my abstract is great}
+\AbstractFR{mon abstract et superb}
 
 %----------------------------------------------------------------------------------------
 
 \begin{document}
 
+\pagenumbering{roman}
 \flushbottom % Makes all text pages the same height
-\maketitle % Print the title and abstract box
+\makehalftitle % Print the title and abstract box
 \thispagestyle{empty} % Removes page numbering from the first page
 \onecolumn
 \tableofcontents % Print the contents section
-\twocolumn
 
+%----------------------------------------------------------------------------------------
+%	Front Matter
+%----------------------------------------------------------------------------------------
+\beginfront
+\clearpage
 \phantomsection
-\section{intro}
+\section{Abstract (English)}
+\makeabstract{EN}
+\clearpage
+
+\section{Abstract (Français)}
+\makeabstract{FR}
+\clearpage
+
+\section{Acknowledgements}
+words
+\clearpage
+
+\section{Contribution to Original Knowledge}
+words
+\clearpage
+
+\section{Contribution of Authors}
+words
+\clearpage
+
+%----------------------------------------------------------------------------------------
+%	Introduction
+%----------------------------------------------------------------------------------------
+
+\pagenumbering{arabic}
+
+\resetsections{0}
+\phantomsection
+\section{Introduction}
 words
 
 \phantomsection
-\section{bg}
+\section{Background}
 hithere
 
+\subsection{things 1}
+words
 
-\thispagestyle{empty} % Removes page numbering from the first page
+\subsection{things 1}
+words
 
 %----------------------------------------------------------------------------------------
-%	ARTICLE CONTENTS
+%	Paper chapters
 %----------------------------------------------------------------------------------------
 \onecolumn
 \clearpage
@@ -136,12 +173,12 @@ hithere
 \beginchapter{I}
 \includepdf[pages=-,pagecommand={\thispagestyle{fancy}},addtotoc={
      1,part,1,A Serverless Tool for Platform Agnostic Computational Experiment Management,ch1p1,   
-     2,secnonum,2,Abstract,ch1p2,
-     3,section,2,Introduction,ch1p2,
-     4,section,2,Emergent Technologies in Reproducible Neuroscience,ch1p3,
-     7,section,2,The Clowdr Microtool,ch1p6,
-     10,section,2,Performing Experiments With Clowdr,ch1p9,
-     13,section,2,Discussion,ch1p12}]
+     2,secnonum,2,\qquad\qquad Abstract,ch1p2,
+     3,section,2,\qquad\qquad Introduction,ch1p2,
+     4,section,2,\qquad\qquad Emergent Technologies in Reproducible Neuroscience,ch1p3,
+     7,section,2,\qquad\qquad The Clowdr Microtool,ch1p6,
+     10,section,2,\qquad\qquad Performing Experiments With Clowdr,ch1p9,
+     13,section,2,\qquad\qquad Discussion,ch1p12}]
      {../chapter1/chapter1.pdf}
 \clearpage
 
@@ -149,12 +186,12 @@ hithere
 \beginchapter{II}
 \includepdf[pages=-,pagecommand={\thispagestyle{fancy}},addtotoc={
      1,part,1,Comparing Perturbation Models for Evaluating Stability of Neuroimaging Pipelines,ch2p1,   
-     2,secnonum,2,Abstract,ch2p2,
-     3,section,2,Introduction,ch2p3,
-     4,section,2,Methods,ch2p4,
-     10,section,2,Results,ch2p10,
-     15,section,2,Discussion,ch2p15,
-     19,section,2,Conclusion,ch2p19}]
+     2,secnonum,2,\qquad\qquad Abstract,ch2p2,
+     3,section,2,\qquad\qquad Introduction,ch2p3,
+     4,section,2,\qquad\qquad Methods,ch2p4,
+     10,section,2,\qquad\qquad Results,ch2p10,
+     15,section,2,\qquad\qquad Discussion,ch2p15,
+     19,section,2,\qquad\qquad Conclusion,ch2p19}]
      {../chapter2/chapter2.pdf}
 \clearpage
 
@@ -162,23 +199,34 @@ hithere
 \beginchapter{III}
 \includepdf[pages=-,pagecommand={\thispagestyle{fancy}},addtotoc={
      1,part,1,Numerical Instabilities in Analytical Pipelines Lead to Large and Meaningful \\ Variability in Brain Networks,ch3p1,
-     2,secnonum,2,Abstract,ch3p2,
-     3,section,2,Graphs Vary Widely With Perturbations,ch3p3,
-     5,section,2,Subject-Specific Signal is Amplified While Off-Target Biases Are Reduced,ch3p5,
-     7,section,2,{Distributions of Graph Statistics Are Reliable, But Individual Statistics Are Not},ch3p7,
-     9,section,2,Uncertainty in Brain-Phenotype Relationships,ch3p9,
-     10,section,2,Discussion,ch3p10,
-     12,section,2,Methods,ch3p12,
-     22,supsec,2,Graph Correlation,ch3p22,
-     23,supsec,2,Complete Discriminability Analysis,ch3p23,
-     24,supsec,2,Univariate Graph Statistics,ch3p24}]
+     2,secnonum,2,\qquad\qquad Abstract,ch3p2,
+     3,section,2,\qquad\qquad Graphs Vary Widely With Perturbations,ch3p3,
+     5,section,2,\qquad\qquad Subject-Specific Signal is Amplified While Off-Target Biases Are Reduced,ch3p5,
+     7,section,2,\qquad\qquad {Distributions of Graph Statistics Are Reliable, But Individual Statistics Are Not},ch3p7,
+     9,section,2,\qquad\qquad Uncertainty in Brain-Phenotype Relationships,ch3p9,
+     10,section,2,\qquad\qquad Discussion,ch3p10,
+     12,section,2,\qquad\qquad Methods,ch3p12,
+     22,supsec,2,\qquad\qquad Graph Correlation,ch3p22,
+     23,supsec,2,\qquad\qquad Complete Discriminability Analysis,ch3p23,
+     24,supsec,2,\qquad\qquad Univariate Graph Statistics,ch3p24}]
      {../chapter3/chapter3.pdf}
 \twocolumn
 
+
+%----------------------------------------------------------------------------------------
+% Discussion and Wrap up
+%----------------------------------------------------------------------------------------
 \resetsections{2}
 \phantomsection
-\section{discus}
+
+\section{Discussion}
 hi there
+
+\section{Conclusion \& Summary}
+words
+
+\section{References}
+words
 
 %----------------------------------------------------------------------------------------
 %	REFERENCE LIST

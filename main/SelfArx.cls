@@ -131,7 +131,7 @@ justification=raggedright]{caption}
 %----------------------------------------------------------------------
 \newlength{\tocsep} 
 \setlength\tocsep{1.5pc} % Sets the indentation of the sections in the table of contents
-\setcounter{tocdepth}{3} % Three levels in the table of contents section: sections, subsections and subsubsections
+\setcounter{tocdepth}{4} % Three levels in the table of contents section: sections, subsections and subsubsections
 
 \usepackage{titletoc}
 \contentsmargin{0cm}
@@ -143,19 +143,31 @@ justification=raggedright]{caption}
   []
 \titlecontents{section}[\tocsep]
   {\addvspace{4pt}\sffamily}
-  {\hspace{0.5em}\contentslabel[\thecontentslabel]{\tocsep}\hspace{3.5em}}
+  {\hspace{0.5em}\contentslabel[\thecontentslabel]{\tocsep}\hspace{0.5em}}
+  {}
+  {\hfill\thecontentspage}
+  []
+\titlecontents{section*}[\tocsep]
+  {\addvspace{4pt}\sffamily}
+  {\hspace{0.5em}\contentslabel[\thecontentslabel]{\tocsep}\hspace{0.5em}}
   {}
   {\hfill\thecontentspage}
   []
 \titlecontents{supsec}[\tocsep]
   {\addvspace{4pt}\sffamily}
-  {\hspace{0.5em}\contentslabel[\thecontentslabel]{\tocsep}\hspace{3.5em}}
+  {\hspace{0.5em}\contentslabel[\thecontentslabel]{\tocsep}\hspace{0.5em}}
   {}
   {\hfill\thecontentspage}
   []
 \titlecontents{subsection}[\tocsep]
   {\addvspace{2pt}\small\sffamily}
-  {\hspace{0.8em}\contentslabel[\thecontentslabel]{\tocsep}\hspace{4.5em}}
+  {\hspace{0.8em}\contentslabel[\thecontentslabel]{\tocsep}\hspace{2em}}
+  {}
+  {\hfill\thecontentspage}
+  []
+\titlecontents{subsection*}[\tocsep]
+  {\addvspace{2pt}\small\sffamily}
+  {\hspace{0.8em}\contentslabel[\thecontentslabel]{\tocsep}\hspace{2em}}
   {}
   {\hfill\thecontentspage}
   []
@@ -178,7 +190,7 @@ justification=raggedright]{caption}
    \global\advance\@tmpcnt1
     \raggedright \csname @auth\romannumeral\the\@tmpcnt\endcsname% \\
     \ifnum\@tmpcnt<\@authcnt
-     ;~
+     ;\\
     \else
      .
     \fi
@@ -198,14 +210,21 @@ justification=raggedright]{caption}
 %----------------------------------------------------------------------  
 \newcommand{\resetsections}[1]{%
         \setcounter{section}{#1}
+        \setcounter{supsec}{0}
         \renewcommand{\thesection}{\arabic{section}}%
+        \renewcommand{\thesupsec}{}%
+}
+
+\newcommand{\beginfront}{%
+        \setcounter{section}{0}
+        \renewcommand{\thesection}{}%
 }
 
 \newcommand{\beginchapter}[1]{%
         \setcounter{section}{0}
         \setcounter{supsec}{0}
-        \renewcommand{\thesection}{Ch.{#1} - \arabic{section}}%
-        \renewcommand{\thesupsec}{Ch.{#1} - S\arabic{supsec}}%
+        \renewcommand{\thesection}{\quad Ch.{#1} - \arabic{section}}%
+        \renewcommand{\thesupsec}{\quad Ch.{#1} - S\arabic{supsec}}%
 }
 
 \newcommand{\beginsupplement}{%
@@ -233,10 +252,54 @@ justification=raggedright]{caption}
 \newcommand{\Archive}[1]{\def\@Archive{#1}}
 \newcommand{\Authors}[1]{\def\@Authors{#1}}
 \newcommand{\JournalInfo}[1]{\def\@JournalInfo{#1}}
-\newcommand{\Abstract}[1]{\def\@Abstract{#1}}
+\newcommand{\AbstractEN}[1]{\def\@AbstractEN{#1}}
+\newcommand{\AbstractFR}[1]{\def\@AbstractFR{#1}}
 \newcommand{\Keywords}[1]{\def\@Keywords{#1}}
 
 % ---------------------------------------------------------------------
+\newcommand{\makehalftitle}{%
+\twocolumn[{%
+\thispagestyle{empty}%
+\vskip150pt%
+{\raggedright\color{color1}\sffamily\bfseries\fontsize{18}{23}\selectfont \@PaperTitle\par}%
+\vskip10pt%
+{\raggedright\color{color1}\sffamily\fontsize{12}{16}\selectfont  \@Authors\par}%
+\newpage
+\vskip18pt%
+\parbox{\textwidth-2\fboxsep-2\fboxrule}{\centering%
+\vskip4pt%
+\begingroup%
+\raggedright\sffamily\small%
+\footnotesize\@affiliation\par%
+\endgroup%%
+}%
+\vskip25pt%
+}]%
+}
+
+\newcommand{\makeabstract}[1]{%
+\fcolorbox{white}{white}{%
+\parbox{\textwidth-2\fboxsep-2\fboxrule}{\centering%
+\colorbox{white}{%
+\parbox{\textwidth-4\fboxsep-2\fboxrule}{%
+\def\first{#1}
+\def\second{EN}
+\ifx \first\second%
+\sffamily\@AbstractEN%
+\else%
+\sffamily\@AbstractFR%
+\fi%
+}%
+}%
+\vskip4pt%
+\begingroup%
+\raggedright\sffamily\small%
+\footnotesize\@affiliation\par%
+\endgroup%%
+}%
+}%
+\vskip25pt%
+}
 
 \renewcommand{\@maketitle}{%
 \twocolumn[{%
@@ -253,9 +316,9 @@ justification=raggedright]{caption}
 \colorbox{color2!10}{%
 \parbox{\textwidth-4\fboxsep-2\fboxrule}{%
 \ifx\@Keywords\@empty%
-\sffamily\textbf{\abstractname}\\\@Abstract%
+\sffamily\textbf{\abstractname}\\\@AbstractEN%
 \else%
-\sffamily\textbf{\abstractname}\\\@Abstract\\[4pt]%
+\sffamily\textbf{\abstractname}\\\@AbstractEN\\[4pt]%
 \textbf{\keywordname}\\\@Keywords%
 \fi%
 }%
