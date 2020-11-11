@@ -143,13 +143,19 @@ justification=raggedright]{caption}
   []
 \titlecontents{section}[\tocsep]
   {\addvspace{4pt}\sffamily}
-  {\hspace{0.5em}\contentslabel[\thecontentslabel]{\tocsep}\hspace{2.5em}}
+  {\hspace{0.5em}\contentslabel[\thecontentslabel]{\tocsep}\hspace{3.5em}}
+  {}
+  {\hfill\thecontentspage}
+  []
+\titlecontents{supsec}[\tocsep]
+  {\addvspace{4pt}\sffamily}
+  {\hspace{0.5em}\contentslabel[\thecontentslabel]{\tocsep}\hspace{3.5em}}
   {}
   {\hfill\thecontentspage}
   []
 \titlecontents{subsection}[\tocsep]
   {\addvspace{2pt}\small\sffamily}
-  {\hspace{0.8em}\contentslabel[\thecontentslabel]{\tocsep}\hspace{3.5em}}
+  {\hspace{0.8em}\contentslabel[\thecontentslabel]{\tocsep}\hspace{4.5em}}
   {}
   {\hfill\thecontentspage}
   []
@@ -197,7 +203,9 @@ justification=raggedright]{caption}
 
 \newcommand{\beginchapter}[1]{%
         \setcounter{section}{0}
+        \setcounter{supsec}{0}
         \renewcommand{\thesection}{Ch.{#1} - \arabic{section}}%
+        \renewcommand{\thesupsec}{Ch.{#1} - S\arabic{supsec}}%
 }
 
 \newcommand{\beginsupplement}{%

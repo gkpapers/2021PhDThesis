@@ -59,17 +59,27 @@
 %----------------------------------------------------------------------------------------
 \makeatletter
 \let\Hy@linktoc\Hy@linktoc@none
+
 \let\l@secnonum\l@section
 \newcounter{secnonum}
 \renewcommand{\thesecnonum}{}
-\makeatother
+
+\let\l@supsec\l@section
+\newcounter{supsec}
+\renewcommand{\thesupsec}{Ch.0 - S\arabic{supsec}}%
 
 \titleclass{\secnonum}{straight}[\section]
 \setcounter{secnumdepth}{3}
 \titleformat{\secnonum}
   {}{}{}{}
 \titlespacing*{\secnonum}{0pt}{}{}
-\newcommand{\secnonumautorefname}{secnonum}
+
+\titleclass{\supsec}{straight}[\section]
+\titleformat{\supsec}
+  {}{}{}{}
+\titlespacing*{\supsec}{0pt}{}{}
+
+\makeatother
 
 %----------------------------------------------------------------------------------------
 %	ARTICLE INFORMATION
@@ -112,6 +122,7 @@ words
 \section{bg}
 hithere
 
+
 \thispagestyle{empty} % Removes page numbering from the first page
 
 %----------------------------------------------------------------------------------------
@@ -124,31 +135,42 @@ hithere
 \beginchapter{I}
 \includepdf[pages=-,pagecommand={\thispagestyle{fancy}},addtotoc={
      1,part,1,A Serverless Tool for Platform Agnostic Computational Experiment Management,ch1p1,   
-     1,secnonum,2,Abstract,ch1p2,
-     2,section,2,Introduction,ch1p2,
-     3,section,2,Emergent Technologies in Reproducible Neuroscience,ch1p3,
-     3,section,2,Emergent Technologies in Reproducible Neuroscience,ch1p3,
-     6,section,2,The Clowdr Microtool,ch1p6,
-     9,section,2,Performing Experiments With Clowdr,ch1p9,
-     12,section,2,Discussion,ch1p12}]
+     2,secnonum,2,Abstract,ch1p2,
+     3,section,2,Introduction,ch1p2,
+     4,section,2,Emergent Technologies in Reproducible Neuroscience,ch1p3,
+     7,section,2,The Clowdr Microtool,ch1p6,
+     10,section,2,Performing Experiments With Clowdr,ch1p9,
+     13,section,2,Discussion,ch1p12}]
      {../chapter1/chapter1.pdf}
 \clearpage
 
 \phantomsection
 \beginchapter{II}
-\includepdf[pages=-,addtotoc={
+\includepdf[pages=-,pagecommand={\thispagestyle{fancy}},addtotoc={
      1,part,1,Comparing Perturbation Models for Evaluating Stability of Neuroimaging Pipelines,ch2p1,   
-     1,section,2,Subsection Entry,ch2p2,
-     2,section,3,Second Section Entry,ch2p3}]
+     2,secnonum,2,Abstract,ch2p2,
+     3,section,2,Introduction,ch2p3,
+     4,section,2,Methods,ch2p4,
+     10,section,2,Results,ch2p10,
+     15,section,2,Discussion,ch2p15,
+     19,section,2,Conclusion,ch2p19}]
      {../chapter2/chapter2.pdf}
 \clearpage
 
 \phantomsection
 \beginchapter{III}
-\includepdf[pages=-,addtotoc={
-     1,part,1,Numerical Instabilities in Analytical Pipelines Lead to Large and Meaningful \\ Variability in Brain Networks,ch3p1,   
-     1,subsection,2,Subsection Entry,ch3p2,
-     2,subsection,3,Second Section Entry,ch3p3}]
+\includepdf[pages=-,pagecommand={\thispagestyle{fancy}},addtotoc={
+     1,part,1,Numerical Instabilities in Analytical Pipelines Lead to Large and Meaningful \\ Variability in Brain Networks,ch3p1,
+     2,secnonum,2,Abstract,ch3p2,
+     3,section,2,Graphs Vary Widely With Perturbations,ch3p3,
+     5,section,2,Subject-Specific Signal is Amplified While Off-Target Biases Are Reduced,ch3p5,
+     7,section,2,Distributions of Graph Statistics Are Reliable\, But Individual Statistics Are Not,ch3p7,
+     9,section,2,Uncertainty in Brain-Phenotype Relationships,ch3p9,
+     10,section,2,Discussion,ch3p10,
+     12,section,2,Methods,ch3p12,
+     22,supsec,2,Graph Correlation,ch3p22,
+     23,supsec,2,Complete Discriminability Analysis,ch3p23,
+     24,supsec,2,Univariate Graph Statistics,ch3p24}]
      {../chapter3/chapter3.pdf}
 \twocolumn
 
