@@ -1,0 +1,19 @@
+\babel@toc {english}{}
+\contentsline {section}{\numberline {1}intro}{3}{section.1}% 
+\contentsline {section}{\numberline {2}bg}{3}{section.2}% 
+\contentsline {part}{I\hspace {1em}\ignorespaces A Serverless Tool for Platform Agnostic Computational Experiment Management}{4}{part.1}% 
+\contentsline {secnonum}{\numberline {}\ignorespaces Abstract}{4}{secnonum.1}% 
+\contentsline {section}{\numberline {Ch.{I} - 1}\ignorespaces Introduction}{5}{section.1}% 
+\contentsline {section}{\numberline {Ch.{I} - 2}\ignorespaces Emergent Technologies in Reproducible Neuroscience}{6}{section.2}% 
+\contentsline {section}{\numberline {Ch.{I} - 3}\ignorespaces Emergent Technologies in Reproducible Neuroscience}{6}{section.3}% 
+\contentsline {section}{\numberline {Ch.{I} - 4}\ignorespaces The Clowdr Microtool}{9}{section.4}% 
+\contentsline {section}{\numberline {Ch.{I} - 5}\ignorespaces Performing Experiments With Clowdr}{12}{section.5}% 
+\contentsline {section}{\numberline {Ch.{I} - 6}\ignorespaces Discussion}{15}{section.6}% 
+\contentsline {part}{II\hspace {1em}\ignorespaces Comparing Perturbation Models for Evaluating Stability of Neuroimaging Pipelines}{21}{part.2}% 
+\contentsline {section}{\numberline {Ch.{II} - 1}\ignorespaces Subsection Entry}{21}{section.1}% 
+\contentsline {section}{\numberline {Ch.{II} - 2}\ignorespaces Second Section Entry}{22}{section.2}% 
+\contentsline {part}{III\hspace {1em}\ignorespaces Numerical Instabilities in Analytical Pipelines Lead to Large and Meaningful \\ Variability in Brain Networks}{32}{part.3}% 
+\contentsline {subsection}{\numberline {Ch.{III} - 0.1}\ignorespaces Subsection Entry}{32}{subsection.0.1}% 
+\contentsline {subsection}{\numberline {Ch.{III} - 0.2}\ignorespaces Second Section Entry}{33}{subsection.0.2}% 
+\contentsline {section}{\numberline {3}discus}{50}{section.3}% 
+\contentsfinish 
