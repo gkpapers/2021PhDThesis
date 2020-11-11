@@ -166,7 +166,7 @@ justification=raggedright]{caption}
    \global\advance\@tmpcnt1
     \raggedright \csname @auth\romannumeral\the\@tmpcnt\endcsname% \\
     \ifnum\@tmpcnt<\@authcnt
-     ;~
+     ;\\
     \else
      .
     \fi
@@ -218,6 +218,8 @@ justification=raggedright]{caption}
 \newcommand{\Archive}[1]{\def\@Archive{#1}}
 \newcommand{\Authors}[1]{\def\@Authors{#1}}
 \newcommand{\JournalInfo}[1]{\def\@JournalInfo{#1}}
+\newcommand{\DOI}[1]{\def\@DOI{#1}}
+\newcommand{\Status}[1]{\def\@Status{#1}}
 \newcommand{\Abstract}[1]{\def\@Abstract{#1}}
 \newcommand{\Keywords}[1]{\def\@Keywords{#1}}
 
@@ -237,9 +239,10 @@ justification=raggedright]{caption}
 \begingroup%
 \raggedright\sffamily\small%
 \footnotesize\@affiliation\par%
+\vskip35pt%
+{\raggedright \@Status:\\\quad\textit{\sffamily\@JournalInfo}\\\quad{\sffamily\href{\@DOI}{\@DOI}}\par}%
 \endgroup%%
 }%
-\vskip25pt%
 }]%
 }
 

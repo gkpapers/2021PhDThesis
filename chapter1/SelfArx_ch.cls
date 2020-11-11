@@ -219,6 +219,7 @@ justification=raggedright]{caption}
 \newcommand{\Authors}[1]{\def\@Authors{#1}}
 \newcommand{\JournalInfo}[1]{\def\@JournalInfo{#1}}
 \newcommand{\DOI}[1]{\def\@DOI{#1}}
+\newcommand{\Status}[1]{\def\@Status{#1}}
 \newcommand{\Abstract}[1]{\def\@Abstract{#1}}
 \newcommand{\Keywords}[1]{\def\@Keywords{#1}}
 
@@ -239,7 +240,7 @@ justification=raggedright]{caption}
 \raggedright\sffamily\small%
 \footnotesize\@affiliation\par%
 \vskip35pt%
-{\raggedright Published in \textit{\sffamily\@JournalInfo} ({\sffamily\href{\@DOI}{\@DOI}})\par}%
+{\raggedright \@Status:\\\quad\textit{\sffamily\@JournalInfo}\\\quad{\sffamily\href{\@DOI}{\@DOI}}\par}%
 \endgroup%%
 }%
 }]%
