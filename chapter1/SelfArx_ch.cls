@@ -226,11 +226,26 @@ justification=raggedright]{caption}
 \renewcommand{\@maketitle}{%
 \twocolumn[{%
 \thispagestyle{empty}%
-\vskip20pt%
+\vskip150pt%
 {\raggedright\color{color1}\sffamily\bfseries\fontsize{18}{23}\selectfont \@PaperTitle\par}%
 \vskip10pt%
 {\raggedright\color{color1}\sffamily\fontsize{12}{16}\selectfont  \@Authors\par}%
+\newpage
 \vskip18pt%
+\parbox{\textwidth-2\fboxsep-2\fboxrule}{\centering%
+\vskip4pt%
+\begingroup%
+\raggedright\sffamily\small%
+\footnotesize\@affiliation\par%
+\endgroup%%
+}%
+\vskip25pt%
+}]%
+}
+
+\newcommand{\makeabstract}{%
+\twocolumn[{%
+\thispagestyle{empty}%
 \fcolorbox{color1}{white}{%
 \parbox{\textwidth-2\fboxsep-2\fboxrule}{\centering%
 \colorbox{color2!10}{%
@@ -248,7 +263,6 @@ justification=raggedright]{caption}
 \vskip25pt%
 }]%
 }
-
 %----------------------------------------------------------------------
 %	REFERENCES
 %----------------------------------------------------------------------  
