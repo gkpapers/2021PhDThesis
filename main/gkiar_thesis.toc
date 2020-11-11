@@ -19,7 +19,7 @@
 \contentsline {secnonum}{\numberline {}\ignorespaces Abstract}{46}{secnonum.3}% 
 \contentsline {section}{\numberline {Ch.{III} - 1}\ignorespaces Graphs Vary Widely With Perturbations}{47}{section.1}% 
 \contentsline {section}{\numberline {Ch.{III} - 2}\ignorespaces Subject-Specific Signal is Amplified While Off-Target Biases Are Reduced}{49}{section.2}% 
-\contentsline {section}{\numberline {Ch.{III} - 3}\ignorespaces Distributions of Graph Statistics Are Reliable\tmspace +\thinmuskip {.1667em} But Individual Statistics Are Not}{51}{section.3}% 
+\contentsline {section}{\numberline {Ch.{III} - 3}\ignorespaces Distributions of Graph Statistics Are Reliable, But Individual Statistics Are Not}{51}{section.3}% 
 \contentsline {section}{\numberline {Ch.{III} - 4}\ignorespaces Uncertainty in Brain-Phenotype Relationships}{53}{section.4}% 
 \contentsline {section}{\numberline {Ch.{III} - 5}\ignorespaces Discussion}{54}{section.5}% 
 \contentsline {section}{\numberline {Ch.{III} - 6}\ignorespaces Methods}{56}{section.6}% 
