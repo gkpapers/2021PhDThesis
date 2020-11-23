@@ -91,9 +91,11 @@
 
 \PaperTitle{This is Your Brain on Disk: The Impact of Numerical Instabilities in Neuroscience} % Article title
 
-\Authors{Gregory Kiar\textsuperscript{1}, Alan C. Evans\textsuperscript{1$\dagger$}, Tristan Glatard\textsuperscript{2$\dagger$}} % Authors
-\affiliation{\textsuperscript{1}\textit{Montréal Neurological Institute, McGill University, Montréal, QC, Canada}}
-\affiliation{\textsuperscript{2}\textit{Department of Computer Science and Software Engineering, Concordia University, Montréal, QC, Canada}}
+\Authors{Gregory Kiar} % Authors
+\Date{January, 2021}
+\affiliation{\textit{Biological \& Biomedical Engineering, McGill University, Montréal, QC, Canada}}
+\statement{A thesis submitted to McGill University in partial fulfillment of the requirements of the degree of Ph.D. in
+Biological \& Biomedical Engineering.}
 
 \Keywords{Stability --- Reproducibility --- Network Neuroscience --- Neuroimaging} % Keywords - if you don't want any simply remove all the text between the curly brackets
 \newcommand{\keywordname}{Keywords} % Defines the keywords heading name
@@ -109,10 +111,9 @@
 
 \begin{document}
 
-\pagenumbering{roman}
 \flushbottom % Makes all text pages the same height
-\makehalftitle % Print the title and abstract box
-\thispagestyle{empty} % Removes page numbering from the first page
+\makethesistitle % Print the title and abstract box
+\pagenumbering{roman}
 \onecolumn
 \tableofcontents % Print the contents section
 
@@ -155,13 +156,46 @@ words
 
 \phantomsection
 \section{Background}
-hithere
+\subsection{The Reproducibility Crisis}
+\begin{itemize}
+\item (OSF, NARPS, tractograms, CoRR, ...)
+\item \url{https://www.biorxiv.org/content/10.1101/2020.10.07.321083v1.full.pdf}
+\end{itemize}
 
-\subsection{things 1}
-words
+\subsection{Uncertainty in Scientific Pipelines}
+\begin{itemize}
+\item (OSes, One Voxel, Cluster Failure, ...)
+\item \url{https://randomascii.wordpress.com/2014/10/09/intel-underestimates-error-bounds-by-1-3-quintillion/}
+\item Bias-variance tradeoff https://ieeexplore.ieee.org/document/824819
+\end{itemize}
 
-\subsection{things 1}
-words
+\subsection{Numerical Analysis and Uncertainty Quantification}
+\begin{itemize}
+\item (MCA, Verificarlo, Valgrind, ...)
+\item \url{https://www.nature.com/articles/s41586-020-2649-2}
+\item \url{http://eprints.maths.manchester.ac.uk/2763/1/paper.pdf#page3}
+\item \url{https://stackoverflow.com/questions/2284860/how-does-c-compute-sin-and-other-math-functions}
+\item \url{https://pubs.acs.org/doi/pdf/10.1021/acs.orglett.9b03216}
+\item MULLER, Jean-Michel, BRISEBARRE, Nicolas, DE DINECHIN, Florent, et al. Handbook of floating-point arithmetic. Birkhäuser, 2018.
+\item Arrondi correct de fonctions mathématiques Fonctions univariées et bivariées, certification et automatisation, Christophe Lauter
+\item Fonctions élémentaires : algorithmes et implémentations efficaces pour l'arrondi correct en double précision, David Defour.
+\end{itemize}
+
+\subsection{Pipelines in Neuroimaging}
+\begin{itemize}
+\item (DWI strengths and limitations, Network Analysis, Applications, ...)
+\item \url{https://link.springer.com/article/10.1007/s00429-020-02129-z}
+\item \url{https://www.pnas.org/content/111/46/16574}
+\item \url{https://autofq.org/bibliography/diffusion-mri/}
+\item Batch effects in other contexts: \url{https://academic.oup.com/biostatistics/article/8/1/118/252073}
+\item \url{https://www.frontiersin.org/articles/10.3389/fnins.2015.00018/full}
+\end{itemize}
+
+\subsection{Software Reproducibility}
+\begin{itemize}
+\item (Boutiques, BIDS, CBRAIN, NIDM, ...)
+\end{itemize}
+
 
 %----------------------------------------------------------------------------------------
 %	Paper chapters
@@ -220,7 +254,12 @@ words
 \phantomsection
 
 \section{Discussion}
-hi there
+\begin{itemize}
+\item Comparing and contrasting community variability
+\item https://www.biorxiv.org/content/10.1101/2020.10.07.321083v1
+\item NARPS
+\item Expanding insights to other modalities and tool domains
+\end{itemize}
 
 \section{Conclusion \& Summary}
 words

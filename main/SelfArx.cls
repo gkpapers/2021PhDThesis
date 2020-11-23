@@ -251,6 +251,8 @@ justification=raggedright]{caption}
 \newcommand{\PaperTitle}[1]{\def\@PaperTitle{#1}}
 \newcommand{\Archive}[1]{\def\@Archive{#1}}
 \newcommand{\Authors}[1]{\def\@Authors{#1}}
+\newcommand{\Date}[1]{\def\@Date{#1}}
+\newcommand{\statement}[1]{\def\@statement{#1}}
 \newcommand{\JournalInfo}[1]{\def\@JournalInfo{#1}}
 \newcommand{\AbstractEN}[1]{\def\@AbstractEN{#1}}
 \newcommand{\AbstractFR}[1]{\def\@AbstractFR{#1}}
@@ -332,6 +334,26 @@ justification=raggedright]{caption}
 }%
 \vskip25pt%
 }]%
+}
+
+\newcommand{\makethesistitle}{%
+\begin{center}
+\thispagestyle{empty}
+\vspace*{90pt}
+{\raggedright\color{color1}\sffamily\bfseries\fontsize{25}{30}\selectfont \@PaperTitle \par}%
+\vskip10pt%
+{\raggedright\color{color1}\sffamily\fontsize{14}{18}\selectfont  \@Authors \par}%
+\parbox{\textwidth-2\fboxsep-2\fboxrule}{\centering \vskip4pt
+\begingroup
+\raggedright\sffamily \@affiliation \@Date \par
+\endgroup%%
+}%
+\vskip20pt%
+\vspace*{\fill}
+{\color{color1}\sffamily\fontsize{12}{16}\selectfont \@statement\par}%
+{\color{color1}\sffamily\fontsize{12}{16}\selectfont \copyright~\@Authors~2021\par}%
+\end{center}
+\twocolumn
 }
 
 %----------------------------------------------------------------------
