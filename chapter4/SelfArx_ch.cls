@@ -1,0 +1,1 @@
+../chapter1/SelfArx_ch.cls
