@@ -1,6 +1,6 @@
 TEX="pdflatex"
 BIBTEX="bibtex"
-FILE="chapter3"
+FILE="chapter4"
 
 default:
 	${TEX} ${FILE} &&\

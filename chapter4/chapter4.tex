@@ -96,11 +96,11 @@ captured in the subsequently designed models.}
 \makeabstract
 
 \onecolumn 
-\beginchapter{III}
+\beginchapter{IV}
 %----------------------------------------------------------------------------------------
 %	ARTICLE CONTENTS
 %----------------------------------------------------------------------------------------
-\section*{Introduction}
+\section{Introduction}
 
 The application of machine learning has become commonplace for the identification and characterization of individual
 biomarkers in neuroimaging~\cite{woo2017building}. Models have been applied to discriminate between measures of brain
@@ -134,7 +134,7 @@ across the two. We demonstrate the efficacy of using MCA as a method for dataset
 robust and generalizable models of brain-phenotype relationships.
 
 
-\section*{Materials \& Methods}
+\section{Materials \& Methods}
 
 The objective of this study was to evaluate the impact of aggregating collections of unstable brain networks towards
 learning robust brain-phenotype relationships. We sampled and aggregated simulated networks within individuals to learn
@@ -156,7 +156,7 @@ types. The models were fit and made predictions on the training set prior to mak
 All developed software and analysis resources for this project have been made available through GitHub at
 \url{https://github.com/gkpapers/2020AggregateMCA}.
 
-\subsection*{Dataset}
+\subsection{Dataset}
 
 An existing dataset containing Monte Carlo Arithmetic (MCA) perturbed structural human brain networks was used for
 these experiments~\cite{Kiar2020-yz}. The perturbations introduced for the generation of brain networks in this dataset
@@ -176,7 +176,7 @@ desired. Participant age, which has consistently been shown to have a considerab
 connectivity~\cite{Meier2012-ve,Wu2012-uc,Bookheimer2019-ti,Zhao2015-rm}, was selected and turned into a binary target
 by dividing participants into adult ($>18$) and non-adult groups ($68\%$ adult). 
 
-\subsection*{Preprocessing}
+\subsection{Preprocessing}
 Prior to being used for this task, the brain networks were represented as symmetric $83 \times 83$ adjacency
 matrices, sampled upon the Desikan-Killiany-Tourville~\cite{Klein2012-vi} anatomical parcellation. To reduce redundancy
 in the data, all edges belonging to the upper-triangle of these matrices were preserved and vectorized, resulting in a
@@ -192,7 +192,7 @@ value. Ties were settled by averaging the rank, and all ranks were finally min-m
 
 \paragraph{Z-Score} The edge weights were z-scored to have a mean intensity of $0$ and unit variance.
 
-\subsection*{Machine Learning Pipelines}
+\subsection{Machine Learning Pipelines}
 
 The preprocessed connectomes were fed into pipelines consisting of two steps: dimensionality reduction and
 classification. Dimensionality reduction was applied using one of two methods:
@@ -231,7 +231,7 @@ standard techniques, ii) both parametric and non-parametric methods, iii) both e
 methods, and iv) models which have been commonly deployed for the classification of neuroimaging
 datasets~\cite{Meier2012-ve,Tunc2016-cz, Zhu2018-cs,Payabvash2019-tm,Crossley2014-tg,Park2015-uj,Nayak2016-wl,Tolan2018-nq}.
 
-\subsection*{Dataset Sampling}
+\subsection{Dataset Sampling}
 
 A chief purpose of this manuscript involves the comparison of various forms of aggregation across
 equivalently-simulated pipeline outputs. Accordingly, the dataset was resampled after preprocessing but prior to
@@ -273,7 +273,7 @@ simulations, including $9$ distinct numbers of simulations, ranging from $2$ to 
 the dataset sampling methods, the set of simulations, preprocessing strategies, dimensionality reduction techniques,
 and classifier models, there were $2,520$ perturbed models trained and evaluated next to $40$ reference models.
 
-\subsection*{Training \& Evaluation}
+\subsection{Training \& Evaluation}
 
 Prior to training models on the brain networks, $20\%$ of subjects were excluded from each dataset for use as an
 out-of-sample test dataset for all experiments. With the remaining $80\%$ of subjects, cross validation was performed
@@ -305,7 +305,7 @@ through Wilcoxon Signed-Rank tests.
 
 
 %------------------------------------------------
-\section*{Results}
+\section{Results}
 
 The figures and findings presented in this section represent a summary of the complete experiment table which consists
 of performance measures and metadata for all $2,560$ models tested. The complete performance table alongside the table
@@ -313,7 +313,7 @@ of significant differences, are made available through the GitHub repository.
 
 
 
-\subsection*{Data Resampling Improves Classification}
+\subsection{Data Resampling Improves Classification}
 
 The overall performance of each subsampling method is summarized in Table~\ref{tab1:perf}. The change in performance was
 measured in both cases as a change in F1 score on the validation set, the change in F1 score on the test set, and the
@@ -403,7 +403,7 @@ pipeline outputs may be an effective way to improve the performance and generali
 tasked with modeling brain-phenotype relationships, both within and out of sample, especially when variance is captured
 rather than removed.
 
-\subsection*{Resampling Leads to Consistent Performance}
+\subsection{Resampling Leads to Consistent Performance}
 
 To better characterize the the benefit of resampling, the relationship between the magnitude of improvement and the
 baseline performance of the classifier were further explored (Figure~\ref{fig:change_in_gen}). We found that the
@@ -422,7 +422,7 @@ the dataset resampling techniques consistently shift the distributions in this d
 along one or both of these axes. Importantly, the variance in performance across both measures is significantly
 decreased, suggesting that resampling leads to more reliable and reproducible classifiers.
 
-\subsection*{Number of Simulations is Largely Unimpactful}
+\subsection{Number of Simulations is Largely Unimpactful}
 
 While we previously noted an increase in classifier performance due to perturbation-enabled dataset resampling, it was
 important to explore the relationship between the number of simulated samples and performance (Figure~\ref{fig:nmca}).
@@ -436,7 +436,7 @@ resampling, or non-existent in the median case, the mega analytic approach treat
 as unique samples in the dataset. In this case, the relationship we observe is consistent to what one might expect when
 increasing the number of samples.
 
-\section*{Discussion}
+\section{Discussion}
 
 The numerical perturbation of analytic pipelines provides a unique, data-agnostic, and computationally unintrusive
 method for dataset augmentation. Using a technique such as MCA, samples can be simulated across an array of controlled
@@ -512,7 +512,7 @@ particularly important, as upsampling is often challenging in biological context
 sparse.
 
 \clearpage
-\section*{Conclusion}
+\section{Conclusion}
 
 This work demonstrates the benefit of augmenting datasets through numerical perturbations. We present an approach which
 leverages the numerical instability inherent to pipelines for creating more accurate and generalizable classifiers.

@@ -193,14 +193,14 @@ justification=raggedright]{caption}
         \renewcommand{\thefigure}{Ch.{#1} - \arabic{figure}}%
 }
 
-\newcommand{\beginsupplement}{%
+\newcommand{\beginsupplement}[1]{%
         \onecolumn
         \setcounter{section}{0}
-        \renewcommand{\thesection}{S\arabic{section}}%
+        \renewcommand{\thesection}{Ch.{#1} - S\arabic{section}}%
         \setcounter{table}{0}
-        \renewcommand{\thetable}{S\arabic{table}}%
+        \renewcommand{\thetable}{Ch.{#1} - S\arabic{table}}%
         \setcounter{figure}{0}
-        \renewcommand{\thefigure}{S\arabic{figure}}%
+        \renewcommand{\thefigure}{Ch.{#1} - S\arabic{figure}}%
 }
 \newcommand{\sref}[1]{Supplemental Section~\ref{#1}}
 %----------------------------------------------------------------------

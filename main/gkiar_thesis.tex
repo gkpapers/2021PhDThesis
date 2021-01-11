@@ -28,7 +28,8 @@
 
 \captionsetup[figure]{justification=justified, singlelinecheck=off} 
 \captionsetup[table]{justification=justified, singlelinecheck=off} 
-
+\newcommand{\tmp}[1]{{\color{red}[TMP] #1}}
+\newcommand{\wip}[1]{{\color{blue}[WIP] #1}}
 %----------------------------------------------------------------------------------------
 %	COLUMNS
 %----------------------------------------------------------------------------------------
@@ -115,7 +116,6 @@ Biological \& Biomedical Engineering.}
 \makethesistitle % Print the title and abstract box
 \pagenumbering{roman}
 \onecolumn
-\tableofcontents % Print the contents section
 
 %----------------------------------------------------------------------------------------
 %	Front Matter
@@ -123,24 +123,46 @@ Biological \& Biomedical Engineering.}
 \beginfront
 \clearpage
 \phantomsection
-\section{Abstract (English)}
-\makeabstract{EN}
-\clearpage
-
-\section{Abstract (Français)}
-\makeabstract{FR}
+\section{Dedication}
+To the family, friends, teammates, conference buddies, and mentors who supported me in not only starting this journey,
+but keeping me sane and taken care of throughout it. I don't know where I would be otherwise, but because of all of
+you, I feel like I'm exactly where I'm supposed to be.
 \clearpage
 
 \section{Acknowledgements}
-words
+First and foremost, I would like to thank my supervisors Tristan Glatard and Alan Evans for all of the guidance,
+support, wisdom, and encouragement they have given me over the years. I came into this program without strong direction
+but knowing that I wanted to impact science on a larger scale than just answering a specific question that interested
+me. Alan played the matchmaker and connected me with Tristan, who had similar goals to my own. Ever since, I have had
+the pleasure of working with both of them across a range of scales: Alan providing our eye-in-the-sky view, and Tristan
+getting down in the weeds with me on details. With their distinct strengths and perspectives but common optimism and
+positive outlook, I couldn't have asked for a better pair of advisors.
+
+I would also like to thank Pierre Bellec, Jean-Baptiste Poline, and Christine Tardif for their ongoing contributions to
+my work. Having each of their unique perspectives and backgrounds on my advisory committee always led us to interesting
+discussions and steered me towards more impactful and rigorous work. Throughout my Ph.D. I was very lucky to spend lots
+of time with communities of scientists and software developers, including my office mates on the CBRAIN team, Camille
+Maumet and Elisa Fromont who mentored me Inria, the global Brainhack community, and the countless friends and
+collaborators I've met through conferences and workshops. All of these groups have not only helped guide and motivate
+my work, but have provided fostering and safe environments to fail and grow.
+
+Finally, I would like to thank and acknowledge the support of various organizations which have funded my research,
+including Healthy Brains for Healthy Lives (supported by the Canada First Research Excellence Fund), The Natural
+Sciences and Engineering Research Council of Canada, Mitacs (Globalink), and The Canadian Open Neuroscience Platform
+(supported by Brain Canada).
 \clearpage
 
-\section{Contribution to Original Knowledge}
-words
+\phantomsection
+\section{Abstract}
+\makeabstract{EN}
 \clearpage
 
-\section{Contribution of Authors}
-words
+\phantomsection
+\section{Resumé}
+\makeabstract{FR}
+\clearpage
+
+\tableofcontents % Print the contents section
 \clearpage
 
 %----------------------------------------------------------------------------------------
@@ -244,9 +266,9 @@ words
 %----------------------------------------------------------------------------------------
 %	REFERENCE LIST
 %----------------------------------------------------------------------------------------
-% \phantomsection
-% \bibliographystyle{IEEEtran}
-% \bibliography{gkiar_thesis}
+\phantomsection
+\bibliographystyle{IEEEtran}
+\bibliography{gkiar_thesis}
 
 %----------------------------------------------------------------------------------------
 \end{document}

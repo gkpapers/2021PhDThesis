@@ -1,9 +1,38 @@
+In an age of big data and an ever growing landscape of –omics', the structure and function of the brain is being
+increasingly explored through connectomics. Brain maps, called connectomes, are constructed as networks in which areas
+of the brain are related to one another through properties of interest. These areas, also called regions of interest or
+vertices, and the properties or edges connecting them are intentionally flexible, allowing the brain networks to
+describe a limitless range of scales and organisms. While the connectome derived from a section of mouse brain may
+summarize the synapses between neurons found in an Electron Miscropy image, the construction of a similar map from
+humans \textit{in vivo} is limited to data collected through non-invasive imaging techniques such as Magnetic Resonance
+Imaging (MRI).
+
+Though the resolution of a typical MRI is approximately $1,000,000 \times$ less precise than an Electron Microscope
+image which shows true cellular connectivity, MRI techniques allow for the capture of entire brains without harming the
+subject and can be measured over time to observe network evolution. While regions would be defined in the MRI case as
+macro-scale brain areas (often $1mm^3$ or larger in size), the edges between them can be defined as similarity in
+structure, connectivity, or function. Exploring these networks can not only lead to an academic understanding of
+intelligent network architectures, such as which may be replicated in fields like Artificial Intelligence (AI) and
+Machine Learning (ML), but may also inform the development of diagnostics and healthcare interventions.
+
+In recent years, several large consortia such as the UK BioBank, Human Connectome Project, and Consortium of
+Reproducibility and Reliability have made it their mission to capture and share brain imaging data from thousands of
+individuals which can be used to construct and explore these networks. However, connectomes are not an automatic result
+of these images. The estimation of brain networks relies on complex image processing software tools and scientific
+pipelines, including the denoising and alignment of images, tissue classification and segmentation, and modelling or
+relating connectivity or function across regions. The orchestration and design of these pipelines has considerable
+impact on the derived networks and, importantly, their application. In the absense of ground-truth to evaluate the
+accuracy of results, it is essential to understand their consistency across minor perturbations (e.g. small amounts of
+noise). A lack of consistency has recently become apparent across brain imaging, necessitating a shift in the focus of
+researchers with an increasing emphasis on reproducibility.
+
+While the irreproducibility of findings may on occassion be the result of p-hacking (i.e. the modification of analyses
+in search for significant results), it is often due to much more innocent means such as an inability to re-execute a
+previous workflow, software errors, system upgrades, or algorithmic instability. While the existence of these problems
+is accepted, their impact on 
+
+\wip{
 \begin{itemize}
-\item neuroimaging seeks to relate human brains to behaviours
-\item this often relies on mri
-\item is the the only in-vivo non-invasive technology that allows high-resolution evaluation of brain structure in humans
-\item the images are processed by complex phenomenological modeling software, and statistical models applied on the derivatives
-\item however, given the complexity of methods, reproducibility can be an issue
 \item reproducibility stems from a number of levels, ranging from re-executability to numerical instabilities
 \item this thesis seeks to:
 \begin{itemize}
@@ -15,3 +44,81 @@
 \item ultimately, I created a piece of computational infrastructure which was used to facilitate the execution of pipelines consuming millions of cpu-hours, effectively induced instabilities in numerical pipelines through Monte Carlo Arithmetic, described the significant impact of these instabilities in analytic contexts, and proposed a method for leveraging instabilities in machine learning contexts which improves the generalizability of learned models.
 \item my thesis not only sheds light on an impactful issue in neuroimaging, but it demonstrates a method for both shedding light on and benefitting from this issue by researchers in practice.
 \end{itemize}
+}
+
+\tmp{The growth of open science and increased availability of open datasets also poses a risk for further failure to adequately reproduce
+and generalize findings due to a much higher degree of variation in data quality and acquisition conditions. Unless
+addressed, science will continue to fail to do justice to the extraordinary datasets we possess. Computational sciences
+have an opportunity to develop more rigorous practices and tools which lower the barrier for producing reproducible
+analyses.}
+
+\subsection{Contributions to Original Knowledge}
+I have developed and contributed to several tools which increase the accessibility of deploying and evaluating
+neuroimaging pipelines at scale. I have demonstrated the utility of these tools to explore and characterize the
+stability of neuroimaging pipelines. Below, I summarize original contributions in each of these areas.
+
+\subsubsection*{Software Contributions}
+Extending the Boutiques command-line descriptive framework~\cite{Glatard2018-tu}, for which I am a co-maintainer, I
+developed Clowdr~\cite{Kiar2019-sr} to enable the rapid deployment of scientific workflows across cloud and cluster
+resources. This tool is publicly available and has effectively been used on the Amazon Web Services cloud, Compute
+Canada, XSEDE, and Dell  EMC resources, orchestrating decades of compute cycles over the resources in a matter of
+hours. As workflows in neuroimaging often rely on prebuilt and containerized dependencies through Docker or
+Singularity, I created Fuzzy (\href{https://github.com/gkiar/fuzzy}{https://github.com/gkiar/fuzzy}), a curated
+collection of scientific libraries which were recompiled and instrumented to allow the stability evaluation of the
+contained tools. These environments use Verificarlo~\cite{Denis2016-wo} to instrument libraries with Monte Carlo
+Arithmetic. The precompiled libraries include: Python, Cython, BLAS, LAPACK, Libmath. The efficacy of the perturbations
+induced through these tools has been demonstrated for neuroimaging applications through several experiments mentioned
+in the following paragraph.
+
+\subsubsection*{Scientific Contributions}
+The software contributions above were developed out of necessity for the exploration of the stability of neuroimaging
+analyses. First, I created and demonstrated the Fuzzy environments as an effective method for inducing instabilities in
+neuroimaging pipelines, and situated these instabilities with respect to other forms of
+perturbation~\cite{Kiar2020-lb}. In this paper, I demonstrated the considerable variability present in a structural
+connectome estimation pipeline solely due to numerical uncertainty. I applied this technique to study the stability of
+a set of typical network neuroscience experiments and characterized the effect of instabilities on each of a
+test-retest, network topology, and phenotypic classification setting~\cite{Kiar2020-kz}. This work illustrates the
+significant impact that numerical instabilities play in all levels of downstream analysis, spanning the reliability of
+comparisons across subjects, to the lack of reliability in individual network features, and ultimately the modelling of
+relationships between connectivity and phenotypic information (in this case, Body Mass Index). The final chapter of my
+thesis focused on the aggregation of unstable derivatives and their impact on the performance and generalizability of
+machine learning classifiers tasked with learning brain-phenotype relationships. The findings of this paper showed that
+dataset augmentation through Monte Carlo Arithmetic leads to the development of more stable and performant classifiers,
+and has significant implications on the development of robust neuroimaging biomarkers, as well as the potential to
+incrase the benefit gained from additional data collection. Together, these contributions bridge the gap between
+numerical analysis and neuroimaging, providing novel insights into the reliability of tools, their results, and their
+ultimate application in understanding brain structure.
+
+\subsection{Contributions of Authors}
+I was responsible for the experimental design, data processing, analysis, interpretation of results, and the majority
+of writing for each manuscript. Specific co-author contributions to each chapter are summarized below.
+
+\subsubsection*{Ch.I – A Serverless Tool for Platform Agnostic Computational Experiment Management}
+I designed and developed the tools, experiments, and figures, and wrote the majority of the manuscript. Shawn T. Brown,
+Tristan Glatard, and Alan C. Evans supported the design and development processes, edited the manuscript, and provided
+valuable feedback. Tristan Glatard and Alan C. Evans jointly supervised this project.
+
+\subsubsection*{Ch.II – Comparing Perturbation Models for Evaluating Stability of Neuroimaging Pipelines}
+I was responsible for the experimental design, tool development, data processing, analysis, interpretation, and the
+majority of writing. All authors contributed to the revision of the manuscript. Pablo de Oliveira Castro, Pierre Rioux,
+Eric Petit, and Shawn T. Brown all provided software development support. Alan C. Evans and Tristan Glatard supported
+the development process and jointly supervised this project.
+
+\subsubsection*{Ch.III – Numerical Instabilities in Analytical Pipelines Lead to Large and Meaningful Variability in Brain
+Networks}
+I was responsible for the experimental design, data processing, analysis, interpretation, and the majority of writing.
+, Pierre Rioux,
+All authors contributed to the revision of the manuscript. Yohan Chatelain, Pablo de Oliveira Castro, and Eric Petit
+were responsible for MCA tool development and software testing. Ariel Rokem, Gaël Varoquaux, and Bratislav Misic
+contributed to experimental design and interpretation. Tristan Glatard contributed to experimental design, analysis,
+and interpretation. Tristan Glatard and Alan C. Evans were responsible for supervising and supporting all of my
+contributions.
+
+\subsubsection*{Ch.IV – Data Augmentation Through Monte Carlo Arithmetic Leads to More Generalizable Classification in
+Connectomics}
+I was responsible for the experimental design, data processing, analysis, interpretation, and the majority of writing.
+All authors contributed to the revision of the manuscript. Yohan Chatelain and Ali Salari provided feedback on the
+experimental design. Tristan Glatard and Alan C. Evans contributed to experimental design, analysis, interpretation,
+and jointly supervised this project.
+
+\clearpage
