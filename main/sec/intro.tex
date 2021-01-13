@@ -1,56 +1,61 @@
 In an age of big data and an ever growing landscape of –omics', the structure and function of the brain is being
 increasingly explored through connectomics. Brain maps, called connectomes, are constructed as networks in which areas
-of the brain are related to one another through properties of interest. These areas, also called regions of interest or
-vertices, and the properties or edges connecting them are intentionally flexible, allowing the brain networks to
-describe a limitless range of scales and organisms. While the connectome derived from a section of mouse brain may
-summarize the synapses between neurons found in an Electron Miscropy image, the construction of a similar map from
-humans \textit{in vivo} is limited to data collected through non-invasive imaging techniques such as Magnetic Resonance
-Imaging (MRI).
+of the brain are related to one another through properties of interest~\tocite. These areas, also called regions of
+interest or vertices, and the properties or edges connecting them are intentionally flexible, allowing the brain
+networks to describe a limitless range of scales and organisms. While the connectome derived from a section of mouse
+brain may summarize the synapses between neurons found in an Electron Miscropy image~\tocite, the construction of a
+similar map from humans \textit{in vivo} is limited to data collected through non-invasive imaging techniques such as
+Magnetic Resonance Imaging (MRI)~\tocite.
 
 Though the resolution of a typical MRI is approximately $1,000,000 \times$ less precise than an Electron Microscope
-image which shows true cellular connectivity, MRI techniques allow for the capture of entire brains without harming the
-subject and can be measured over time to observe network evolution. While regions would be defined in the MRI case as
-macro-scale brain areas (often $1mm^3$ or larger in size), the edges between them can be defined as similarity in
-structure, connectivity, or function. Exploring these networks can not only lead to an academic understanding of
-intelligent network architectures, such as which may be replicated in fields like Artificial Intelligence (AI) and
-Machine Learning (ML), but may also inform the development of diagnostics and healthcare interventions.
+image~\tocite which shows true cellular connectivity, MRI techniques allow for the capture of entire brains without
+harming the subject and can be measured over time to observe network evolution. While regions would be defined in the
+MRI case as macro-scale brain areas (often $1mm^3$ or larger in size~\tocite), the edges between them can be defined as
+similarity in structure~\tocite, connectivity~\tocite, or function~\tocite. Exploring these networks can not only lead
+to an understanding of intelligent network architectures, such as which may be replicated in fields like Artificial
+Intelligence (AI) and Machine Learning (ML)~\tocite, but may also inform the development of diagnostics and healthcare
+interventions~\tocite.
 
-In recent years, several large consortia such as the UK BioBank, Human Connectome Project, and Consortium of
-Reproducibility and Reliability have made it their mission to capture and share brain imaging data from thousands of
-individuals which can be used to construct and explore these networks. However, connectomes are not an automatic result
-of these images. The estimation of brain networks relies on complex image processing software tools and scientific
-pipelines, including the denoising and alignment of images, tissue classification and segmentation, and modelling or
-relating connectivity or function across regions. The orchestration and design of these pipelines has considerable
-impact on the derived networks and, importantly, their application. In the absense of ground-truth to evaluate the
-accuracy of results, it is essential to understand their consistency across minor perturbations (e.g. small amounts of
-noise). A lack of consistency has recently become apparent across brain imaging, necessitating a shift in the focus of
-researchers with an increasing emphasis on reproducibility.
+In recent years, several large consortia such as the UK BioBank~\tocite, Human Connectome Project~\tocite, and
+Consortium of Reproducibility and Reliability~\tocite have made it their mission to capture and share brain imaging
+data from thousands of individuals which can be used to construct maps and explore the brain. However, connectomes are
+not an automatic result of these images. The estimation of brain networks relies on complex image processing software
+tools and scientific pipelines~\tocite, including the denoising and alignment of images, tissue classification and
+segmentation, and modelling or relating connectivity or function across regions. The orchestration and design of these
+pipelines has considerable impact on the derived networks~\tocite and, importantly, their application~\tocite. In the
+absence of ground-truth to evaluate the accuracy of results generated from these tools, it is essential to understand
+their consistency across minor perturbations (e.g. small amounts of noise). A lack of such consistency has recently
+become apparent across brain imaging~\tocite, necessitating a shift in the focus of researchers with an increasing
+emphasis on reproducibility.
 
-While the irreproducibility of findings may on occassion be the result of p-hacking (i.e. the modification of analyses
+While the irreproducibility of findings may on occasion be the result of p-hacking (i.e. the modification of analyses
 in search for significant results), it is often due to much more innocent means such as an inability to re-execute a
-previous workflow, software errors, system upgrades, or algorithmic instability. While the existence of these problems
-is accepted, their impact on 
+previous workflow~\tocite, software errors~\tocite, system upgrades~\tocite, or algorithmic instability~\tocite. While
+the existence of these problems is becoming increasingly understood and accepted, their impact on the validity
+scientific claims or models in neuroimaging has remained largely uncharacterized.
 
-\wip{
-\begin{itemize}
-\item reproducibility stems from a number of levels, ranging from re-executability to numerical instabilities
-\item this thesis seeks to:
-\begin{itemize}
-\item provide a solution to the re-executability of neuromaging pipelines
-\item explore methods for evaluating instabilities in neuroimaging pipelines
-\item quantify the analytic impact of induced instabilities
-\item leverage numerical instabilities towards improving the quality of neuroimaging research
-\end{itemize}
-\item ultimately, I created a piece of computational infrastructure which was used to facilitate the execution of pipelines consuming millions of cpu-hours, effectively induced instabilities in numerical pipelines through Monte Carlo Arithmetic, described the significant impact of these instabilities in analytic contexts, and proposed a method for leveraging instabilities in machine learning contexts which improves the generalizability of learned models.
-\item my thesis not only sheds light on an impactful issue in neuroimaging, but it demonstrates a method for both shedding light on and benefitting from this issue by researchers in practice.
-\end{itemize}
-}
+The objective of this thesis was to understand the role that numerical instabilities play in the reproducibility of
+results, and develop methods around this exploration which enable higher quality and more easily reproducible claims
+in neuroimaging. To this end, I have:
 
-\tmp{The growth of open science and increased availability of open datasets also poses a risk for further failure to adequately reproduce
-and generalize findings due to a much higher degree of variation in data quality and acquisition conditions. Unless
-addressed, science will continue to fail to do justice to the extraordinary datasets we possess. Computational sciences
-have an opportunity to develop more rigorous practices and tools which lower the barrier for producing reproducible
-analyses.}
+\begin{enumerate}[label=(\roman*)]
+\item developed a software library which facilitates and records provenance for the perfectly parallel execution,
+re-execution, visualization, and error detection of neuroimaging pipelines and datasets;
+\item developed and evaluated various methods for perturbing pipelines and observing the numerical instabilities
+inherent to structural connectome estimation;
+\item quantified the impact of numerical instability on a set of neuroimaging analyses measuring absolute change,
+dataset reliability, network topology, and the robustness of a brain-phenotype relationship; and,
+\item improved the quality and generalizability of modelling a brain-phenotype relationship through the aggregation of
+connectomes in a perturbation-augmented dataset.
+\end{enumerate}
+
+Ultimately, I created a piece of computational infrastructure which was used to facilitate the execution of pipelines
+consuming millions of CPU-hours for the induction of numerical instabilities in neuroimaging pipelines. I characterized
+the significant impact of these instabilities in various analytic contexts, and proposed a method for leveraging
+instabilities in machine learning applications which improves the generalizability of learned models. My thesis not
+only sheds light on an impactful issue in neuroimaging, but it presents a method for both shedding further light on
+the trustworthiness of scientific tools and results, and demonstrates how scientific workflows can immediately benefit
+from these explorations in practice.
 
 \subsection{Contributions to Original Knowledge}
 I have developed and contributed to several tools which increase the accessibility of deploying and evaluating
@@ -85,7 +90,7 @@ thesis focused on the aggregation of unstable derivatives and their impact on th
 machine learning classifiers tasked with learning brain-phenotype relationships. The findings of this paper showed that
 dataset augmentation through Monte Carlo Arithmetic leads to the development of more stable and performant classifiers,
 and has significant implications on the development of robust neuroimaging biomarkers, as well as the potential to
-incrase the benefit gained from additional data collection. Together, these contributions bridge the gap between
+increase the benefit gained from additional data collection. Together, these contributions bridge the gap between
 numerical analysis and neuroimaging, providing novel insights into the reliability of tools, their results, and their
 ultimate application in understanding brain structure.
 
