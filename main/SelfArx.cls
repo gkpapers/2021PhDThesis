@@ -225,6 +225,10 @@ justification=raggedright]{caption}
         \setcounter{supsec}{0}
         \renewcommand{\thesection}{\quad Ch.{#1} - \arabic{section}}%
         \renewcommand{\thesupsec}{\quad Ch.{#1} - S\arabic{supsec}}%
+        \setcounter{table}{0}
+        \renewcommand{\thetable}{Ch.{#1} - \arabic{table}}%
+        \setcounter{figure}{0}
+        \renewcommand{\thefigure}{Ch.{#1} - \arabic{figure}}%
 }
 
 \newcommand{\beginsupplement}{%

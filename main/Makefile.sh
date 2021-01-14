@@ -9,6 +9,10 @@ default:
 	${TEX} ${FILE} &&\
 	${TEX} ${FILE}
 
+quick:
+	${TEX} ${FILE} &&\
+	${TEX} ${FILE}
+
 clean:
 	rm -f ${FILE}{.bcf,.blg,.bbl,.log,.aux,.out,.fdb_latexmk,.fls,.run.xml,.synctex.gz} &&\
 	rm Makefile

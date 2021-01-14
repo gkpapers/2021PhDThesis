@@ -54,7 +54,7 @@
 %----------------------------------------------------------------------------------------
 
 \usepackage{hyperref} % Required for hyperlinks
-\hypersetup{hidelinks,colorlinks,breaklinks=true,urlcolor=color2,citecolor=color1,linkcolor=color1,bookmarksopen=false,pdftitle={Title},pdfauthor={Author}}
+\hypersetup{hidelinks,colorlinks,breaklinks=true,urlcolor=color2,citecolor=color1,linkcolor=color1,bookmarksopen=false,pdftitle={Your Brain on Disk},pdfauthor={Gregory Kiar}}
 
 %----------------------------------------------------------------------------------------
 % Macros that fit better here than the template
@@ -107,7 +107,7 @@ Biological \& Biomedical Engineering.}
 %----------------------------------------------------------------------------------------
 
 \AbstractEN{my abstract is great}
-\AbstractFR{mon abstract et superb}
+\AbstractFR{mon abstract est superb}
 
 %----------------------------------------------------------------------------------------
 
@@ -164,6 +164,8 @@ Sciences and Engineering Research Council of Canada, Mitacs (Globalink), and The
 \clearpage
 
 \tableofcontents % Print the contents section
+\listoftables
+\listoffigures
 \clearpage
 
 %----------------------------------------------------------------------------------------
@@ -190,58 +192,79 @@ Sciences and Engineering Research Council of Canada, Mitacs (Globalink), and The
 
 \phantomsection
 \beginchapter{I}
-\includepdf[pages=-,pagecommand={\thispagestyle{fancy}},addtotoc={
-     1,part,1,A Serverless Tool for Platform Agnostic Computational Experiment Management,ch1p1,   
-     2,secnonum,2,\qquad\qquad Abstract,ch1p2,
-     3,section,2,\qquad\qquad Introduction,ch1p2,
-     4,section,2,\qquad\qquad Emergent Technologies in Reproducible Neuroscience,ch1p3,
-     7,section,2,\qquad\qquad The Clowdr Microtool,ch1p6,
-     10,section,2,\qquad\qquad Performing Experiments With Clowdr,ch1p9,
-     13,section,2,\qquad\qquad Discussion,ch1p12}]
-     {../chapter1/chapter1.pdf}
+\includepdf[pages=-,pagecommand={\thispagestyle{fancy}},
+            addtotoc={1,part,1,A Serverless Tool for Platform Agnostic Computational Experiment Management,ch1p1,   
+                      2,secnonum,2,\qquad\qquad Abstract,ch1p2,
+                      3,section,2,\qquad\qquad Introduction,ch1p2,
+                      4,section,2,\qquad\qquad Emergent Technologies in Reproducible Neuroscience,ch1p3,
+                      7,section,2,\qquad\qquad The Clowdr Microtool,ch1p6,
+                      10,section,2,\qquad\qquad Performing Experiments With Clowdr,ch1p9,
+                      13,section,2,\qquad\qquad Discussion,ch1p12},
+            addtolist={7, figure,\qquad\qquad Clowdr Workflow, ch1f1,
+                       9, figure,\qquad\qquad {Clowdr Data Flow, tool descriptor, and parameter invocation}, ch1f2,
+                       11, figure,\qquad\qquad Clowdr Experiment Viewer, ch1f3}]
+            {../chapter1/chapter1.pdf}
 \clearpage
 
 \phantomsection
 \beginchapter{II}
-\includepdf[pages=-,pagecommand={\thispagestyle{fancy}},addtotoc={
-     1,part,1,Comparing Perturbation Models for Evaluating Stability of Neuroimaging Pipelines,ch2p1,   
-     2,secnonum,2,\qquad\qquad Abstract,ch2p2,
-     3,section,2,\qquad\qquad Introduction,ch2p3,
-     4,section,2,\qquad\qquad Methods,ch2p4,
-     10,section,2,\qquad\qquad Results,ch2p10,
-     15,section,2,\qquad\qquad Discussion,ch2p15,
-     19,section,2,\qquad\qquad Conclusion,ch2p19}]
-     {../chapter2/chapter2.pdf}
+\includepdf[pages=-,pagecommand={\thispagestyle{fancy}},
+            addtotoc={1,part,1,Comparing Perturbation Models for Evaluating Stability of Neuroimaging Pipelines,ch2p1,
+                      2,secnonum,2,\qquad\qquad Abstract,ch2p2,
+                      3,section,2,\qquad\qquad Introduction,ch2p3,
+                      4,section,2,\qquad\qquad Methods,ch2p4,
+                      10,section,2,\qquad\qquad Results,ch2p10,
+                      15,section,2,\qquad\qquad Discussion,ch2p15,
+                      19,section,2,\qquad\qquad Conclusion,ch2p19},
+            addtolist={6, figure,\qquad\qquad Example Connectome, ch2f1,
+                       8, table, \qquad\qquad Description of perturbation modes, ch2t1,
+                       9, figure,\qquad\qquad Comparison of perturbation modes, ch2f2,
+                       12, figure,\qquad\qquad Structure of deviations, ch2f3,
+                       13, figure,\qquad\qquad Perturbation introduced structural differences, ch2f4,
+                       15, figure,\qquad\qquad Gain and loss of edges in aggregation of simulations, ch2f5,
+                       17, figure,\qquad\qquad Computation time for each perturbation method, ch2f6}]
+            {../chapter2/chapter2.pdf}
 \clearpage
 
 \phantomsection
 \beginchapter{III}
-\includepdf[pages=-,pagecommand={\thispagestyle{fancy}},addtotoc={
-     1,part,1,Numerical Instabilities in Analytical Pipelines Lead to Large and Meaningful \\ Variability in Brain Networks,ch3p1,
-     2,secnonum,2,\qquad\qquad Abstract,ch3p2,
-     3,section,2,\qquad\qquad Graphs Vary Widely With Perturbations,ch3p3,
-     5,section,2,\qquad\qquad Subject-Specific Signal is Amplified While Off-Target Biases Are Reduced,ch3p5,
-     7,section,2,\qquad\qquad {Distributions of Graph Statistics Are Reliable, But Individual Statistics Are Not},ch3p7,
-     9,section,2,\qquad\qquad Uncertainty in Brain-Phenotype Relationships,ch3p9,
-     10,section,2,\qquad\qquad Discussion,ch3p10,
-     12,section,2,\qquad\qquad Materials \& Methods,ch3p12,
-     22,supsec,2,\qquad\qquad Graph Correlation,ch3p22,
-     23,supsec,2,\qquad\qquad Complete Discriminability Analysis,ch3p23,
-     24,supsec,2,\qquad\qquad Univariate Graph Statistics,ch3p24}]
-     {../chapter3/chapter3.pdf}
+\includepdf[pages=-,pagecommand={\thispagestyle{fancy}},
+            addtotoc={1,part,1,Numerical Instabilities in Analytical Pipelines Lead to Large and Meaningful \\ Variability in Brain Networks,ch3p1,
+                      2,secnonum,2,\qquad\qquad Abstract,ch3p2,
+                      3,section,2,\qquad\qquad Graphs Vary Widely With Perturbations,ch3p3,
+                      5,section,2,\qquad\qquad Subject-Specific Signal is Amplified While Off-Target Biases Are Reduced,ch3p5,
+                      7,section,2,\qquad\qquad {Distributions of Graph Statistics Are Reliable, But Individual Statistics Are Not},ch3p7,
+                      9,section,2,\qquad\qquad Uncertainty in Brain-Phenotype Relationships,ch3p9,
+                      10,section,2,\qquad\qquad Discussion,ch3p10,
+                      12,section,2,\qquad\qquad Materials \& Methods,ch3p12,
+                      22,supsec,2,\qquad\qquad Graph Correlation,ch3p22,
+                      23,supsec,2,\qquad\qquad Complete Discriminability Analysis,ch3p23,
+                      24,supsec,2,\qquad\qquad Univariate Graph Statistics,ch3p24},
+            addtolist={4, figure,\qquad\qquad Exploration of perturbation-induced deviations from reference connectomes, ch3f1,
+                       5, table, \qquad\qquad {The impact of instabilities as evaluated through the separability of the dataset}, ch3t1,
+                       8, figure,\qquad\qquad Distribution and stability assessment of multivariate graph statistics, ch3f2,
+                       9, figure,\qquad\qquad Variability in BMI classification across the sampling of an MCA-perturbed dataset, ch3f3,
+                       22, figure,\qquad\qquad The correlation between perturbed connectomes and their reference, ch3f4,
+                       23, table,\qquad\qquad The complete results from the Discriminability analysis, ch3t2,
+                       25, figure,\qquad\qquad Distribution and stability assessment of univariate graph statistics, ch3f5}]
+            {../chapter3/chapter3.pdf}
 
 \phantomsection
 \beginchapter{IV}
-\includepdf[pages=-,pagecommand={\thispagestyle{fancy}},addtotoc={
-     1,part,1,Data Augmentation Through Monte Carlo Arithmetic Leads to More Generalizable Classification in Connectomics,ch4p1,
-     2,secnonum,2,\qquad\qquad Abstract,ch4p2,
-     3,section,2,\qquad\qquad Introduction,ch4p3a,
-     3,section,2,\qquad\qquad Materials \& Methods,ch4p3b,
-     8,section,2,\qquad\qquad Results,ch4p8,
-     13,section,2,\qquad\qquad Discussion,ch4p13,
-     16,section,2,\qquad\qquad Conclusion,ch4p16}]
-     {../chapter4/chapter4.pdf}
-\twocolumn
+\includepdf[pages=-,pagecommand={\thispagestyle{fancy}},
+            addtotoc={1,part,1,Data Augmentation Through Monte Carlo Arithmetic Leads to More Generalizable Classification in Connectomics,ch4p1,
+                      2,secnonum,2,\qquad\qquad Abstract,ch4p2,
+                      3,section,2,\qquad\qquad Introduction,ch4p3a,
+                      3,section,2,\qquad\qquad Materials \& Methods,ch4p3b,
+                      8,section,2,\qquad\qquad Results,ch4p8,
+                      13,section,2,\qquad\qquad Discussion,ch4p13,
+                      16,section,2,\qquad\qquad Conclusion,ch4p16},
+            addtolist={4, figure,\qquad\qquad Experiment workflow., ch4f1,
+                       9, table, \qquad\qquad Statistically significant change in performance, ch4t1,
+                       10, figure,\qquad\qquad Relative change in classifier performance with respect to classifier type and dataset sampling strategies, ch4f2,
+                       11, figure,\qquad\qquad Relationship between generalizability and resampling, ch4f3,
+                       12, figure,\qquad\qquad The generalizability of classifiers using each dataset sampling technique with respect to the number of MCA simulations, ch4f4}]
+            {../chapter4/chapter4.pdf}
 
 
 %----------------------------------------------------------------------------------------
