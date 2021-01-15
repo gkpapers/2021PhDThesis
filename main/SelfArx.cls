@@ -131,7 +131,7 @@ justification=raggedright]{caption}
 %----------------------------------------------------------------------
 \newlength{\tocsep} 
 \setlength\tocsep{1.5pc} % Sets the indentation of the sections in the table of contents
-\setcounter{tocdepth}{4} % Three levels in the table of contents section: sections, subsections and subsubsections
+\setcounter{tocdepth}{5} % Three levels in the table of contents section: sections, subsections and subsubsections
 
 \usepackage{titletoc}
 \contentsmargin{0cm}
@@ -171,12 +171,13 @@ justification=raggedright]{caption}
   {}
   {\hfill\thecontentspage}
   []
-\titlecontents*{subsubsection}[\tocsep]
+\titlecontents{subsubsection}[\tocsep]
   {\footnotesize\sffamily}
-  {\hspace{0.5em}}
+  {\hspace{1em}\contentslabel[\thecontentslabel]{\tocsep}\hspace{3em}}
   {}
-  {}
-  []  
+  {\hfill\thecontentspage}
+  []
+
 
 %----------------------------------------------------------------------
 %	MULTIPLE AUTHOR SET

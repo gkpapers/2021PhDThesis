@@ -1,28 +1,91 @@
-we will first discuss the state of reproducibility in science, and explore various applications. Next, we will discuss
-the roles that software reproducibility and uncertainty play in these issues, the former being solveable and the latter
-being explorable. This leads to the field us numerical analysis and uncertainty quantification, and tools which have
-been developed in this space. Ultimately we bring this to neuroimaging and discuss the types of pipelines and
-applications which are run in this space, and the role that numerical instabilities may play in them.
+We will first define and discuss the state of reproducibility in science across a range of domains, and explore several
+specific examples. Next, we will discuss the role that software reproducibility and numerical analysis play in these
+problems, and advances which have been made in each of these spaces. We will then approach neuroimaging, with a brief
+overview of the field and commonly used methods. Finally, we will explore several case studies of reproducibility in
+neuroimaging to demonstrate the relevance of exploring reproducibility and stability in this space.
 
-\subsection{The Reproducibility Crisis}
+\subsection{Reproducibility}
+At the heart of science is the ability for researchers to build upon previous work, incrementally advancing a given
+field of research~\tocite \tmp{(some subset of refs 1-6 from open science collab)}. Despite being accepted as a cornerstone for progress, there is not a fully unified definition around
+this practice, or the lack thereof in some cases~\tocite (https://doi.org/10.3389/fninf.2017.00076, https://www.nature.com/articles/s41562-019-0629-z, https://stm.sciencemag.org/content/8/341/341ps12.full).
+In practice, distinct definitions have emerged to serve specific communities tackling issues of reproducibility, such
+as The Association for Computing Machinery which defines reproducibility as the ability to re-obtain a measure with
+stated quality and precision using an identical experimental setup when carried out by a different team in a different
+location~\tocite(https://www.acm.org/publications/policies/artifact-review-badging). In the case of life sciences,
+this definition has limited use since the equivalence of samples being measured (e.g. humans in a different city) or
+equipment being used (e.g. equivalent equipment from two different manufacturers) is difficult or impossible to
+quantify. In these cases, a distinction in the level of reproducibility is often drawn with milestones corresponding to
+the ability to reproduce the methods used, the ability to obtain the same or equivalent results, and the ability to
+draw equivalent inferences from the results obtained~\tocite (https://doi.org/10.3389/fninf.2017.00076).
+
+In an effort to increase clarity around this topic and handfuls of overlapping definitions, there have been recent
+efforts to visualize the intentions and slight conceptual differences across each~\tocite (https://www.nature.com/articles/s41562-019-0629-z) \tmp{add figure}.
+In the paper referenced here, a distinction is made from reproducibility and replicability. In this case,
+reproducibility is defined as the ability to exactly re-run the analysis using the existing data and tools, but a
+unique analyst. Replicability then describes the ability to successfully re-do the experiment, including new data
+collection, experimenters, and software, but ultimately arrive at the same claim. These definitions have practical
+value in the life sciences as they allow for the differentiation between a claim remaining unchanged in either the same
+or differing experimental configurations and equipment. These definitions, often referred to colloquially as ``Peng's
+Reproducibility'', will be the definitions referred to throughout this thesis.
+
+In addition to the definitions of reproducibility and replicability accepted above, I will refer to an additional term
+in this space: re-executability, which simply refers to the ability of being able to ``hit go'' on the analysis
+subsequent to its original execution. This definition closely matches a definition of reproducibility mentioned above,
+but no analog exists within the Peng framework, so it is added here for clarity.
+
+With a rich and growing space of conceptual frameworks through which re-executability, reproducibility, and
+replicability can be evaluated, it is perhaps self-evident that the level of trustworthiness across many disciplines
+has recently become a topic of interest. I will now introduce the so-called ``Reproducibility Crisis'', an umbrella
+phrase which captures this movement, and highlight its relevance in both psychological and neurological sciences,
+serving as motivation for work carried out as a part of this thesis.
+
+\subsubsection{The Reproducibility Crisis}
+
+The reproducibility of findings has long been a topic of concern to researchers in the life sciences~\tocite (https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.0020124, https://www.nature.com/articles/483531a?linkId=33568136, https://www.nature.com/articles/nrd3439-c1?linkId=33568131, https://science.sciencemag.org/content/343/6168/229.full).
+However, several recent initiatives have brought this somewhat niche question into an area of broad concern. In 2015,
+the Open Science Collaboration~\tocite (https://science.sciencemag.org/content/349/6251/aac4716) organized an attempted
+replication of $100$ recent research papers in psychology~\tocite. Their result, showing that approximately two-thirds
+of the studies failed to replicate (\tmp{add figure}), was swept up by mainstream media and proclaimed a crisis.
+
+In an effort to characterize the so-called crisis, Nature conducted a survey of $1,500$ scientists across a wide
+range of disciplines, probing their beliefs about the reproducibility of science in their field, and found that $90\%$
+of respondents indeed felt that their field was in crisis~\tocite (https://www.nature.com/news/1-500-scientists-lift-the-lid-on-reproducibility-1.19970).
+
+With this topic now in the public eye, studies continued to explore various causes in attempt to understand and correct
+the widely shared concern. Unsurprisingly, this problem was tackled from a number of different directions, even within
+a given discipline. In neuroscience, statistical power has long been believed to be a
+culprit for irreproducibility~\tocite (https://www.nature.com/articles/nrn3475); a meta-analytic study of the power of
+findings in literature estimated a median power of findings at $21\%$. In practice, this work assumed the robustness of
+data and methods used throughout the studies, and performed a purely statistical evaluation.
+
+In neuroimaging, studies began to dive deeper into these intermediate methods. A study evaluating the accuracy of
+significance testing frameworks within commonly used libraries for analysis of functional-MRI data found that
+under certain conditions false-positive rates were as high as $70\%$~\tocite (https://www.pnas.org/content/113/28/7900).
+This... https://onlinelibrary.wiley.com/doi/full/10.1002/hbm.24603).
+
+
+
+While methods which have been developed and used previously, such as software written to accomplish a certain task,
+would continue to function in an ideal world, in practice this is not the case. A study exploring published papers in
+computer science found that of $600$ papers which were analyzed, approximately only $200$ were able to weakly
+replicate~\tocite (http://repeatability.cs.arizona.edu/v2/RepeatabilityTR.pdf).
+
 \begin{itemize}
-\item (OSF, NARPS, tractograms, CoRR, ...)
-\item \url{https://www.biorxiv.org/content/10.1101/2020.10.07.321083v1.full.pdf}
+\item (OSF,  ...)
+\item \url{https://randomascii.wordpress.com/2014/10/09/intel-underestimates-error-bounds-by-1-3-quintillion/}
+\item Batch effects in other contexts: \url{https://academic.oup.com/biostatistics/article/8/1/118/252073}
 \end{itemize}
 
-\subsection{Software Reproducibility}
+\subsubsection{Software Reproducibility}
 \begin{itemize}
 \item (Boutiques, BIDS, CBRAIN, NIDM, ...)
 \end{itemize}
 
-\subsection{Uncertainty in Scientific Pipelines}
-\begin{itemize}
-\item (OSes, One Voxel, Cluster Failure, ...)
-\item \url{https://randomascii.wordpress.com/2014/10/09/intel-underestimates-error-bounds-by-1-3-quintillion/}
-\item Bias-variance tradeoff https://ieeexplore.ieee.org/document/824819
-\end{itemize}
 
-\subsection{Numerical Analysis and Uncertainty Quantification}
+\subsection{Stability}
+words, maybe?
+
+\subsubsection{Numerical Analysis and Uncertainty Quantification}
 \begin{itemize}
 \item (MCA, Verificarlo, Valgrind, ...)
 \item \url{https://www.nature.com/articles/s41586-020-2649-2}
@@ -34,13 +97,26 @@ applications which are run in this space, and the role that numerical instabilit
 \item Fonctions élémentaires : algorithmes et implémentations efficaces pour l'arrondi correct en double précision, David Defour.
 \end{itemize}
 
-\subsection{Pipelines in Neuroimaging}
+
+\subsection{Neuroimaging}
+
+\subsubsection{Diffusion MRI Processing}
 \begin{itemize}
+\item concept
+\item modalities of interest: diffusion and structural
+\item pipelines
+\item strengths and weaknesses
 \item (DWI strengths and limitations, Network Analysis, Applications, ...)
 \item \url{https://link.springer.com/article/10.1007/s00429-020-02129-z}
 \item \url{https://www.pnas.org/content/111/46/16574}
 \item \url{https://autofq.org/bibliography/diffusion-mri/}
-\item Batch effects in other contexts: \url{https://academic.oup.com/biostatistics/article/8/1/118/252073}
+\end{itemize}
+
+\subsubsection{Uncertainty in Neuroimaging Pipelines}
+\begin{itemize}
+\item (OSes, NARPS, tractograms, CoRR, One Voxel, Cluster Failure, ...)
+\item Bias-variance tradeoff https://ieeexplore.ieee.org/document/824819
 \item \url{https://www.frontiersin.org/articles/10.3389/fnins.2015.00018/full}
+\item \url{https://www.biorxiv.org/content/10.1101/2020.10.07.321083v1.full.pdf}
 \end{itemize}
 
