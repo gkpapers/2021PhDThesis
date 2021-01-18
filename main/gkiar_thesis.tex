@@ -24,13 +24,11 @@
 
 \usepackage[english]{babel} % Specify a different language here - english by default
 
-\usepackage{lipsum} % Required to insert dummy text. To be removed otherwise
-
 \captionsetup[figure]{justification=justified, singlelinecheck=off} 
 \captionsetup[table]{justification=justified, singlelinecheck=off} 
 \newcommand{\tmp}[1]{{\color{red}[TMP] #1}}
 \newcommand{\wip}[1]{{\color{blue}[WIP] #1}}
-\newcommand{\tocite}{{\color{red}[??]}}
+\newcommand{\tocite}{{\textsuperscript{\color{red}[??]}}}
 %----------------------------------------------------------------------------------------
 %	COLUMNS
 %----------------------------------------------------------------------------------------
@@ -49,6 +47,8 @@
 \definecolor{xsubj}{RGB}{243,194,68} 
 \definecolor{xsess}{RGB}{53,99,161} 
 \definecolor{xsamp}{RGB}{18,165,121} 
+\renewcommand{\thefootnote}{\alph{footnote}}
+
 
 %----------------------------------------------------------------------------------------
 %	HYPERLINKS
@@ -147,9 +147,10 @@ I would also like to thank Pierre Bellec, Jean-Baptiste Poline, and Christine Ta
 my work. Having each of their unique perspectives and backgrounds on my advisory committee always led us to interesting
 discussions and steered me towards more impactful and rigorous work. Throughout my Ph.D. I was very lucky to spend lots
 of time with communities of scientists and software developers, including my office mates on the CBRAIN team, Camille
-Maumet and Elisa Fromont who mentored me Inria, the global Brainhack community, and the countless friends and
-collaborators I've met through conferences and workshops. All of these groups have not only helped guide and motivate
-my work, but have provided fostering and safe environments to fail and grow.
+Maumet and Elisa Fromont who mentored me Inria, the global Brainhack community, my former supervisor Joshua Vogelstein,
+each of my incredible co-authors, and the countless friends and collaborators I've met through conferences and
+workshops. All of these groups have not only helped guide and motivate my work, but have provided fostering and safe
+environments to fail and grow.
 
 Finally, I would like to thank and acknowledge the support of various organizations which have funded my research,
 including Healthy Brains for Healthy Lives (supported by the Canada First Research Excellence Fund), The Natural
@@ -169,11 +170,12 @@ Sciences and Engineering Research Council of Canada, Mitacs (Globalink), and The
 
 \tableofcontents % Print the contents section
 \clearpage
+{\sffamily
 \listoffigures
 \clearpage
 \listoftables
 \clearpage
-
+}
 %----------------------------------------------------------------------------------------
 %	Introduction
 %----------------------------------------------------------------------------------------
@@ -290,12 +292,10 @@ Sciences and Engineering Research Council of Canada, Mitacs (Globalink), and The
 \section{Conclusion \& Summary}
 words
 
-\section{References}
-words
-
 %----------------------------------------------------------------------------------------
 %	REFERENCE LIST
 %----------------------------------------------------------------------------------------
+\section{References}
 \phantomsection
 \bibliographystyle{IEEEtran}
 \bibliography{gkiar_thesis}

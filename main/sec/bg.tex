@@ -1,8 +1,8 @@
 We will first define and discuss the state of reproducibility in science across a range of domains, and explore several
-specific examples. Next, we will discuss the role that software reproducibility and numerical analysis play in these
+specific examples. Next, we will discuss the role that software re-executability and numerical stability play in these
 problems, and advances which have been made in each of these spaces. We will then approach neuroimaging, with a brief
-overview of the field and commonly used methods. Finally, we will explore several case studies of reproducibility in
-neuroimaging to demonstrate the relevance of exploring reproducibility and stability in this space.
+overview of the field and commonly used methods, finally presenting several case studies in neuroimaging to demonstrate
+the relevance of exploring reproducibility and numerical stability in this space.
 
 \subsection{Reproducibility}
 At the heart of science is the ability for researchers to build upon previous work, incrementally advancing a given
@@ -49,54 +49,120 @@ of the studies failed to replicate (\tmp{add figure}), was swept up by mainstrea
 
 In an effort to characterize the so-called crisis, Nature conducted a survey of $1,500$ scientists across a wide
 range of disciplines, probing their beliefs about the reproducibility of science in their field, and found that $90\%$
-of respondents indeed felt that their field was in crisis~\tocite (https://www.nature.com/news/1-500-scientists-lift-the-lid-on-reproducibility-1.19970).
+of respondents felt that their field was in crisis~\tocite (https://www.nature.com/news/1-500-scientists-lift-the-lid-on-reproducibility-1.19970).
 
 With this topic now in the public eye, studies continued to explore various causes in attempt to understand and correct
 the widely shared concern. Unsurprisingly, this problem was tackled from a number of different directions, even within
-a given discipline. In neuroscience, statistical power has long been believed to be a
-culprit for irreproducibility~\tocite (https://www.nature.com/articles/nrn3475); a meta-analytic study of the power of
-findings in literature estimated a median power of findings at $21\%$. In practice, this work assumed the robustness of
-data and methods used throughout the studies, and performed a purely statistical evaluation.
+a given discipline. In neuroscience, statistical power has long been believed to be a culprit for
+irreproducibility~\tocite (https://www.nature.com/articles/nrn3475); a meta-analytic study of the power of findings in
+literature estimated a median power of findings at $21\%$. In practice, this work assumed the robustness of data and
+methods used throughout the studies, and performed a purely statistical evaluation.
 
-In neuroimaging, studies began to dive deeper into these intermediate methods. A study evaluating the accuracy of
-significance testing frameworks within commonly used libraries for analysis of functional-MRI data found that
-under certain conditions false-positive rates were as high as $70\%$~\tocite (https://www.pnas.org/content/113/28/7900).
-This... https://onlinelibrary.wiley.com/doi/full/10.1002/hbm.24603).
+In neuroimaging, studies began to dive deeper into intermediate methods and explored their compounded effect on
+null hypothesis significance testing. A study evaluating the accuracy of significance testing frameworks within
+commonly used libraries for analysis of functional MRI (fMRI) data found that under certain conditions false-positive
+rates were as high as $70\%$~\tocite (https://www.pnas.org/content/113/28/7900). While the presentation of this result
+may misleadingly construe an inflated significance of these errors (see associated letters~\tocite and
+revisions~\tocite), an undeniable attribute of these findings which is the often-dramatic difference between software
+libraries. The impact that these differences have on analytical workflows was summarized well in https://onlinelibrary.wiley.com/doi/full/10.1002/hbm.24603),
+which showed that not only do the tools produce qualitatively different results, but could sometimes lead to diverging
+conclusions.
 
-
-
-While methods which have been developed and used previously, such as software written to accomplish a certain task,
-would continue to function in an ideal world, in practice this is not the case. A study exploring published papers in
+In all of the cases above, analyses were chosen to be evaluated explicitly because they could be re-executed across
+slightly different conditions.  While all published methods, such as software written to produce a given result, would
+continue to function in an ideal world, in practice this is not the case. A study exploring published papers in
 computer science found that of $600$ papers which were analyzed, approximately only $200$ were able to weakly
-replicate~\tocite (http://repeatability.cs.arizona.edu/v2/RepeatabilityTR.pdf).
+replicate~\cite{collberg2016repeatability}. In many cases, this was due to
+inadequate description of the specific implementations, environments, or how tools were applied, while in others, it
+was likely due to the commonly accepted phenomenon of ``Software Aging''~\cite{parnas1994software}. Regardless of the
+specific causes, this inability to re-execute workflows makes claims derived from these tools irreproducible at the
+most fundamental level. Prior to exploring possible numerical underpinnings behind irreproducibility, it is essential
+to ensure the re-executability of analyses. The following section will discuss advances made prior to this thesis which
+facilitate the construction and distribution of re-executable scientific workflows.
 
-\begin{itemize}
-\item (OSF,  ...)
-\item \url{https://randomascii.wordpress.com/2014/10/09/intel-underestimates-error-bounds-by-1-3-quintillion/}
-\item Batch effects in other contexts: \url{https://academic.oup.com/biostatistics/article/8/1/118/252073}
-\end{itemize}
+\subsection{Software Re-executability}
+There are a number of factors which limit the re-executability scientific workflows, including incomplete specification
+of processing detail or lack of data and tool availability~\tocite (https://www.nature.com/articles/ng.295?cacheBust=1510009844072).
+While the public sharing and dissemination of data may not always be possible in the life sciences due to concerns
+around ethics or the informed consent of participants~\cite{ross2018ethical,duke2013ethics}, there exist practical
+guides which can help researchers overcome this hurdle in certain cases (e.g. for
+neuroimaging~\cite{brakewood2013ethics} and psychology~\cite{meyer2018practical}). Given that ethical barriers should
+not exist limiting the reusability of software, this section will focus on tangible efforts which have been made to
+increase the re-executability of analyses.
 
-\subsubsection{Software Reproducibility}
-\begin{itemize}
-\item (Boutiques, BIDS, CBRAIN, NIDM, ...)
-\end{itemize}
+\subsubsection{Virtual Environments}
+The configuration of tools and software environments is a necessary step prior to the execution of computational
+workflows. While authors set up their computational environments prior to carrying out experiments, these
+configurations are often left undocumented in published manuscripts, leaving readers with the daunting task of
+determining what versions of libraries were used and their dependencies~\cite{robles2010replicating}. However, this is
+not only an inconvenience but becomes scientifically troublesome when considering the reality that distinct software
+versions lead to different interfaces and results by design~\cite{raymond1997cathedral}. In programming languages such
+as Python~\cite{oliphant2007python}, packages may contain information strictly defining their requirements. However,
+these definitions are limited to capturing the dependencies written within the same language, and are often written
+with version ``bounds'' (i.e. requires package X with version $\geq 1.0$), to simplify the interoperability between
+libraries.
 
+Traditionally, this issue has been solved through the use of Virtual Machines (VMs)~\tocite. VMs are a method for
+packaging and sharing tools that are pre-installed in an executable environment which can be run across
+machines. A drawback of these machines is that they are often require considerable storage and computational overhead,
+as they contain complete system operating systems which must be launched with dedicated processors and memory, limiting
+their portability. Over the last few years, techniques for the virtual encapsulation of tools have shifted towards a
+``Container'' approach, which do not suffer from similar overheads. Container environments, made accessible primarily
+through Docker~\tocite and Singularity~\tocite, rely on the kernel and other libraries of the host operating system,
+leading to smaller bundles that are less computationally expensive to run. While containers are not a perfect solution
+that guarantee re-executability\footnote{Due to problems which may arise by violating some of the best-practices
+described here: \url{https://developers.redhat.com/blog/2016/02/24/10-things-to-avoid-in-docker-containers/}}, they are
+an important advancement which greatly increases the ability to distribute and consume scientific software.
+
+\subsubsection{Tool \& Analysis Descriptions Standards}
+Beyond tool configuration, the most fundamental components of re-executability are a clear characterization of the
+tool(s) being run and the arguments or inputs provided to them. Despite this, there is no universally accepted
+description standard for software. In practice, grassroots standards often emerge by necessity in a given domain, and
+gain local adoption. In the case of neuroimaging, such standards include Brain Imaging Data Structure applications
+(BIDS apps)~\tocite and Boutiques~\tocite, each of which takes a distinct approach to this problem.
+
+The Brain Imagine Data Structure defines an organization standard for neuroimaging datasets, with the goal of lowering
+the barrier to their sharing, interpretation, and inter-operation~\tocite. Accordingly, the BIDS app standard emerged
+as a \textit{prescriptive} standard that dictates how tools should interact with these datasets~\tocite. This standard
+requires that a set of base arguments must be supported and accepted by tools: the location of the dataset, the
+location at which outputs should be placed, and the analysis level (e.g. individual-level versus group-level). This
+standard also prescribes several optional arguments, such as allowing for the indication of a subset of subjects
+selected for analysis. However, a key limitation of this standard is that beyond the initial prescription of arguments
+there is no definition or description of subsequent arguments that may be relevant for a given tool, or standards for
+provenance which will be subsequently recorded. The BIDS app standard dramatically simplifies performing an analysis
+pipeline with default behaviour, but this lack of additional description makes it an incomplete solution for software
+re-use when implemented at the barest level.
+
+Boutiques facilitates re-executability through a \textit{descriptive} standard which requires software developers to
+create a rich metadata record summarizing the arguments and function of their tool~\tocite. This standard supports a
+wide range of command-line tools, and is supported by a library which directly manages the execution of described tools
+alongside validation of inputs (e.g. ensuring two mutually-exclusive options are not provided) and provenance capture.
+However, while the added complexity of Boutiques leads to more rich descriptions and facilitates more complete tool
+re-use, this complexity also makes the standard considerably less accessible.
+
+Other standards have been developed around neuroimaging which promote the capture of rich execution records, such as
+the NeuroImaging Data Model~\tocite, or foster the construction of workflows and the distributed execution of tools,
+such as CBRAIN~\tocite, LONI Pipeline~\tocite, and Nipype~\tocite. While these tools provide a rich set of features
+and techniques to improve the re-executability of software, prior to this thesis there was no single tool in the
+neuroimaging space which harmonized software virtualization, tool descriptions, and provenance capture that supported
+the iterative development and deployment of analysis pipelines using command-line tools.
 
 \subsection{Stability}
-words, maybe?
 
-\subsubsection{Numerical Analysis and Uncertainty Quantification}
 \begin{itemize}
-\item (MCA, Verificarlo, Valgrind, ...)
-\item \url{https://www.nature.com/articles/s41586-020-2649-2}
-\item \url{http://eprints.maths.manchester.ac.uk/2763/1/paper.pdf#page3}
-\item \url{https://stackoverflow.com/questions/2284860/how-does-c-compute-sin-and-other-math-functions}
-\item \url{https://pubs.acs.org/doi/pdf/10.1021/acs.orglett.9b03216}
-\item MULLER, Jean-Michel, BRISEBARRE, Nicolas, DE DINECHIN, Florent, et al. Handbook of floating-point arithmetic. Birkhäuser, 2018.
-\item Arrondi correct de fonctions mathématiques Fonctions univariées et bivariées, certification et automatisation, Christophe Lauter
-\item Fonctions élémentaires : algorithmes et implémentations efficaces pour l'arrondi correct en double précision, David Defour.
+\item the concept of stability
+\item conditioning
+\item forward versus backward stability
+\item precision as a proxy when accuracy is not available
 \end{itemize}
 
+\subsubsection{Numerical Analysis}
+\begin{itemize}
+\item floating point arithmetic (MULLER, Jean-Michel, BRISEBARRE, Nicolas, DE DINECHIN, Florent, et al. Handbook of floating-point arithmetic. Birkhäuser, 2018.)
+\item stochastic arithmetic \url{http://eprints.maths.manchester.ac.uk/2763/1/paper.pdf#page3}
+\item MCA
+\item significant digits as a measure of precision
+\end{itemize}
 
 \subsection{Neuroimaging}
 
@@ -106,16 +172,17 @@ words, maybe?
 \item modalities of interest: diffusion and structural
 \item pipelines
 \item strengths and weaknesses
-\item (DWI strengths and limitations, Network Analysis, Applications, ...)
+\item network analysis/applications
 \item \url{https://link.springer.com/article/10.1007/s00429-020-02129-z}
 \item \url{https://www.pnas.org/content/111/46/16574}
 \item \url{https://autofq.org/bibliography/diffusion-mri/}
 \end{itemize}
 
-\subsubsection{Uncertainty in Neuroimaging Pipelines}
+\subsubsection{Evidence of Instability in Neuroimaging}
 \begin{itemize}
 \item (OSes, NARPS, tractograms, CoRR, One Voxel, Cluster Failure, ...)
 \item Bias-variance tradeoff https://ieeexplore.ieee.org/document/824819
+\item Arno registration comparison
 \item \url{https://www.frontiersin.org/articles/10.3389/fnins.2015.00018/full}
 \item \url{https://www.biorxiv.org/content/10.1101/2020.10.07.321083v1.full.pdf}
 \end{itemize}

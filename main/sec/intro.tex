@@ -1,38 +1,45 @@
 In an age of big data and an ever growing landscape of –omics', the structure and function of the brain is being
 increasingly explored through connectomics. Brain maps, called connectomes, are constructed as networks in which areas
-of the brain are related to one another through properties of interest~\tocite. These areas, also called regions of
-interest or vertices, and the properties or edges connecting them are intentionally flexible, allowing the brain
-networks to describe a limitless range of scales and organisms. While the connectome derived from a section of mouse
-brain may summarize the synapses between neurons found in an Electron Miscropy image~\tocite, the construction of a
-similar map from humans \textit{in vivo} is limited to data collected through non-invasive imaging techniques such as
-Magnetic Resonance Imaging (MRI)~\tocite.
+of the brain are related to one another through properties of interest~\cite{fornito2015connectomics}. These areas,
+also called regions of interest or vertices, and the properties or edges connecting them are intentionally flexible,
+allowing the brain networks to describe a limitless range of scales and organisms. While the connectome derived from a
+section of mouse brain may summarize the synapses between neurons found in an Electron Miscropy
+image~\cite{zingg2014neural}, the construction of a similar map from humans \textit{in vivo} is limited to data
+collected through non-invasive imaging techniques such as Magnetic Resonance Imaging
+(MRI)~\cite{sporns2013human,van2012future,hagmann2005diffusion}.
 
 Though the resolution of a typical MRI is approximately $1,000,000 \times$ less precise than an Electron Microscope
-image~\tocite which shows true cellular connectivity, MRI techniques allow for the capture of entire brains without
-harming the subject and can be measured over time to observe network evolution. While regions would be defined in the
-MRI case as macro-scale brain areas (often $1mm^3$ or larger in size~\tocite), the edges between them can be defined as
-similarity in structure~\tocite, connectivity~\tocite, or function~\tocite. Exploring these networks can not only lead
-to an understanding of intelligent network architectures, such as which may be replicated in fields like Artificial
-Intelligence (AI) and Machine Learning (ML)~\tocite, but may also inform the development of diagnostics and healthcare
-interventions~\tocite.
+image~\cite{kasthuri2015saturated} which shows true cellular connectivity, MRI techniques allow for the capture of
+entire brains without harming the subject and can be measured over time to observe network evolution. While regions
+would be defined in the MRI case as macro-scale brain areas (often $1mm^3$ or larger in
+size~\cite{sotiropoulos2013advances}), the edges between them can be defined as similarity in
+structure~\cite{zielinski2010network,alexander2013convergence,montembeault2012impact},
+function~\cite{zuo2012network,cao2014topological,kelly2012characterizing}, or
+connectivity~\cite{sporns2005human,ingalhalikar2014sex,sporns2013human}. Exploring these networks can inform the
+development of biomarkers~\cite{alexander2013convergence,ingalhalikar2014sex}, models of disease
+progression~\cite{shah2017altered,yan2018rich}, and potentially identify targets for medical
+intervention~\cite{silasi2014stroke,iturria2017multifactorial}.
 
-In recent years, several large consortia such as the UK BioBank~\tocite, Human Connectome Project~\tocite, and
-Consortium of Reproducibility and Reliability~\tocite have made it their mission to capture and share brain imaging
-data from thousands of individuals which can be used to construct maps and explore the brain. However, connectomes are
-not an automatic result of these images. The estimation of brain networks relies on complex image processing software
-tools and scientific pipelines~\tocite, including the denoising and alignment of images, tissue classification and
-segmentation, and modelling or relating connectivity or function across regions. The orchestration and design of these
-pipelines has considerable impact on the derived networks~\tocite and, importantly, their application~\tocite. In the
-absence of ground-truth to evaluate the accuracy of results generated from these tools, it is essential to understand
-their consistency across minor perturbations (e.g. small amounts of noise). A lack of such consistency has recently
-become apparent across brain imaging~\tocite, necessitating a shift in the focus of researchers with an increasing
-emphasis on reproducibility.
+In recent years, several large consortia such as the UK BioBank~\cite{sudlow2015uk}, the Human Connectome
+Project~\cite{van2013wu}, and Consortium of Reproducibility and Reliability~\cite{zuo2014open} have made it their
+mission to capture and share brain imaging data from thousands of individuals which can be used to construct maps and
+explore the brain. However, connectomes are not an automatic result of these images. The estimation of brain networks
+relies on complex image processing software tools and scientific
+pipelines~\cite{hagmann2005diffusion,esteban2019fmriprep}, including the denoising and alignment of images, tissue
+classification and segmentation, and modelling or relating connectivity or function across regions. The orchestration
+and design of these pipelines has considerable impact on the derived maps and their
+application~\cite{bowring2019exploring,klein2009evaluation}. In the absence of ground-truth to evaluate the accuracy of
+results generated from these tools, it is essential to understand their consistency across minor perturbations (e.g.
+small amounts of noise). A lack of such consistency has recently become apparent across brain
+imaging~\cite{glatard2015reproducibility,Lewis2017-ll,eklund2016cluster}, necessitating a shift in the focus of
+researchers with an increasing emphasis on reproducibility.
 
-While the irreproducibility of findings may on occasion be the result of p-hacking (i.e. the modification of analyses
-in search for significant results), it is often due to much more innocent means such as an inability to re-execute a
-previous workflow~\tocite, software errors~\tocite, system upgrades~\tocite, or algorithmic instability~\tocite. While
-the existence of these problems is becoming increasingly understood and accepted, their impact on the validity
-scientific claims or models in neuroimaging has remained largely uncharacterized.
+While findings may on occasion be irreproducible as the result of p-hacking (i.e. the modification of analyses in
+search for significant results), it is often due to much more innocent means such as an inability to re-execute a
+previous workflow~\cite{collberg2016repeatability}, software errors~\cite{eklund2016cluster}, system
+upgrades~\cite{salari2020file}, or algorithmic instability~\cite{Lewis2017-ll}. While the existence of these problems
+is becoming increasingly understood and accepted, their impact on the validity scientific claims or models in
+neuroimaging has remained largely uncharacterized.
 
 The objective of this thesis was to understand the role that numerical instabilities play in the reproducibility of
 results, and develop methods around this exploration which enable higher quality and more easily reproducible claims
@@ -112,7 +119,6 @@ the development process and jointly supervised this project.
 \subsubsection*{Ch.III – Numerical Instabilities in Analytical Pipelines Lead to Large and Meaningful Variability in Brain
 Networks}
 I was responsible for the experimental design, data processing, analysis, interpretation, and the majority of writing.
-, Pierre Rioux,
 All authors contributed to the revision of the manuscript. Yohan Chatelain, Pablo de Oliveira Castro, and Eric Petit
 were responsible for MCA tool development and software testing. Ariel Rokem, Gaël Varoquaux, and Bratislav Misic
 contributed to experimental design and interpretation. Tristan Glatard contributed to experimental design, analysis,

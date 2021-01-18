@@ -145,39 +145,38 @@ justification=raggedright]{caption}
   {\addvspace{4pt}\sffamily}
   {\hspace{0.5em}\contentslabel[\thecontentslabel]{\tocsep}\hspace{0.5em}}
   {}
-  {\hfill\thecontentspage}
+  {\hfill\small\thecontentspage}
   []
 \titlecontents{section*}[\tocsep]
   {\addvspace{4pt}\sffamily}
   {\hspace{0.5em}\contentslabel[\thecontentslabel]{\tocsep}\hspace{0.5em}}
   {}
-  {\hfill\thecontentspage}
+  {\hfill\small\thecontentspage}
   []
 \titlecontents{supsec}[\tocsep]
   {\addvspace{4pt}\sffamily}
   {\hspace{0.5em}\contentslabel[\thecontentslabel]{\tocsep}\hspace{0.5em}}
   {}
-  {\hfill\thecontentspage}
+  {\hfill\small\thecontentspage}
   []
 \titlecontents{subsection}[\tocsep]
   {\addvspace{2pt}\small\sffamily}
   {\hspace{0.8em}\contentslabel[\thecontentslabel]{\tocsep}\hspace{2em}}
   {}
-  {\hfill\thecontentspage}
+  {\hfill\small\thecontentspage}
   []
 \titlecontents{subsection*}[\tocsep]
   {\addvspace{2pt}\small\sffamily}
   {\hspace{0.8em}\contentslabel[\thecontentslabel]{\tocsep}\hspace{2em}}
   {}
-  {\hfill\thecontentspage}
+  {\hfill\small\thecontentspage}
   []
 \titlecontents{subsubsection}[\tocsep]
   {\footnotesize\sffamily}
   {\hspace{1em}\contentslabel[\thecontentslabel]{\tocsep}\hspace{3em}}
   {}
-  {\hfill\thecontentspage}
+  {\hfill\small\thecontentspage}
   []
-
 
 %----------------------------------------------------------------------
 %	MULTIPLE AUTHOR SET
@@ -370,7 +369,6 @@ justification=raggedright]{caption}
 %\setlength{\bibitemsep}{0cm}
 \let\oldbibliography\thebibliography
 \renewcommand{\thebibliography}[1]{%
-  \subsection*{References}
   \footnotesize 
   \renewcommand{\section}[2]{}
   \oldbibliography{#1}
