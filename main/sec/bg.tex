@@ -303,15 +303,22 @@ lack of ground-truth results in many contexts has limited the accuracy of models
 an issue of ``false-positives''~\cite{Thomas16574,sotiropoulos2019building,maier2017challenge}. While there is regular
 debate on the usefulness of connectomes for this reason, it is worth stating that this thesis is unaffected by the
 outcome or validity of this debate. The evaluations performed throughout this thesis assess the numerical stability of
-processing tools, an analog of precision, which can serve as an informative and descriptive statistic, regardless of
-the underlying accuracy of models being evaluated.
+processing tools, an analog of precision, which can serve as an informative and descriptive statistic regardless of the
+underlying accuracy of models being evaluated.
 
 \subsection{Evidence of Instability in Neuroimaging}
-\begin{itemize}
-\item (OSes, NARPS, tractograms, CoRR, One Voxel, Cluster Failure, ...)
-\item Bias-variance tradeoff https://ieeexplore.ieee.org/document/824819
-\item Arno registration comparison
-\item \url{https://www.frontiersin.org/articles/10.3389/fnins.2015.00018/full}
-\item \url{https://www.biorxiv.org/content/10.1101/2020.10.07.321083v1.full.pdf}
-\end{itemize}
+In an effort to tie together the previous explorations of reproducibility and stability to neuroimaging, I will
+conclude this section with a summary of studies which shed light on these issues in the context of brain imaging.
+Examples of issues in reproducibility have arisen in neuroimaging 
+
+Variability across teams (Narps, tractograms)
+Variability across datasets (Batch effects, CoRR)
+Variability across tools (Arno, Bowring, Cluster failure)
+Variability across minor perturbations (One voxel, operating systems, number of voxels in an image, Skare)
+
+Consider the practice of obtaining single estimates of results as favouring bias in the bias-variance trade off, and
+instead we should apply confidence-interval logic around our estimates.
+
+(Bias-variance tradeoff https://ieeexplore.ieee.org/document/824819)
+(https://www.frontiersin.org/articles/10.3389/fnins.2015.00018/full)
 

@@ -50,6 +50,12 @@
 \contentsline {section}{\numberline {\hskip 1em\relax Ch.{IV} - 4}\ignorespaces \hskip 2em\relax \hskip 2em\relax Discussion}{94}{section.4}% 
 \contentsline {section}{\numberline {\hskip 1em\relax Ch.{IV} - 5}\ignorespaces \hskip 2em\relax \hskip 2em\relax Conclusion}{97}{section.5}% 
 \contentsline {section}{\numberline {3}Discussion}{101}{section.3}% 
-\contentsline {section}{\numberline {4}Conclusion \& Summary}{101}{section.4}% 
-\contentsline {section}{\numberline {5}References}{101}{section.5}% 
+\contentsline {subsection}{\numberline {3.1}The Sum of its Parts}{101}{subsection.3.1}% 
+\contentsline {subsection}{\numberline {3.2}Extrapolating Conclusions}{101}{subsection.3.2}% 
+\contentsline {subsection}{\numberline {3.3}Future Directions in Operationalizing Stability}{101}{subsection.3.3}% 
+\contentsline {subsubsection}{\numberline {3.3.1}Where to instrument}{101}{subsubsection.3.3.1}% 
+\contentsline {subsubsection}{\numberline {3.3.2}How to use it}{101}{subsubsection.3.3.2}% 
+\contentsline {subsection}{\numberline {3.4}20/20}{102}{subsection.3.4}% 
+\contentsline {section}{\numberline {4}Conclusion \& Summary}{103}{section.4}% 
+\contentsline {section}{\numberline {5}References}{103}{section.5}% 
 \contentsfinish 
