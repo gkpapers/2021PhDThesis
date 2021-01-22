@@ -271,10 +271,10 @@ alongside the removal of structured eddy-current artifacts~\cite{andersson2016in
 The structural image is then aligned to the template and a single reference diffusion volume separately via an affine
 registration~\cite{jenkinson2001global}, and an optional non-linear registration may be subsequently applied between
 the structural image and template~\cite{jenkinson2012fsl}. The transformations are subsequently combined, such that
-there exists a mapping from the template space to the subject-specific diffusion space, such that brain region atlases
-(or parcellations) and tissue masks can be transformed and applied to the diffusion image in subsequent modelling.
-Optionally, subject-specific tissue masks may also be generated from the structural image and transformed into the
-space of the diffusion image~\cite{zhang2001segmentation}.
+there exists a mapping from the template space to the subject-specific diffusion space, such that images can be
+meaningfully compared via brain region atlases (or parcellations) and tissue masks which can be transformed and applied
+to the diffusion image in subsequent modelling. Optionally, subject-specific tissue masks may also be generated from
+the structural image and transformed into the space of the diffusion image~\cite{zhang2001segmentation}.
 
 \paragraph*{Modelling}
 Depending on the quality of the diffusion data (such as the resolution of diffusion directions sampled), various models
@@ -293,16 +293,18 @@ diffusion for each voxel, whereas probabilistic models assign fiber probabilitie
 Finally, streamlines are used to assign edges in a network. Regions of the network are defined by a parcellation, such
 as the common Desikan-Killianey-Tourville~\cite{Klein2012-vi} atlas, and edges correspond to tracts which connect them.
 The weights of edges are often defined as either a feature of the tracts, such as the average strength of diffusion
-across tracts or the total number of tracts between regions.
+across tracts or the total number of tracts between regions. The networks are often stored in an adjacency matrix
+format, such that an $N \times N$ matrix would correspond to a connectome constructed using an $N$-region parcellation,
+and contain non-zero values at location $(i,j)$ to indicate a connection between regions $i$ and $j$.
 
-Once generated, connectomes are...
-
-Strengths and weaknesses..
-
-\begin{itemize}
-\item network analysis/applications
-\item \url{https://www.pnas.org/content/111/46/16574}
-\end{itemize}
+Over the last several decades there has been considerable advancement in the methods presented above, leading to higher
+quality maps of the brain~\cite{GIRARD2020117201}. Despite this, the inherent difficulty of this tasks and profound
+lack of ground-truth results in many contexts has limited the accuracy of models and the field is known to suffer from
+an issue of ``false-positives''~\cite{Thomas16574,sotiropoulos2019building,maier2017challenge}. While there is regular
+debate on the usefulness of connectomes for this reason, it is worth stating that this thesis is unaffected by the
+outcome or validity of this debate. The evaluations performed throughout this thesis assess the numerical stability of
+processing tools, an analog of precision, which can serve as an informative and descriptive statistic, regardless of
+the underlying accuracy of models being evaluated.
 
 \subsection{Evidence of Instability in Neuroimaging}
 \begin{itemize}
