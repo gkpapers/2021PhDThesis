@@ -1,0 +1,77 @@
+High level summary of the work and break-down of the following sections
+
+\subsection{The Sum of its Parts}
+what this thesis ultimately amounted to and taught us
+
+describing the variability observed and its impact
+
+comparing and contrasting to other sources of variability 
+
+\subsection{Extrapolating Conclusions}
+Discussing the likelihood that these findings hold across pipelines, modalities, or other scientific disciplines in
+general.
+
+Perhaps approach it by first assuming that this is a worst-case discipline, and that everything happening here is
+especially bad, and and walk along that logic by iteratively disproving that this field is worse than others, so it is
+likely that while specific details of the findings will change, it is far more likely that this is the case in other
+domains than that it is not
+
+\subsection{Future Directions in Operationalizing Stability}
+brief reminder of the fact that it isn't only about what we can perturb but why we can perturb
+
+\subsubsection{Where to instrument}
+acquisition
+
+other parts of the image processing pipeline
+
+other modalities
+
+machine learning models, in particular feature selection or other typically deterministic components of the process.
+
+\subsubsection{How to use it}
+localizing instabilities within pipelines and correcting them
+
+Mixed (declining precision models) for pipeline development, such that the stored precision never exceeds the number of
+significant digits throughout the evolution of a pipeline.
+
+Aggregation across perturbations as the new ``mean $\pm$ variance''
+
+Development of more robust and rich biomarkers including capture of distributions of variability as a new dimension
+
+Coming up with error bars of results, not just error bars on statistical tests performed on those results; subsequently
+creating a joint false-positive rate as a combined function of the two
+
+\subsection{20/20}
+What is, ``hindsight'', Greg. 
+
+all of these lessons are both for myself and for the community
+
+These recommendations may be in conflict with what the academic incentive structure may encourage, or contrary to what
+the ``correct'' decisions may have been when neuroimaging originated. They are not intended to be perfect, merely
+lessons that I feel are worth bearing in mind if one were to go start over today.
+
+collaborate, don't compete. build tools as part of supported ecosystems, not in isolation. ``two heads are better
+than one'', and the variability of bandwidth overtime makes tools going stale a challenging problem to stay ahead of
+unless you're part of a team.
+
+test. this hardly needs to be elaborated upon, but nothing works until you can prove it works
+
+walk, don't run. While it may be fun to sprint through an experiment or field of study, claiming success when we get to
+the finish line, it is far more likely that we lead a pack of our colleagues to a dead end than if we slowed down and
+checked the map after each step.
+
+Be humble. Be open about our strengths and weaknesses, and collaborate so that we not only all get to spend the most
+time using our strength, but we can learn from others around us. Science by definition is interdisciplinary, so we
+should admit this and let ourselves shine where we're experts while encouraging others to be the same, collectively
+learning and building towards something bigger.
+
+don't become emotionally attached. Too many mistakes happen to loyalty to an idea or bias in interpretting our results
+towards an expected outcome. We are human, this is normal, but this is ultimately to our own dismay. Be objective when
+you can, and if you can't, call somebody who can be or who expects the opposite result from you so that you can learn
+from each other.
+
+Define the objective, and keep it in mind. Too often we fall down rabbit holes and lose touch with the reality of what
+we're trying to accomplish. If the goal is academic, define milestones of understanding. If the goal is practical,
+define measure of success or failure and timelines for accomplishing them. It becomes far too easy to get swept away in
+it all as we pick up momentum, and that does a disservice to ourselves, our funders, and by extension our societies.
+
