@@ -233,7 +233,7 @@ stability in neuroimaging pipelines.
 
 \subsection{Neuroimaging}
 Understanding the structure and function of the brain has long been a topic of
-exploration~\cite{valdes2005introduction}, and neuroimaging enables this exploration \textit{in vivo} in humans.
+exploration~\cite{raichle2006brain}, and neuroimaging enables this exploration \textit{in vivo} in humans.
 Modern neuroimaging techniques rely on complex image acquisition techniques, such as Magnetic Resonance Imaging
 (MRI)~\cite{young1987magnetic}, Electroencephalography (EEG)~\cite{da2009eeg}, or Magnetoencephalography
 (MEG)~\cite{baillet2017magnetoencephalography}. Each imaging modality has unique strengths and weaknesses, which has
@@ -243,26 +243,68 @@ case of MRI, commonly used contrasts highlight brain structures (e.g. T1w~\cite{
 T2w~\cite{chavhan2009principles}), activity (e.g. BOLD~\cite{logothetis2004nature}), or the diffusion of water in the
 brain (e.g. DWI~\cite{bammer2003basic}). Each of these techniques provides a unique look at the structure and function
 of the brain, and neuroimaging pipelines often consider one-or-more of these modalities at
-once~\cite{esteban2019fmriprep,garyfallidis2014dipy}.
+once~\cite{esteban2019fmriprep,garyfallidis2014dipy}. For the purpose of this thesis, I will focus on evaluating the
+analysis of a diffusion imaging method towards the reconstruction structural connectomes.
 
-For the purpose of this thesis, I have chosen to focus on the analysis of diffuion imaging, as it enables the creation
-of structural connectivity maps of the brain. Typically~\cite{jenkinson2012fsl}
- applications presented
-and explored in this thesis in particular are concerned with the analysis of Diffusion Weighted MRI (DWI, dMRI)
+\subsubsection{Structural Connectome Estimation}
 
-\subsubsection{Diffusion \& Structural MRI Processing}
+Diffusion weighted imaging, DWI, is an imagine method that can be used for the identification of connective tissue
+(white matter tracts) within the brain~\cite{wandell2016clarifying,thomason2011diffusion}. These images are acquired by
+imposing directed magnetic gradients to the brain, which encourages the re-alignment of water molecules; the directed
+gradients are swept across a $180^{\circ}$ range, ultimately providing a series of images which can be jointly
+interpreted to identify the directional diffusion of water, and therefore alignment of axonal
+fibers~\cite{pinto2020harmonization}. The identification and modelling of this tissue allows for the estimation of
+brain networks and subsequent comparison of their features~\cite{sporns2013human}, which may be relevant for
+understanding a number of neurological
+conditions~\cite{shah2017altered,yan2018rich,xie2012mapping,griffa2013structural}. Though the analysis of DWI data
+typically makes use of both structural and diffusion images~\cite{jenkinson2012fsl,garyfallidis2014dipy}, the use of
+these images can be conceptually decoupled into two components: pre-processing and modelling.
+
+\paragraph*{Pre-processing}
+While distinct datasets and libraries may present slight deviations in the pre-processing of data, I will here describe
+the backbone of a widely applicable and community-accepted pre-processing workflow using the FSL
+library~\cite{WOOLRICH2009S173,jenkinson2012fsl,Glasser2013-vf}, and briefly discuss the rationale behind each
+component. The required data for the pre-processing workflow described here is as follows: a set of 4-D diffusion
+images and associated acquisition parameters, a structural T1w image, and a template reference image (such as the
+ICBM152 template~\cite{lancaster2007bias}). The diffusion images are first de-noised and aligned to one another
+alongside the removal of structured eddy-current artifacts~\cite{andersson2016integrated} commonly found in the images.
+The structural image is then aligned to the template and a single reference diffusion volume separately via an affine
+registration~\cite{jenkinson2001global}, and an optional non-linear registration may be subsequently applied between
+the structural image and template~\cite{jenkinson2012fsl}. The transformations are subsequently combined, such that
+there exists a mapping from the template space to the subject-specific diffusion space, such that brain region atlases
+(or parcellations) and tissue masks can be transformed and applied to the diffusion image in subsequent modelling.
+Optionally, subject-specific tissue masks may also be generated from the structural image and transformed into the
+space of the diffusion image~\cite{zhang2001segmentation}.
+
+\paragraph*{Modelling}
+Depending on the quality of the diffusion data (such as the resolution of diffusion directions sampled), various models
+may be appropriate for specific data~\cite{jeurissen2019diffusion,tournier2011diffusion,mori2013introduction}.
+Regardless of the specific techniques used at each stage, there are three components in the modelling workflow which
+lead to the generation of connectomes: fitting of a diffusion model, fiber tractography, and mapping fibers to a
+parcellation~\cite{roncal2013migraine,sporns2005human,Kiar2018-jt,Glasser2013-vf}. Diffusion models seek to assign a
+direction or directions of water diffusion to each voxel within the image. These models range in complexity from
+$6$-component tensors to orientation distribution function (ODF) histograms on the order of $100$
+components~\cite{tournier2011diffusion}. ODF models require higher fidelity data, but are necessary for many
+tractography algorithms. Tractography is applied following the evaluation of a diffusion model, and involves tracing
+the local estimates of diffusion to form larger tracts of connectivity~\cite{behrens2014mr}. Across the many available
+algorithms, they can be conceptually grouped into two categories: deterministic and
+probabilistic~\cite{jeurissen2019diffusion}. Deterministic models assign flow based on the single direction of maximum
+diffusion for each voxel, whereas probabilistic models assign fiber probabilities rather than making a unique decision.
+Finally, streamlines are used to assign edges in a network. Regions of the network are defined by a parcellation, such
+as the common Desikan-Killianey-Tourville~\cite{Klein2012-vi} atlas, and edges correspond to tracts which connect them.
+The weights of edges are often defined as either a feature of the tracts, such as the average strength of diffusion
+across tracts or the total number of tracts between regions.
+
+Once generated, connectomes are...
+
+Strengths and weaknesses..
+
 \begin{itemize}
-\item concept
-\item modalities of interest: diffusion and structural
-\item pipelines
-\item strengths and weaknesses
 \item network analysis/applications
-\item \url{https://link.springer.com/article/10.1007/s00429-020-02129-z}
 \item \url{https://www.pnas.org/content/111/46/16574}
-\item \url{https://autofq.org/bibliography/diffusion-mri/}
 \end{itemize}
 
-\subsubsection{Evidence of Instability in Neuroimaging}
+\subsection{Evidence of Instability in Neuroimaging}
 \begin{itemize}
 \item (OSes, NARPS, tractograms, CoRR, One Voxel, Cluster Failure, ...)
 \item Bias-variance tradeoff https://ieeexplore.ieee.org/document/824819

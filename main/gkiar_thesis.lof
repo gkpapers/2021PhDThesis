@@ -1,20 +1,20 @@
 \babel@toc {english}{}
-\contentsline {figure}{\numberline {Ch.{I} - 1}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax Clowdr Workflow\relax }}{22}{figure.1}% 
-\contentsline {figure}{\numberline {Ch.{I} - 2}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax {Clowdr Data Flow, tool descriptor, and parameter invocation}\relax }}{24}{figure.2}% 
-\contentsline {figure}{\numberline {Ch.{I} - 3}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax Clowdr Experiment Viewer\relax }}{26}{figure.3}% 
-\contentsline {figure}{\numberline {Ch.{II} - 1}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax Example Connectome\relax }}{39}{figure.1}% 
-\contentsline {figure}{\numberline {Ch.{II} - 2}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax Comparison of perturbation modes\relax }}{42}{figure.2}% 
-\contentsline {figure}{\numberline {Ch.{II} - 3}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax Structure of deviations\relax }}{45}{figure.3}% 
-\contentsline {figure}{\numberline {Ch.{II} - 4}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax Perturbation introduced structural differences\relax }}{46}{figure.4}% 
-\contentsline {figure}{\numberline {Ch.{II} - 5}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax Gain and loss of edges in aggregation of simulations\relax }}{48}{figure.5}% 
-\contentsline {figure}{\numberline {Ch.{II} - 6}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax Computation time for each perturbation method\relax }}{50}{figure.6}% 
-\contentsline {figure}{\numberline {Ch.{III} - 1}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax Exploration of perturbation-induced deviations from reference connectomes\relax }}{59}{figure.1}% 
-\contentsline {figure}{\numberline {Ch.{III} - 2}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax Distribution and stability assessment of multivariate graph statistics\relax }}{63}{figure.2}% 
-\contentsline {figure}{\numberline {Ch.{III} - 3}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax Variability in BMI classification across the sampling of an MCA-perturbed dataset\relax }}{64}{figure.3}% 
-\contentsline {figure}{\numberline {Ch.{III} - 4}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax The correlation between perturbed connectomes and their reference\relax }}{77}{figure.4}% 
-\contentsline {figure}{\numberline {Ch.{III} - 5}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax Distribution and stability assessment of univariate graph statistics\relax }}{80}{figure.5}% 
-\contentsline {figure}{\numberline {Ch.{IV} - 1}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax Experiment workflow.\relax }}{84}{figure.1}% 
-\contentsline {figure}{\numberline {Ch.{IV} - 2}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax Relative change in classifier performance with respect to classifier type and dataset sampling strategies\relax }}{90}{figure.2}% 
-\contentsline {figure}{\numberline {Ch.{IV} - 3}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax Relationship between generalizability and resampling\relax }}{91}{figure.3}% 
-\contentsline {figure}{\numberline {Ch.{IV} - 4}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax The generalizability of classifiers using each dataset sampling technique with respect to the number of MCA simulations\relax }}{92}{figure.4}% 
+\contentsline {figure}{\numberline {Ch.{I} - 1}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax Clowdr Workflow\relax }}{23}{figure.1}% 
+\contentsline {figure}{\numberline {Ch.{I} - 2}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax {Clowdr Data Flow, tool descriptor, and parameter invocation}\relax }}{25}{figure.2}% 
+\contentsline {figure}{\numberline {Ch.{I} - 3}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax Clowdr Experiment Viewer\relax }}{27}{figure.3}% 
+\contentsline {figure}{\numberline {Ch.{II} - 1}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax Example Connectome\relax }}{40}{figure.1}% 
+\contentsline {figure}{\numberline {Ch.{II} - 2}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax Comparison of perturbation modes\relax }}{43}{figure.2}% 
+\contentsline {figure}{\numberline {Ch.{II} - 3}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax Structure of deviations\relax }}{46}{figure.3}% 
+\contentsline {figure}{\numberline {Ch.{II} - 4}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax Perturbation introduced structural differences\relax }}{47}{figure.4}% 
+\contentsline {figure}{\numberline {Ch.{II} - 5}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax Gain and loss of edges in aggregation of simulations\relax }}{49}{figure.5}% 
+\contentsline {figure}{\numberline {Ch.{II} - 6}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax Computation time for each perturbation method\relax }}{51}{figure.6}% 
+\contentsline {figure}{\numberline {Ch.{III} - 1}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax Exploration of perturbation-induced deviations from reference connectomes\relax }}{60}{figure.1}% 
+\contentsline {figure}{\numberline {Ch.{III} - 2}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax Distribution and stability assessment of multivariate graph statistics\relax }}{64}{figure.2}% 
+\contentsline {figure}{\numberline {Ch.{III} - 3}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax Variability in BMI classification across the sampling of an MCA-perturbed dataset\relax }}{65}{figure.3}% 
+\contentsline {figure}{\numberline {Ch.{III} - 4}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax The correlation between perturbed connectomes and their reference\relax }}{78}{figure.4}% 
+\contentsline {figure}{\numberline {Ch.{III} - 5}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax Distribution and stability assessment of univariate graph statistics\relax }}{81}{figure.5}% 
+\contentsline {figure}{\numberline {Ch.{IV} - 1}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax Experiment workflow.\relax }}{85}{figure.1}% 
+\contentsline {figure}{\numberline {Ch.{IV} - 2}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax Relative change in classifier performance with respect to classifier type and dataset sampling strategies\relax }}{91}{figure.2}% 
+\contentsline {figure}{\numberline {Ch.{IV} - 3}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax Relationship between generalizability and resampling\relax }}{92}{figure.3}% 
+\contentsline {figure}{\numberline {Ch.{IV} - 4}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax The generalizability of classifiers using each dataset sampling technique with respect to the number of MCA simulations\relax }}{93}{figure.4}% 
 \contentsfinish 
