@@ -309,16 +309,68 @@ underlying accuracy of models being evaluated.
 \subsection{Evidence of Instability in Neuroimaging}
 In an effort to tie together the previous explorations of reproducibility and stability to neuroimaging, I will
 conclude this section with a summary of studies which shed light on these issues in the context of brain imaging.
-Examples of issues in reproducibility have arisen in neuroimaging 
+Examples of issues in reproducibility have arisen in neuroimaging across all operational scales: from differences in
+experimental configuration across teams, to numerical sensitivity in the face of minor perturbations.
 
-Variability across teams (Narps, tractograms)
-Variability across datasets (Batch effects, CoRR)
-Variability across tools (Arno, Bowring, Cluster failure)
-Variability across minor perturbations (One voxel, operating systems, number of voxels in an image, Skare)
+As neuroimaging is a relatively young and quickly growing field, there exist many libraries and tools which exist in
+parallel, designed to accomplish similar tasks. Depending on the local preferences and expertise, scientists may elect
+to use one process over another at any stage throughout their analysis. In practice, this may lead researchers to many
+distinct answers to the same question. This ``effect of researcher'' was recently explored for the dissection of white
+matter bundles derived from Diffusion MRI~\cite{schilling2020tractography}. Independent teams from $42$ centres were
+tasked with the segmentation of $14$ tracts on a shared dataset using their method of choice (manual, semi-automatic,
+or fully-automatic). This study revealed that the variability introduced across teams was larger than any other source
+of variability in the experiment, and proposed that a reduction in analytical heterogeneity was
+necessary~\cite{schilling2020tractography}. A similar study exploring the variability across teams in the context of a
+set of task-based fMRI experiments~\cite{botvinik2020variability} found that not only did no two teams use the same
+technique, but findings were in considerable disagreement across groups. Across $9$ tested hypotheses, on average
+$20\%$ of the total $70$ teams arrived at different conclusions from the majority, clearly demonstrating the impact of
+analytical decisions on results.
 
-Consider the practice of obtaining single estimates of results as favouring bias in the bias-variance trade off, and
-instead we should apply confidence-interval logic around our estimates.
+The variability observed across these distinct-but-similar pipelines was likely introduced not at a single point, but
+at various stages within the piplines. In the case of non-linear registration, a comparison of $14$ techniques which
+are commonly-used in neuroimaging were compared~\cite{klein2009evaluation}. Not only did this evaluation demonstrate
+that no-two methods were equivalent, it demonstrated that no single method was universally more performant than the
+others. Even when an effort is made to match workflows as closely as possible across libraries, considerable
+differences are found in the terminal results. When replicating three fMRI experiments using the three most commonly
+used analysis libraries, the location and strength of brain activations were found to vary
+considerably~\cite{bowring2019exploring}. These inconsisstencies may be the result of intentional methodological
+differences in some cases (e.g. the possible use of global signal regression~\cite{murphy2017towards}), while in others
+they may be due to implementation errors or software bugs. When evaluating the statistical testing frameworks in these
+same libraries, false-positive rates were found to peak at $79\%$ in some cases, when reporting a p-value of
+$0.05$~\cite{eklund2016cluster}, and further demonstrated that the conditions under which each method performed the
+best was variable across tools. We can see from these studies that not only do differences exist across tools at each
+stage of analysis pipelines, but also that each tool has a unique relationship between the quality of their performance
+and the data being used. The extreme variability-of-variability that we observe is likely due to underlying numerical
+properties of the algorithms, and can be explored on a tool-by-tool basis.
 
-(Bias-variance tradeoff https://ieeexplore.ieee.org/document/824819)
-(https://www.frontiersin.org/articles/10.3389/fnins.2015.00018/full)
+The stability of neuroimaging pipelines has begun to be explored in specific use-cases through the perturbation of data
+or libraries prior to processing. In the case of Diffusion MRI, the stability of tensor models were studied
+analytically and validated experimentally~\cite{skare2000condition}. In this study, the stability of each tensor
+reconstruction was first evaluated, and found considerable variability in the algorithms, ranging from nearly $1$
+(relatively stable) to nearly $10$ (highly unstable). The models were then tested across a range of operating points,
+and showed a tight relationship between the observed variability and the theoretical
+conditioning~\cite{skare2000condition}. Importantly, this work clearly illustrates an often overlooked feature of
+experimental variability: the stability of models varies across the space of possible inputs, and thus inextricably
+links any evaluation of stability to both the tool and data being used.
+
+Another exploration of stability through perturbations compared two tools for cortical and sub-cortical surface
+estimation~\cite{Lewis2017-ll}. In this experiment, gray matter surfaces were estimated from a single image using two
+toolboxes. Subsequently, the intensity of a single voxel within the white matter (centre of the Corpus Collusum) of the
+image was amplified by $1\%$ of its original value, and the tools were re-run. This analysis showed significant
+differences between not only the original and perturbed surfaces, but showed non-uniformity in the variability across
+cortical structures that differed across tools~\cite{Lewis2017-ll}. This study importantly sheds light on the reality
+that variability introduced to a workflow may affect the results in unexpected ways. The fact that the minor
+perturbation of a single voxel buried within white matter may lead to a significant change in the estimation of gray
+matter matter surfaces suggests that a more thorough exploration of perturbations and associated variability may be
+required to fully understand the behaviour of these pipelines.
+
+Though the magnitude of differences observed in the above cases is perhaps surprising, it may have been expected in all
+scenarios to observe some non-zero amount of variability. However, differences in processing have also been observed
+when changing operating system~\cite{Glatard2015-vc,salari2020file} or even padding an image with a row of empty
+voxels~\cite{Glen2018-sg}. This array of findings clearly demonstrates the relevance of characterizing numerical
+stability in the context of neuroimaging, both due to the abundance of cases in which it becomes relevant and the
+general lack of characterization of this effect. This thesis begins with enabling the rapid and provenance rich
+deployment of neuroimaging workflows, and uses this platform to dig deep into the induction and evaluation of
+numerical instabilities, the impact of instability on analytical workflows, and concludes with an exploration of how
+the observed variability may be harnessed as a \textit{feature} rather than a bug.
 

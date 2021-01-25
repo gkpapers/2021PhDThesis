@@ -511,7 +511,13 @@
   year={2009},
   publisher={Elsevier}
 }
-
+@article{schilling2020tractography,
+  title={Tractography dissection variability: what happens when 42 groups dissect 14 white matter bundles on the same dataset?},
+  author={Schilling, Kurt G and Rheault, Fran{\c{c}}ois and Petit, Laurent and Hansen, Colin B and Nath, Vishwesh and Yeh, Fang-Cheng and Girard, Gabriel and Barakovic, Muhamed and Rafael-Patino, Jonathan and Yu, Thomas and others},
+  journal={bioRxiv},
+  year={2020},
+  publisher={Cold Spring Harbor Laboratory}
+}
 @article{bowring2019exploring,
   title={Exploring the impact of analysis software on task fMRI results},
   author={Bowring, Alexander and Maumet, Camille and Nichols, Thomas E},
@@ -714,7 +720,16 @@ author = "Mark W. Woolrich and Saad Jbabdi and Brian Patenaude and Michael Chapp
   year={2020},
   publisher={Cold Spring Harbor Laboratory}
 }
-
+@article{skare2000condition,
+  title={Condition number as a measure of noise performance of diffusion tensor data acquisition schemes with MRI},
+  author={Skare, Stefan and Hedehus, Maj and Moseley, Michael E and Li, Tie-Qiang},
+  journal={Journal of magnetic resonance},
+  volume={147},
+  number={2},
+  pages={340--352},
+  year={2000},
+  publisher={Elsevier}
+}
 @article{eklund2016cluster,
   title={Cluster failure: Why {fMRI} inferences for spatial extent have inflated false-positive rates},
   author={Eklund, Anders and Nichols, Thomas E and Knutsson, Hans},
@@ -1208,32 +1223,6 @@ author = "Gabriel Girard and Roberto Caminiti and Alexandra Battaglia-Mayer and 
               Rafael and Adalat, Reza and Beck, Natacha and Lepage, Claude and
               Rioux, Pierre and Rousseau, Marc-Etienne and Sherif, Tarek and
               Deelman, Ewa and Khalili-Mahani, Najmeh and Evans, Alan C",
-  abstract = "Neuroimaging pipelines are known to generate different results
-              depending on the computing platform where they are compiled and
-              executed. We quantify these differences for brain tissue
-              classification, fMRI analysis, and cortical thickness (CT)
-              extraction, using three of the main neuroimaging packages (FSL,
-              Freesurfer and CIVET) and different versions of GNU/Linux. We
-              also identify some causes of these differences using library and
-              system call interception. We find that these packages use
-              mathematical functions based on single-precision floating-point
-              arithmetic whose implementations in operating systems continue to
-              evolve. While these differences have little or no impact on
-              simple analysis pipelines such as brain extraction and cortical
-              tissue classification, their accumulation creates important
-              differences in longer pipelines such as subcortical tissue
-              classification, fMRI analysis, and cortical thickness extraction.
-              With FSL, most Dice coefficients between subcortical
-              classifications obtained on different operating systems remain
-              above 0.9, but values as low as 0.59 are observed. Independent
-              component analyses (ICA) of fMRI data differ between operating
-              systems in one third of the tested subjects, due to differences
-              in motion correction. With Freesurfer and CIVET, in some brain
-              regions we find an effect of build or operating system on
-              cortical thickness. A first step to correct these reproducibility
-              issues would be to use more precise representations of
-              floating-point numbers in the critical sections of the pipelines.
-              The numerical stability of pipelines should also be reviewed.",
   journal  = "Front. Neuroinform.",
   volume   =  9,
   pages    = "12",
@@ -1241,6 +1230,15 @@ author = "Gabriel Girard and Roberto Caminiti and Alexandra Battaglia-Mayer and 
   year     =  2015,
   keywords = "CIVET; FSL; Freesurfer; operating systems; reproducibility",
   language = "en"
+}
+@article{murphy2017towards,
+  title={Towards a consensus regarding global signal regression for resting state functional connectivity MRI},
+  author={Murphy, Kevin and Fox, Michael D},
+  journal={Neuroimage},
+  volume={154},
+  pages={169--173},
+  year={2017},
+  publisher={Elsevier}
 }
 @ARTICLE{Betzel2018-eo,
   title={Distance-dependent consensus thresholds for generating group-representative structural brain networks},
