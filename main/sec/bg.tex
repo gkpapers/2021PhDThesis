@@ -7,23 +7,23 @@ studies in neuroimaging to demonstrate the necessity of exploring numerical stab
 \subsection{Reproducibility}
 At the heart of science is the ability for researchers to build upon previous work, incrementally advancing a given
 field of research~\cite{salmon1999introduction,platt1964strong}. Despite being accepted as a cornerstone for progress,
-there is not a fully unified definition around this
-practice~\cite{plesser2018reproducibility,patil2019visual,goodman2016does}. In practice, distinct definitions have
-emerged to serve specific communities tackling issues of reproducibility, such as The Association for Computing
-Machinery which defines reproducibility as the ability to re-obtain a measure with stated quality and precision using
-an identical experimental setup when carried out by a different team in a different location~\cite{acm_2020}. In the
-case of life sciences, this definition has limited use since the equivalence of samples being measured (e.g. humans in
-a different city) or equipment being used (e.g. equivalent equipment from two different manufacturers) is difficult or
-impossible to quantify. In these cases, a distinction in the level of reproducibility is often drawn with milestones
-corresponding to the ability to reproduce the methods used, the ability to obtain the same or equivalent results, and
-the ability to draw equivalent inferences from the results obtained~\cite{plesser2018reproducibility}.
+there is not a fully unified vocabulary around this
+practice~\cite{plesser2018reproducibility,patil2019visual,goodman2016does}. Definitions have emerged to serve specific
+communities tackling issues of reproducibility, such as The Association for Computing Machinery which defines
+reproducibility as the ability to re-obtain a measure with stated quality and precision using an identical experimental
+setup when carried out by a different team in a different location~\cite{acm_2020}. In the case of life sciences, this
+definition has limited use since the samples being measured (e.g. human participants) or equipment used (e.g. exact
+imaging apparatus from the same manufacturer) is difficult or impossible to replicate. In these cases, a distinction in
+the level of reproducibility is often drawn with milestones corresponding to the ability to reproduce the methods used,
+the ability to obtain the same or equivalent results, and the ability to draw equivalent inferences from the results
+obtained~\cite{plesser2018reproducibility}.
 
 In an effort to increase clarity around this topic and handfuls of overlapping definitions, there have been recent
 efforts to visualize the intentions and slight conceptual differences across each~\cite{patil2019visual}. Here, a
 distinction is made from reproducibility and replicability. Reproducibility in this case is defined as the ability to
-exactly re-run the analysis using the existing data and tools, but a unique analyst. Replicability then describes the
-ability to successfully re-do the experiment, including new data collection, experimenters, and software, but
-ultimately arriving at the same claim. These definitions have practical value in the life sciences as they allow for
+exactly re-run the analysis using the existing data and tools, but is performed by a unique analyst. Replicability then
+describes the ability to successfully re-do the experiment, including new data collection, experimenters, and software,
+but ultimately arriving at the same claim. These definitions have practical value in the life sciences as they allow for
 the differentiation between a claim remaining unchanged in either the same or differing experimental configurations and
 equipment. The definitions presented here, often referred to colloquially as ``Peng's Reproducibility'', will be those
 referred to throughout this thesis.
@@ -37,50 +37,51 @@ With a rich and growing space of conceptual frameworks through which re-executab
 replicability can be evaluated, it is perhaps self-evident that the level of trustworthiness across many disciplines
 has recently become a topic of interest. I will now introduce the so-called ``Reproducibility Crisis'', an umbrella
 phrase which captures this movement, and highlight its relevance in both psychological and neurological sciences,
-serving as motivation for work carried out as a part of this thesis.
+serving as motivation for the work carried out in this thesis.
 
 \subsubsection{The Reproducibility Crisis}
 
 The reproducibility of findings has long been a topic of concern to researchers in the life
 sciences~\cite{ioannidis2005most,begley2012raise,prinz2011believe,mcnutt2014reproducibility}. However, several recent
-initiatives have brought this somewhat niche question into an area of broad concern. In 2015, the Open Science
+initiatives have brought this somewhat fringe topic into an area of broad concern. In 2015, the Open Science
 Collaboration~\cite{open2015estimating} organized an attempted replication of $100$ recent research papers in
 psychology. Their result, showing that approximately two-thirds of the studies failed to replicate, was swept up by
 mainstream media and proclaimed a crisis.
 
 In an effort to characterize the so-called crisis, Nature conducted a survey of $1,500$ scientists across a wide
-range of disciplines, probing their beliefs about the reproducibility of science in their field, and found that $90\%$
-of respondents felt that their field was in crisis~\cite{baker20161}. With this topic now in the public eye, studies
-continued to explore various causes in attempt to understand and correct the widely shared concern. Unsurprisingly,
-this problem was tackled from a number of different directions, even within a given discipline. In neuroscience, for
-example, statistical power has long been believed to be a culprit for irreproducibility~\cite{button2013power}; a
-meta-analytic study of the power of findings in literature estimated a median power of findings at $21\%$. This work
-assumed the robustness of data and methods used throughout the studies, and performed a purely statistical evaluation,
-so any inconsistency in these methods may in reality lead to an even lower statistical power.
+range of disciplines, probing their beliefs about the reproducibility of science in their field. This study found that
+$90\%$ of respondents felt that their field was in some level of crisis~\cite{baker20161}, and studies exploring
+possible causes or proposing solutions to the so-called crisis have continued to trend in the years since.
+Unsurprisingly, this phenomenon has been characterized from a number of different directions, even within a given
+discipline. In neuroscience, for example, statistical power has long been believed to be a key culprit for
+irreproducibility~\cite{button2013power}; a meta-analytic study of findings in literature estimated a median power of
+$21\%$. This work, however, assumed the robustness of data and methods used throughout the studies, and performed a
+purely statistical evaluation, so any inconsistencies in the analytical methods used may in reality lead to an even
+lower statistical power across published results.
 
-In neuroimaging studies began to dive deeper into intermediate methods and explored their compounded effect on null
-hypothesis significance testing. A study evaluating the accuracy of significance testing frameworks within commonly
-used libraries for analysis of functional MRI (fMRI) data found that under certain conditions false-positive rates were
-as high as $70\%$~\cite{eklund2016cluster}. While the presentation of this result may misleadingly construe an inflated
-significance of these errors (see associated
+In neuroimaging studies began to dive deeper into the intermediate processing methods and explored their compounded
+effect on null hypothesis significance testing. A study evaluating the accuracy of significance testing frameworks within
+commonly used libraries for the analysis of functional MRI (fMRI) data found that under certain conditions false-positive
+rates were as high as $70\%$~\cite{eklund2016cluster}. While the presentation of this result may misleadingly construe an
+inflated significance of these errors (see associated
 letters~\footnote{\url{https://www.pnas.org/content/114/17/E3368}}\footnote{\url{https://www.pnas.org/content/114/17/E3370}}
 and correction~\footnote{\url{https://www.pnas.org/content/113/33/E4929}}), undeniable attributes of these findings are
-both that there is considerable variability in the quality of tool performance and there are often-dramatic difference
-between supposedly-equivalent software libraries. The impact that cross-library differences have on analytical
-workflows was summarized well in an application to the replication of experiments on real
+both that a) there is considerable variability in the quality of tools under certain conditions and b) there are
+often-dramatic differences between supposedly-equivalent software libraries. The impact that cross-library differences have
+on analytical workflows was well summarized in an attempted replication of experiments on real fMRI
 datasets~\cite{bowring2019exploring}, which showed that not only do the tools produce qualitatively different results,
 but could sometimes lead to diverging conclusions.
 
 In all cases of limited reproducibility presented above, analyses were chosen to be evaluated explicitly because they
-could be re-executed across slightly different conditions.  While all published methods, such as software written to
-produce a given result, would continue to function in an ideal world, in practice this is not the case. A study
-exploring published papers in computer science found that of $600$ papers which were analyzed, approximately only $200$
-were able to weakly replicate~\cite{collberg2016repeatability}. In many cases, this was due to inadequate description
-of the specific implementations, environments, or how tools were applied, while in others, it was likely due to the
-commonly accepted phenomenon of ``Software Aging''~\cite{parnas1994software}. Regardless of the specific causes, this
-inability to re-execute workflows makes claims derived from these tools irreproducible at the most fundamental level.
-Prior to exploring possible numerical underpinnings behind reproducibility, it is essential to ensure the
-re-executability of analyses. The following section will discuss advances made prior to this thesis which facilitate
+could be re-executed across slightly different conditions. While all published methods, such as software written to
+produce the result associated with a given paper, would continue to function in an ideal world, in practice this is not
+the case. A study exploring published papers in computer science found that of $600$ papers which were analyzed,
+approximately only $200$ were able to weakly replicate~\cite{collberg2016repeatability}. In many cases, this was due to
+inadequate description of the specific implementations, environments, or how tools were applied, while in others, it was
+likely due to the commonly accepted phenomenon of ``Software Aging''~\cite{parnas1994software}. Regardless of the specific
+causes, this inability to re-execute workflows makes claims derived from these workflows irreproducible at the most
+fundamental level. Prior to exploring possible numerical underpinnings behind reproducibility, it is essential to ensure
+the re-executability of analyses. The following section will discuss advances made prior to this thesis which facilitate
 the construction and distribution of re-executable scientific workflows.
 
 \subsection{Software Re-executability}
@@ -99,22 +100,22 @@ workflows. While authors set up their computational environments prior to carryi
 configurations are often left undocumented in published manuscripts, leaving readers with the daunting task of
 determining what versions of libraries were used and their dependencies~\cite{robles2010replicating}. However, this is
 not only an inconvenience but becomes scientifically troublesome when considering the reality that distinct software
-versions lead to different interfaces and results by design~\cite{raymond1997cathedral}. In programming languages such
-as Python~\cite{oliphant2007python}, packages may contain information strictly defining their requirements. However,
-these definitions are limited to capturing the dependencies written within the same language, and are often written
-with version ``bounds'' (i.e. requires package X with version $\geq 1.0$), to simplify the interoperability between
-libraries.
+versions by design lead to incrementally different interfaces and results~\cite{raymond1997cathedral}. In programming
+languages such as Python~\cite{oliphant2007python}, packages may contain information strictly defining their
+requirements. However, these definitions are limited to capturing the dependencies written within the same language,
+and are often written with version ``bounds'' (i.e. requires package X with version $\geq 1.0$), to simplify the
+interoperability between libraries.
 
-Traditionally, this issue has been solved through the use of Virtual Machines (VMs)~\cite{smith2005virtual}. VMs are a
-method for packaging and sharing tools that are pre-installed in an executable environment which can be run across
-machines. A drawback of these machines is that they are often require considerable storage and computational overhead,
-as they contain complete system operating systems which must be launched with dedicated processors and memory, limiting
-their portability. Over the last few years, techniques for the virtual encapsulation of tools have shifted towards a
-``Container'' approach, which do not suffer from similar overheads. Container environments, made accessible primarily
-through Docker~\cite{merkel2014docker} and Singularity~\cite{kurtzer2017singularity}, rely on the kernel and other
-libraries of the host operating system, leading to smaller bundles that are less computationally expensive to run.
-While containers are not a perfect solution that guarantee re-executability\footnote{Due to problems which may arise by
-violating some of the best-practices described here:
+Traditionally, the issue of environment configuration has been solved through the use of Virtual Machines
+(VMs)~\cite{smith2005virtual}. VMs are a method for packaging and sharing tools that are pre-installed in an executable
+environment which can be run across computers. A drawback of these machines is that they are often require considerable
+storage and computational overhead, as they contain complete operating systems which must be launched with dedicated
+processors and memory, limiting their portability. Over the last few years, techniques for the virtual encapsulation of
+tools have shifted towards a ``container'' approach, which does not suffer from similar overheads. Container environments,
+made accessible primarily through Docker~\cite{merkel2014docker} and Singularity~\cite{kurtzer2017singularity}, rely on
+the kernel and other libraries of the host operating system, leading to smaller bundles that are less computationally
+expensive to run. While containers are not a perfect solution that guarantee re-executability\footnote{Due to problems
+which may arise by violating some of the best-practices described here:
 \url{https://developers.redhat.com/blog/2016/02/24/10-things-to-avoid-in-docker-containers/}}, they are an important
 advancement which greatly increases the ability to distribute and consume scientific software.
 
@@ -126,20 +127,21 @@ gain local adoption. In the case of neuroimaging, such standards include Brain I
 (BIDS apps)~\cite{gorgolewski2017bids} and Boutiques~\cite{Glatard2018-tu}, each of which takes a distinct approach to
 this problem.
 
-The Brain Imagine Data Structure defines an organization standard for neuroimaging datasets, with the goal of lowering
+The Brain Imaging Data Structure defines an organization standard for neuroimaging datasets, with the goal of lowering
 the barrier to their sharing, interpretation, and inter-operation~\cite{gorgolewski2016brain}. Accordingly, the BIDS
 app standard emerged as a \textit{prescriptive} standard that dictates how tools should interact with these
 datasets~\cite{gorgolewski2017bids}. This standard requires that a set of base arguments must be supported and accepted
 by tools: the location of the dataset, the location at which outputs should be placed, and the analysis level (e.g.
-individual-level versus group-level). This standard also prescribes several optional arguments, such as allowing for
-the indication of a subset of subjects selected for analysis. However, a key limitation of this standard is that beyond
-the initial prescription of arguments there is no definition or description of subsequent arguments that may be
-relevant for a given tool, or standards for provenance which will be subsequently recorded. The BIDS app standard
+for the analysis of an individual versus the analysis of a group). This standard also prescribes several optional
+arguments, such as allowing for the indication of a subset of subjects selected for analysis. However, a key limitation
+of this standard is that beyond the initial prescription of arguments there is no definition or description of how
+subsequent arguments that may be relevant for a given tool should be defined or documented. The BIDS app standard
 dramatically simplifies performing an analysis pipeline with default behaviour, but this lack of additional description
-makes it an incomplete solution for software re-use when implemented at the barest level.
+and no provenance definition to keep analysis records makes it an incomplete solution for software re-use when
+implemented at the barest level.
 
 Boutiques facilitates re-executability through a \textit{descriptive} standard which requires software developers to
-create a rich metadata record summarizing the arguments and function of their tool~\cite{Glatard2018-tu}. This standard
+create a rich metadata record summarizing the arguments and function of their tools~\cite{Glatard2018-tu}. This standard
 supports a wide range of command-line tools, and is supported by a library which directly manages the execution of
 described tools alongside validation of inputs (e.g. ensuring two mutually-exclusive options are not provided) and
 provenance capture. However, while the added complexity of Boutiques leads to more rich descriptions and facilitates
@@ -157,17 +159,17 @@ development and deployment of analysis pipelines across high performance computi
 In cases where the reproduction of claims can be attempted, there are myriad possible sources of observed variability
 between results. While some of these may be avoided when following best practices~\cite{prlic2012ten},
 such as the dependence of an analysis on a pseudo-random number, there are algorithmic properties which may
-persistently affect the outcomes. One such property is the stability of an algorithm or tool~\cite{higham2002accuracy}.
+persistently affect outcomes. One such property is the stability of an algorithm or tool~\cite{higham2002accuracy}.
 While there are various theoretical and empirical techniques used for evaluating stability, each conceptually refers to
 stability as measure of sensitivity to small perturbations. Issues in stability emerge for one of two reasons: the
-evaluation of poorly conditioned functions (i.e. containing or nearby singularities), or the accumulation and
+evaluation of poorly conditioned functions (i.e. those containing or nearby singularities), or the accumulation and
 propagation of numerical error~\cite{higham2002accuracy}.
 
-In the case of the former cause of instability, poorly conditioned functions, instability may often be detected both
-theoretically and empirically. One such measure for evaluating this is the ``condition number'' of a matrix or
-function~\cite{belsley2005regression}. While the definition takes different forms for different contexts (i.e. matrices
-versus non-linear functions), it is ultimately defined as the worst-case error in the output for a relative change in
-input as that input change the asymptotically approaches $0$. This allows functions to be evaluated with respect to
+In the case of poorly conditioned functions, instability may often be detected both theoretically and empirically. One
+such measure for evaluating this is the ``condition number'' of a matrix or function~\cite{belsley2005regression}. While
+the definition takes different forms for different contexts (i.e. matrices versus non-linear functions), it is
+ultimately defined as the worst-case error in the output for a relative change in input, as that change to input
+asymptotically approaches $0$~\cite{belsley2005regression}. This allows functions to be evaluated with respect to
 their sensitivity to minor perturbations of their inputs, where a smaller condition number refers to smaller change and
 a more stable function. The condition number relates two distinct components of the stability of a problem: the forward
 error and backward error. The forward error is defined as the deviation of an output from the true result, while the
@@ -181,7 +183,7 @@ the forward error or backward error independently, so the mixed stability must b
 While in some cases it is possible to compute measures of stability analytically, is difficult for all but linear and
 differentiable systems~\cite{kiusalaas2013numerical}, neither of which can be assumed to be the case in complex
 scientific pipelines. In these cases, as well as when exploring the role of numerical errors in the stability of an
-algorithm, numerical analysis~\cite{hildebrand1987introduction} approaches must be used.
+algorithm, numerical analysis~\cite{hildebrand1987introduction} approaches can be used.
 
 \subsubsection{Numerical Analysis}
 Unlike in the analytical setting discussed above, the propagation and accumulation of numerical error is a largely
@@ -198,104 +200,106 @@ types of imprecision when involved in floating point arithmetic: roundoff error 
 cancellation~\cite{muller2018handbook}. Roundoff error, the loss of information in the location(s) following the least
 significant bit, can be caused due to the addition, multiplication, or division of floating point numbers. This occurs
 when an arithmetic operation results in more digits that belong in the mantissa than can be
-stored~\cite{muller2018handbook}. Conversely, catastrophic cancellation occurs when subtracting numbers of similar
-magnitudes and results in a large portion of the mantissa containing non-significant $0$ values where neither of the
-inputs contained information~\cite{muller2018handbook}. The handling of these errors according to the IEEE 754 standard
-is deterministic which importantly allows programs to repeatably obtain the same result~\cite{ieee754}, however, this
-also leads to the masking of the sources of numerical error within software.
+stored~\cite{muller2018handbook}. Conversely, catastrophic cancellation occurs when subtracting similar numbers and
+results in a larger portion of the mantissa containing non-significant $0$ values populated beyond where either of the
+original values contained information~\cite{muller2018handbook}. The handling of these errors according to the IEEE 754
+standard is deterministic which importantly allows programs to repeatably obtain the same result~\cite{ieee754},
+however, this also leads to the masking of numerical errors within software.
 
-Stochastic arithmetic is an approach used to study the impact of numerical errors emerging from floating point
-arithmetic~\cite{vignes1993stochastic,connolly2020stochastic}. In this approach, results of operations are considered
-to exist as both rounded-up and rounded-down quantities with equal validity. Considering this, the results of
-operations can be perturbed to either setting and the exhaustive space of all possible terminal results from an
-algorithm can be described. One example of stochastic arithmetic is Monte Carlo Arithmetic (MCA)~\cite{Parker1997-qq}.
-MCA approaches stochastic arithmetic using a Monte Carlo~\cite{metropolis1949monte} framework in which algorithms
-or software pipelines are repeatedly evaluated and each floating point operation throughout the execution is randomly
-perturbed. By repeating the evaluation of a pipeline using MCA, it is possible to obtain a distribution of equally
-plausible results. Several libraries have been developed which support the instrumentation of arbitrary tools with
+Stochastic arithmetic is an approach used to study the impact of numerical errors that emerged throughout floating
+point arithmetic~\cite{vignes1993stochastic,connolly2020stochastic}. In this approach, results of operations are
+considered to exist as both rounded-up and rounded-down quantities with equal validity. Considering this, the results
+of operations can be perturbed to either setting and the exhaustive space of all possible terminal results from an
+algorithm can be described (though in many cases, this would result in far too many conditions to actually realize).
+One example of stochastic arithmetic is Monte Carlo Arithmetic (MCA)~\cite{Parker1997-qq}. MCA approaches stochastic
+arithmetic using a Monte Carlo~\cite{metropolis1949monte} framework in which algorithms or software pipelines are
+repeatedly evaluated and each floating point operation throughout the execution is randomly perturbed. By repeating the
+evaluation of a pipeline using MCA, it is possible to obtain a distribution of equally plausible results. Several
+libraries have been developed which support the instrumentation of arbitrary tools with
 MCA~\cite{frechtling2015mcalib,Denis2016-wo}, making it a technique which can be readily introduced to a wide array of
 pipelines for exploring numerical stability.
 
-While MCA allows for the perturbation of pipelines, the results cannot be evaluated in a conditioning context since the
-true change in inputs is unknown. It here becomes useful to consider stability a measure of precision; while it ``has
-nothing to do with accuracy''~\cite{kiusalaas2013numerical}, it can serve as a valuable measure of consistency. One
-measure of precision applicable in this context is the number of significant digits~\cite{Parker1997-qq}. While there
-are distinct context-appropriate formulas~\cite{sohier2018confidence}, Parker~\cite{Parker1997-qq} first defined this
-in a stochastic arithmetic context as a function of the ratio between the mean and variance across simulations. In
-practice, this allows for the identification of which digits are unchanging across perturbations, and the construction
-of a margin of error around results.
-
-In contexts such as neuroimaging, performing MCA perturbations and evaluating the number of significant digits is
-particularly attractive as this method does not require a) a differentiable model of the given algorithm or pipeline,
+While MCA allows for the perturbation of pipelines, the results cannot be evaluated in the conditioning context
+introduced above since the true change in inputs is unknown. It here becomes useful to consider stability a measure of
+precision; while stability and precision ``have nothing to do with accuracy''~\cite{kiusalaas2013numerical}, they can
+serve as valuable measures of consistency. One measure of precision applicable in this context is the number of
+significant digits~\cite{Parker1997-qq}. While there are distinct context-appropriate
+formulas~\cite{sohier2018confidence}, Parker~\cite{Parker1997-qq} first defined this in a stochastic arithmetic context
+as a function of the ratio between the mean and variance across simulations. In practice, this allows for the
+identification of which digits are unchanging across perturbations, and the construction of a margin of error around
+results. In contexts such as neuroimaging, performing MCA perturbations and evaluating the number of significant digits
+is particularly attractive as this method does not require a) a differentiable model of the given algorithm or pipeline,
 or b) an expected ground-truth result. Prior to this thesis these techniques had not been applied to the study of
 stability in neuroimaging pipelines.
 
 
 \subsection{Neuroimaging}
-Understanding the structure and function of the brain has long been a topic of
-exploration~\cite{raichle2006brain}, and neuroimaging enables this exploration \textit{in vivo} in humans.
-Modern neuroimaging techniques rely on complex image acquisition techniques, such as Magnetic Resonance Imaging
-(MRI)~\cite{young1987magnetic}, Electroencephalography (EEG)~\cite{da2009eeg}, or Magnetoencephalography
-(MEG)~\cite{baillet2017magnetoencephalography}. Each imaging modality has unique strengths and weaknesses, which has
-led to the adoption of multimodal methods for brain image analysis~\cite{sui2012review,calhoun2006feature}. Even within
-a given imaging paradigm acquisition protocols may be designed to highlight different features of the brain. In the
-case of MRI, commonly used contrasts highlight brain structures (e.g. T1w~\cite{bergamino2014review},
-T2w~\cite{chavhan2009principles}), activity (e.g. BOLD~\cite{logothetis2004nature}), or the diffusion of water in the
-brain (e.g. DWI~\cite{bammer2003basic}). Each of these techniques provides a unique look at the structure and function
-of the brain, and neuroimaging pipelines often consider one-or-more of these modalities at
-once~\cite{esteban2019fmriprep,garyfallidis2014dipy}. For the purpose of this thesis, I will focus on evaluating the
-analysis of a diffusion imaging method towards the reconstruction structural connectomes.
+Understanding the structure and function of the brain has long been a topic of exploration~\cite{raichle2006brain}, and
+neuroimaging enables this exploration \textit{in vivo} in humans. Modern neuroimaging techniques rely on complex image
+acquisition techniques, such as Magnetic Resonance Imaging (MRI)~\cite{young1987magnetic}, Electroencephalography
+(EEG)~\cite{da2009eeg}, or Magnetoencephalography (MEG)~\cite{baillet2017magnetoencephalography}. Each imaging modality
+has unique strengths and weaknesses, which has led to the adoption of multimodal methods for brain image
+analysis~\cite{sui2012review,calhoun2006feature}. Even within a given imaging paradigm acquisition protocols may be
+designed to highlight different features of the brain. In the case of MRI, commonly used contrasts highlight brain
+structures (e.g. T1w~\cite{bergamino2014review}, T2w~\cite{chavhan2009principles}), activity (e.g.
+BOLD~\cite{logothetis2004nature}), or the diffusion of water in the brain (e.g. DWI~\cite{bammer2003basic}). Each of
+these techniques provides a unique look at the structure and function of the brain, and neuroimaging pipelines often
+consider one-or-more of these modalities at once~\cite{esteban2019fmriprep,garyfallidis2014dipy}. For the purpose of
+this thesis, I will focus on evaluating the analysis of a diffusion imaging method towards the reconstruction structural
+connectivity maps, or, connectomes.
 
 \subsubsection{Structural Connectome Estimation}
 
-Diffusion weighted imaging, DWI, is an imagine method that can be used for the identification of connective tissue
+Diffusion weighted imaging, DWI, is an imaging method that can be used for the identification of connective tissue
 (white matter tracts) within the brain~\cite{wandell2016clarifying,thomason2011diffusion}. These images are acquired by
-imposing directed magnetic gradients to the brain, which encourages the re-alignment of water molecules; the directed
+imposing directed magnetic gradients to the brain, which encourages the re-alignment of water molecules. The directed
 gradients are swept across a $180^{\circ}$ range, ultimately providing a series of images which can be jointly
 interpreted to identify the directional diffusion of water, and therefore alignment of axonal
 fibers~\cite{pinto2020harmonization}. The identification and modelling of this tissue allows for the estimation of
 brain networks and subsequent comparison of their features~\cite{sporns2013human}, which may be relevant for
 understanding a number of neurological
-conditions~\cite{shah2017altered,yan2018rich,xie2012mapping,griffa2013structural}. Though the analysis of DWI data
-typically makes use of both structural and diffusion images~\cite{jenkinson2012fsl,garyfallidis2014dipy}, the use of
-these images can be conceptually decoupled into two components: pre-processing and modelling.
+conditions~\cite{shah2017altered,yan2018rich,xie2012mapping,griffa2013structural}. The analysis of DWI data typically
+makes use of both structural and diffusion images~\cite{jenkinson2012fsl,garyfallidis2014dipy}, and the use of these
+images can be conceptually decoupled into two components: pre-processing and modelling.
 
 \paragraph*{Pre-processing}
 While distinct datasets and libraries may present slight deviations in the pre-processing of data, I will here describe
 the backbone of a widely applicable and community-accepted pre-processing workflow using the FSL
-library~\cite{WOOLRICH2009S173,jenkinson2012fsl,Glasser2013-vf}, and briefly discuss the rationale behind each
-component. The required data for the pre-processing workflow described here is as follows: a set of 4-D diffusion
-images and associated acquisition parameters, a structural T1w image, and a template reference image (such as the
-ICBM152 template~\cite{lancaster2007bias}). The diffusion images are first de-noised and aligned to one another
-alongside the removal of structured eddy-current artifacts~\cite{andersson2016integrated} commonly found in the images.
-The structural image is then aligned to the template and a single reference diffusion volume separately via an affine
+library~\cite{WOOLRICH2009S173,jenkinson2012fsl,Glasser2013-vf} and briefly discuss the rationale behind each
+component. The required data for the pre-processing workflow described here is: a set of 4-D diffusion images and
+associated acquisition parameters, a structural T1w image, and a template reference image (such as the ICBM152
+template~\cite{lancaster2007bias}). The diffusion images are first de-noised and aligned to one another alongside the
+removal of structured eddy-current artifacts~\cite{andersson2016integrated} commonly found in the images. The structural
+image is then aligned to the template and a single reference diffusion volume separately via an affine
 registration~\cite{jenkinson2001global}, and an optional non-linear registration may be subsequently applied between
-the structural image and template~\cite{jenkinson2012fsl}. The transformations are subsequently combined, such that
-there exists a mapping from the template space to the subject-specific diffusion space, such that images can be
-meaningfully compared via brain region atlases (or parcellations) and tissue masks which can be transformed and applied
-to the diffusion image in subsequent modelling. Optionally, subject-specific tissue masks may also be generated from
-the structural image and transformed into the space of the diffusion image~\cite{zhang2001segmentation}.
+the structural image and template~\cite{jenkinson2012fsl}. The transformations are combined such that there exists a
+mapping from the template space to the subject-specific diffusion space so that images can be meaningfully compared via
+brain region atlases (or parcellations) and tissue masks defined in the template space. These atlases can be transformed
+and applied to the diffusion image in subsequent modelling. Optionally, subject-specific tissue masks may also be
+generated from the structural image and transformed into the space of the diffusion image~\cite{zhang2001segmentation}.
 
 \paragraph*{Modelling}
-Depending on the quality of the diffusion data (such as the resolution of diffusion directions sampled), various models
-may be appropriate for specific data~\cite{jeurissen2019diffusion,tournier2011diffusion,mori2013introduction}.
-Regardless of the specific techniques used at each stage, there are three components in the modelling workflow which
-lead to the generation of connectomes: fitting of a diffusion model, fiber tractography, and mapping fibers to a
+Depending on the quality of the diffusion data (such as the resolution of diffusion directions sampled), various
+diffusion models may be appropriate for specific
+data~\cite{jeurissen2019diffusion,tournier2011diffusion,mori2013introduction}. Regardless of the specific techniques
+used at each stage, there are three components in the modelling workflow which lead to the generation of connectomes:
+fitting of a diffusion model, fiber tractography, and mapping fibers to a
 parcellation~\cite{roncal2013migraine,sporns2005human,Kiar2018-jt,Glasser2013-vf}. Diffusion models seek to assign a
 direction or directions of water diffusion to each voxel within the image. These models range in complexity from
 $6$-component tensors to orientation distribution function (ODF) histograms on the order of $100$
-components~\cite{tournier2011diffusion}. ODF models require higher fidelity data, but are necessary for many
-tractography algorithms. Tractography is applied following the evaluation of a diffusion model, and involves tracing
-the local estimates of diffusion to form larger tracts of connectivity~\cite{behrens2014mr}. Across the many available
-algorithms, they can be conceptually grouped into two categories: deterministic and
-probabilistic~\cite{jeurissen2019diffusion}. Deterministic models assign flow based on the single direction of maximum
-diffusion for each voxel, whereas probabilistic models assign fiber probabilities rather than making a unique decision.
-Finally, streamlines are used to assign edges in a network. Regions of the network are defined by a parcellation, such
-as the common Desikan-Killianey-Tourville~\cite{Klein2012-vi} atlas, and edges correspond to tracts which connect them.
-The weights of edges are often defined as either a feature of the tracts, such as the average strength of diffusion
-across tracts or the total number of tracts between regions. The networks are often stored in an adjacency matrix
-format, such that an $N \times N$ matrix would correspond to a connectome constructed using an $N$-region parcellation,
-and contain non-zero values at location $(i,j)$ to indicate a connection between regions $i$ and $j$.
+components~\cite{tournier2011diffusion}. Higher order ODF models require higher fidelity data, but are necessary for
+many tractography algorithms. Tractography is applied following the evaluation of a diffusion model, and involves
+tracing the local estimates of diffusion or ``flow'' to form larger tracts of coherent connectivity~\cite{behrens2014mr}.
+Across the many available tractography algorithms, they can be conceptually grouped into two categories: deterministic
+and probabilistic models~\cite{jeurissen2019diffusion}. Deterministic models assign flow based on the single direction of
+maximum diffusion for each voxel, whereas probabilistic models assign fiber probabilities rather than making a unique
+decision. Finally, fiber streamlines are used to assign edges in a network. Regions of the network are often defined by a
+parcellation, such as the common Desikan-Killianey-Tourville~\cite{Klein2012-vi} atlas, and edges correspond to tracts
+which connect them. The weights of edges are often defined as either a feature of the tracts, such as the average
+strength of diffusion across tracts, or the total number of tracts between regions. The networks are often stored in an
+adjacency matrix format, such that an $N \times N$ matrix would correspond to a connectome constructed using an
+$N$-region parcellation, and contain non-zero values at location $(i,j)$ to indicate a connection between regions $i$ and
+$j$.
 
 Over the last several decades there has been considerable advancement in the methods presented above, leading to higher
 quality maps of the brain~\cite{GIRARD2020117201}. Despite this, the inherent difficulty of this tasks and profound
@@ -309,68 +313,71 @@ underlying accuracy of models being evaluated.
 \subsection{Evidence of Instability in Neuroimaging}
 In an effort to tie together the previous explorations of reproducibility and stability to neuroimaging, I will
 conclude this section with a summary of studies which shed light on these issues in the context of brain imaging.
-Examples of issues in reproducibility have arisen in neuroimaging across all operational scales: from differences in
-experimental configuration across teams, to numerical sensitivity in the face of minor perturbations.
+Examples of issues in reproducibility have arisen in neuroimaging across all operational scales from differences in
+experimental configuration across teams to numerical sensitivity in to minor numerical perturbations.
 
 As neuroimaging is a relatively young and quickly growing field, there exist many libraries and tools which exist in
-parallel, designed to accomplish similar tasks. Depending on the local preferences and expertise, scientists may elect
-to use one process over another at any stage throughout their analysis. In practice, this may lead researchers to many
-distinct answers to the same question. This ``effect of researcher'' was recently explored for the dissection of white
-matter bundles derived from Diffusion MRI~\cite{schilling2020tractography}. Independent teams from $42$ centres were
-tasked with the segmentation of $14$ tracts on a shared dataset using their method of choice (manual, semi-automatic,
-or fully-automatic). This study revealed that the variability introduced across teams was larger than any other source
-of variability in the experiment, and proposed that a reduction in analytical heterogeneity was
-necessary~\cite{schilling2020tractography}. A similar study exploring the variability across teams in the context of a
-set of task-based fMRI experiments~\cite{botvinik2020variability} found that not only did no two teams use the same
-technique, but findings were in considerable disagreement across groups. Across $9$ tested hypotheses, on average
-$20\%$ of the total $70$ teams arrived at different conclusions from the majority, clearly demonstrating the impact of
-analytical decisions on results.
+parallel and have been designed to accomplish similar tasks. Depending on the local preferences and expertise, scientists
+may elect to use one process over another at any stage throughout their analysis. In practice, this may lead researchers
+to many distinct answers to the same question. This effect of ``researcher's degrees of freedom'' was recently explored
+for the dissection of white matter bundles derived from Diffusion MRI~\cite{schilling2020tractography}. Independent teams
+from $42$ centres were tasked with the segmentation of $14$ tracts on a shared dataset using their method of choice
+(including manual, semi-automatic, or fully-automatic approaches). This study revealed that the variability introduced
+across teams was larger than any other source of variability in the experiment, and proposed that a reduction in
+analytical heterogeneity was necessary for the field to progress~\cite{schilling2020tractography}. A similar study
+exploring the variability across teams in the context of a set of task-based fMRI
+experiments found that not only did no two teams of the $70$ included use the same technique, but that findings were in
+considerable disagreement across groups~\cite{botvinik2020variability}. Across $9$ tested hypotheses, on average $20\%$
+of the teams arrived at different conclusions from the majority, clearly demonstrating the impact of analytical
+flexibility on the generation of consistent results.
 
 The variability observed across these distinct-but-similar pipelines was likely introduced not at a single point, but
-at various stages within the pipelines. In the case of non-linear registration, a comparison of $14$ techniques which
-are commonly-used in neuroimaging were compared~\cite{klein2009evaluation}. Not only did this evaluation demonstrate
-that no-two methods were equivalent, it demonstrated that no single method was universally more performant than the
-others. Even when an effort is made to match workflows as closely as possible across libraries, considerable
-differences are found in the terminal results. When replicating three fMRI experiments using the three most commonly
-used analysis libraries, the location and strength of brain activations were found to vary
-considerably~\cite{bowring2019exploring}. These inconsistencies may be the result of intentional methodological
-differences in some cases (e.g. the possible use of global signal regression~\cite{murphy2017towards}), while in others
-they may be due to implementation errors or software bugs. When evaluating the statistical testing frameworks in these
-same libraries, false-positive rates were found to peak at $79\%$ in some cases, when reporting a p-value of
-$0.05$~\cite{eklund2016cluster}, and further demonstrated that the conditions under which each method performed the
-best was variable across tools. We can see from these studies that not only do differences exist across tools at each
-stage of analysis pipelines, but also that each tool has a unique relationship between the quality of their performance
-and the data being used. The extreme variability-of-variability that we observe is likely due to underlying numerical
-properties of the algorithms, and can be explored on a tool-by-tool basis.
+at various stages within the pipelines. In the case of non-linear registration, for example, a comparison of $14$
+commonly-used methods in neuroimaging were compared and showed produced a wide range of
+results~\cite{klein2009evaluation}. Not only did this evaluation demonstrate that no-two methods were equivalent, it
+demonstrated that no single method was universally more performant than the others. Even when an effort is made to
+match workflows as closely as possible across libraries, considerable differences have been found in the terminal
+results. When replicating a series of fMRI experiments using the three most commonly used analysis libraries, the
+location and strength of brain activations were found to vary considerably~\cite{bowring2019exploring}. These
+inconsistencies may be the result of methodological differences in some cases (e.g. the possible use of global signal
+regression~\cite{murphy2017towards}), while in others they may be due to implementation differences or software bugs.
+When evaluating the statistical testing frameworks in these same libraries, false-positive rates were found to peak at
+$70\%$ in some cases when reporting a p-value of $0.05$~\cite{eklund2016cluster}, and further demonstrated that the
+conditions under which each method performed the best was variable across tools. We can see from these studies that not
+only do differences exist across tools at each stage of analysis pipelines, but also that each tool has a unique
+relationship between the quality of their performance and the data being used. The extreme variability-in-variability
+that we observe is likely due to underlying numerical properties of the algorithms, and must be explored on a
+tool-by-tool basis.
 
 The stability of neuroimaging pipelines has begun to be explored in specific use-cases through the perturbation of data
 or libraries prior to processing. In the case of Diffusion MRI, the stability of tensor models were studied
 analytically and validated experimentally~\cite{skare2000condition}. In this study, the stability of each tensor
-reconstruction was first evaluated, and found considerable variability in the algorithms, ranging from nearly $1$
-(relatively stable) to nearly $10$ (highly unstable). The models were then tested across a range of operating points,
-and showed a tight relationship between the observed variability and the theoretical
-conditioning~\cite{skare2000condition}. Importantly, this work clearly illustrates an often overlooked feature of
-experimental variability: the stability of models varies across the space of possible inputs, and thus inextricably
-links any evaluation of stability to both the tool and data being used.
+reconstruction was first evaluated and found considerable variability in stability across algorithms, ranging from
+nearly $1$ (relatively stable) to nearly $10$ (highly unstable). The models were then tested across a range of operating
+points, and showed a tight relationship between the observed variability and the theoretical
+conditioning~\cite{skare2000condition}. Importantly, this work clearly demonstrated that experimental variability may
+serve as a proxy for theoretical conditioning. This work also illustrated an often overlooked feature of variability: that
+the stability of models varies across the space of inputs, and thus any evaluation of stability is inextricably linked to
+both the tool and data being used.
 
-Another exploration of stability through perturbations compared two tools for cortical and sub-cortical surface
-estimation~\cite{Lewis2017-ll}. In this experiment, grey matter surfaces were estimated from a single image using two
-toolboxes. Subsequently, the intensity of a single voxel within the white matter (centre of the Corpus Callosum) of the
-image was amplified by $1\%$ of its original value, and the tools were re-run. This analysis showed significant
+Another exploration of stability through experimental perturbation compared two tools for cortical and sub-cortical
+surface estimation~\cite{Lewis2017-ll}. In this experiment, grey matter surfaces were estimated from a single image using
+two toolboxes. Subsequently, the intensity of a single voxel within the white matter (centre of the Corpus Callosum) of
+the image was amplified by $1\%$ of its original value, and the tools were re-run. This analysis showed significant
 differences between not only the original and perturbed surfaces, but showed non-uniformity in the variability across
-cortical structures that differed across tools~\cite{Lewis2017-ll}. This study importantly sheds light on the reality
-that variability introduced to a workflow may affect the results in unexpected ways. The fact that the minor
-perturbation of a single voxel buried within white matter may lead to a significant change in the estimation of grey
-matter matter surfaces suggests that a more thorough exploration of perturbations and associated variability may be
-required to fully understand the behaviour of these pipelines.
+cortical structures that was distinct for each tool~\cite{Lewis2017-ll}. This study importantly sheds light on the reality
+that variability introduced to a workflow may affect the results in unexpected ways. The fact that the minor perturbation
+of a single voxel buried within white matter may lead to a significant change in the estimation of grey matter matter
+surfaces suggests that a more thorough exploration of perturbations and associated variability may be required to fully
+understand the behaviour of these pipelines.
 
 Though the magnitude of differences observed in the above cases is perhaps surprising, it may have been expected in all
-scenarios to observe some non-zero amount of variability. However, differences in processing have also been observed
-when changing operating system~\cite{Glatard2015-vc,salari2020file} or even padding an image with a row of empty
-voxels~\cite{Glen2018-sg}. This array of findings clearly demonstrates the relevance of characterizing numerical
-stability in the context of neuroimaging, both due to the abundance of cases in which it becomes relevant and the
-general lack of characterization of this effect. This thesis begins with enabling the rapid and provenance rich
-deployment of neuroimaging workflows, and uses this platform to dig deep into the induction and evaluation of
-numerical instabilities, the impact of instability on analytical workflows, and concludes with an exploration of how
-the observed variability may be harnessed as a \textit{feature} rather than a bug.
+scenarios to observe some non-zero amount of variability. However, differences in results have also been observed
+in neuroimaging when changing operating system~\cite{Glatard2015-vc,salari2020file} or even padding an image with a row
+of empty voxels~\cite{Glen2018-sg}. This array of findings clearly demonstrates the relevance of characterizing numerical
+stability in the context of neuroimaging both due to the abundance of cases in which numerical inconsistencies have been
+observed and the general lack of characterization of this effect. This thesis begins with enabling the rapid and
+provenance rich deployment of neuroimaging workflows, and uses this platform to dig deep into the induction and
+evaluation of numerical instabilities, the impact of instability on analytical workflows, and concludes with an
+exploration of how the observed variability may be harnessed as a \textit{feature} rather than a bug.
 
