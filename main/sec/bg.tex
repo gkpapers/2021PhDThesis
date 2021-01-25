@@ -1,8 +1,8 @@
-We will first define and discuss the state of reproducibility in science across a range of domains, and explore several
-specific examples. Next, we will discuss the role that software re-executability and numerical stability play in these
-problems, and advances which have been made in each of these spaces. We will then approach neuroimaging, with a brief
-overview of the field and commonly used methods, finally presenting several case studies in neuroimaging to demonstrate
-the relevance of exploring reproducibility and numerical stability in this space.
+In this section I will first define and discuss the state of reproducibility in science across a range of domains, and
+explore several specific examples. Next, I will discuss the role that software re-executability and numerical stability
+play in these problems, and advances which have been made in each of these spaces. I will then approach neuroimaging,
+with a brief overview of the field and commonly used methods that are of relevance, finally presenting several case
+studies in neuroimaging to demonstrate the necessity of exploring numerical stability in this space.
 
 \subsection{Reproducibility}
 At the heart of science is the ability for researchers to build upon previous work, incrementally advancing a given
@@ -327,13 +327,13 @@ $20\%$ of the total $70$ teams arrived at different conclusions from the majorit
 analytical decisions on results.
 
 The variability observed across these distinct-but-similar pipelines was likely introduced not at a single point, but
-at various stages within the piplines. In the case of non-linear registration, a comparison of $14$ techniques which
+at various stages within the pipelines. In the case of non-linear registration, a comparison of $14$ techniques which
 are commonly-used in neuroimaging were compared~\cite{klein2009evaluation}. Not only did this evaluation demonstrate
 that no-two methods were equivalent, it demonstrated that no single method was universally more performant than the
 others. Even when an effort is made to match workflows as closely as possible across libraries, considerable
 differences are found in the terminal results. When replicating three fMRI experiments using the three most commonly
 used analysis libraries, the location and strength of brain activations were found to vary
-considerably~\cite{bowring2019exploring}. These inconsisstencies may be the result of intentional methodological
+considerably~\cite{bowring2019exploring}. These inconsistencies may be the result of intentional methodological
 differences in some cases (e.g. the possible use of global signal regression~\cite{murphy2017towards}), while in others
 they may be due to implementation errors or software bugs. When evaluating the statistical testing frameworks in these
 same libraries, false-positive rates were found to peak at $79\%$ in some cases, when reporting a p-value of
@@ -354,13 +354,13 @@ experimental variability: the stability of models varies across the space of pos
 links any evaluation of stability to both the tool and data being used.
 
 Another exploration of stability through perturbations compared two tools for cortical and sub-cortical surface
-estimation~\cite{Lewis2017-ll}. In this experiment, gray matter surfaces were estimated from a single image using two
-toolboxes. Subsequently, the intensity of a single voxel within the white matter (centre of the Corpus Collusum) of the
+estimation~\cite{Lewis2017-ll}. In this experiment, grey matter surfaces were estimated from a single image using two
+toolboxes. Subsequently, the intensity of a single voxel within the white matter (centre of the Corpus Callosum) of the
 image was amplified by $1\%$ of its original value, and the tools were re-run. This analysis showed significant
 differences between not only the original and perturbed surfaces, but showed non-uniformity in the variability across
 cortical structures that differed across tools~\cite{Lewis2017-ll}. This study importantly sheds light on the reality
 that variability introduced to a workflow may affect the results in unexpected ways. The fact that the minor
-perturbation of a single voxel buried within white matter may lead to a significant change in the estimation of gray
+perturbation of a single voxel buried within white matter may lead to a significant change in the estimation of grey
 matter matter surfaces suggests that a more thorough exploration of perturbations and associated variability may be
 required to fully understand the behaviour of these pipelines.
 
