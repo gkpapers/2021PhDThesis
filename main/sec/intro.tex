@@ -6,10 +6,10 @@ allowing the brain networks to describe a limitless range of scales and organism
 section of mouse brain may summarize the synapses between neurons found in an Electron Miscropy
 image~\cite{zingg2014neural}, the construction of a similar map from humans \textit{in vivo} is limited to data
 collected through non-invasive imaging techniques such as Magnetic Resonance Imaging
-(MRI)~\cite{sporns2013human,van2012future,hagmann2005diffusion}.
+(MRI) and may summarize the global connectivity of the brain~\cite{sporns2013human,van2012future,hagmann2005diffusion}.
 
 Though the resolution of a typical MRI is approximately $1,000,000 \times$ less precise than an Electron Microscope
-image~\cite{kasthuri2015saturated} which shows true cellular connectivity, MRI techniques allow for the capture of
+image~\cite{kasthuri2015saturated} which may show true cellular connectivity, MRI techniques allow for the capture of
 entire brains without harming the subject and can be measured over time to observe network evolution. While regions
 would be defined in the MRI case as macro-scale brain areas (often $1mm^3$ or larger in
 size~\cite{sotiropoulos2013advances}), the edges between them can be defined as similarity in
@@ -30,7 +30,7 @@ classification and segmentation, and modelling or relating connectivity or funct
 and design of these pipelines has considerable impact on the derived maps and their
 application~\cite{bowring2019exploring,klein2009evaluation}. In the absence of ground-truth to evaluate the accuracy of
 results generated from these tools, it is essential to understand their consistency across minor perturbations (e.g.
-small amounts of noise). A lack of such consistency has recently become apparent across brain
+small amounts of noise). This consistency (or possible lack thereof) has recently become under scrutiny across brain
 imaging~\cite{glatard2015reproducibility,Lewis2017-ll,eklund2016cluster}, necessitating a shift in the focus of
 researchers with an increasing emphasis on reproducibility.
 
@@ -41,7 +41,7 @@ upgrades~\cite{salari2020file}, or algorithmic instability~\cite{Lewis2017-ll}. 
 is becoming increasingly understood and accepted, their impact on the validity scientific claims or models in
 neuroimaging has remained largely uncharacterized.
 
-The objective of this thesis was to understand the role that numerical instabilities play in the reproducibility of
+The objective of this thesis is to understand the role that numerical instabilities play in the reproducibility of
 results, and develop methods around this exploration which enable higher quality and more easily reproducible claims
 in neuroimaging. To this end, I have:
 
@@ -60,9 +60,10 @@ Ultimately, I created a piece of computational infrastructure which was used to 
 consuming millions of CPU-hours for the induction of numerical instabilities in neuroimaging pipelines. I characterized
 the significant impact of these instabilities in various analytic contexts, and proposed a method for leveraging
 instabilities in machine learning applications which improves the generalizability of learned models. My thesis not
-only sheds light on an impactful issue in neuroimaging, but it presents a method for both shedding further light on
-the trustworthiness of scientific tools and results, and demonstrates how scientific workflows can immediately benefit
-from these explorations in practice.
+only sheds light on this impactful issue in neuroimaging, but it presents a method for further exploration on the
+trustworthiness of scientific tools and results more generally. My work also demonstrates how scientific workflows can
+immediately benefit from explorations of stability by leveraging the variability inherent to workflows to reduce bias
+in models of brain structure.
 
 \subsection{Contributions to Original Knowledge}
 I have developed and contributed to several tools which increase the accessibility of deploying and evaluating
