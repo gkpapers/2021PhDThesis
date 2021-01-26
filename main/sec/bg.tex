@@ -217,7 +217,13 @@ repeatedly evaluated and each floating point operation throughout the execution 
 evaluation of a pipeline using MCA, it is possible to obtain a distribution of equally plausible results. Several
 libraries have been developed which support the instrumentation of arbitrary tools with
 MCA~\cite{frechtling2015mcalib,Denis2016-wo}, making it a technique which can be readily introduced to a wide array of
-pipelines for exploring numerical stability.
+pipelines for exploring numerical stability. A major caveat of this technique is the large computational overhead. As
+instrumented through Verificarlo~\cite{Denis2016-wo}, MCA increases the run-time of floating point operations by
+approximately $100 \times$, and may require $10$s – $100$s of runs to well sample the distribution of
+results~\cite{Sohier2018-ts}. As scientific pipelines are not solely built of floating point operations in practice,
+resulting in slowdowns may be considerably less dramatic when instrumented with MCA, however, the repeated execution
+of perturbed analyses unavoidably increases the run-time of experiments according to the number of simulations
+performed.
 
 While MCA allows for the perturbation of pipelines, the results cannot be evaluated in the conditioning context
 introduced above since the true change in inputs is unknown. It here becomes useful to consider stability a measure of
