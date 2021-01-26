@@ -167,18 +167,22 @@ propagation of numerical error~\cite{higham2002accuracy}.
 
 In the case of poorly conditioned functions, instability may often be detected both theoretically and empirically. One
 such measure for evaluating this is the ``condition number'' of a matrix or function~\cite{belsley2005regression}. While
-the definition takes different forms for different contexts (i.e. matrices versus non-linear functions), it is
-ultimately defined as the worst-case error in the output for a relative change in input, as that change to input
+the mathematical form can be simplified for different contexts (i.e. matrices or linear functions), its general
+definition ultimately describes the worst-case error in the output for a relative change in input, as that change to input
 asymptotically approaches $0$~\cite{belsley2005regression}. This allows functions to be evaluated with respect to
-their sensitivity to minor perturbations of their inputs, where a smaller condition number refers to smaller change and
-a more stable function. The condition number relates two distinct components of the stability of a problem: the forward
-error and backward error. The forward error is defined as the deviation of an output from the true result, while the
-backward error is defined as the smallest change to an input such that the theoretical result matches the empirical
-result. The condition number relates these values by being no less than the ratio of the forward error to the backward
-error~\cite{belsley2005regression}. In practice, forward and backward error are often combined into a measure of mixed
-stability which evaluates how closely a solution matches another when the input is perturbed slightly. In the case of
-problems where there is no ground-truth solution (e.g. alignment of an image to a template) it is impossible to explore
-the forward error or backward error independently, so the mixed stability must be evaluated.
+their sensitivity to minor perturbations of their inputs, where a smaller condition number refers to smaller change.
+While this can in some cases be linked to a more stable function, it ultimately does not consider the implementation used
+so more accurately refers to how ``easy'' a function is to solve. In doing so, the condition number relates two distinct
+components of the stability of a problem: the forward error and backward error. The forward error is defined as the
+deviation of an output from the true result, while the backward error is defined as the smallest change to an input such
+that the theoretical result matches the empirical result~\cite{higham2002accuracy}. The condition number is bounded by a
+relationship of these values, such that it will always be greater than or equal to the ratio of the forward error to the
+backward error~\cite{belsley2005regression}. In practice, forward and backward error are often combined into a measure of
+mixed stability which evaluates how closely a solution matches another when the input is perturbed slightly. In the case
+of problems where there is no ground-truth solution (e.g. alignment of an image to a template) it is impossible to
+explore the forward error independently, while the backward error may be evaluated in certain cases (e.g. if the
+approximation of a ground-truth alignment exists). Given that there is no guarantee that the backward error is measurable
+for an arbitrary problem, the mixed stability is commonly evaluated.
 
 While in some cases it is possible to compute measures of stability analytically, is difficult for all but linear and
 differentiable systems~\cite{kiusalaas2013numerical}, neither of which can be assumed to be the case in complex
@@ -188,7 +192,7 @@ algorithm, numerical analysis~\cite{hildebrand1987introduction} approaches can b
 \subsubsection{Numerical Analysis}
 Unlike in the analytical setting discussed above, the propagation and accumulation of numerical error is a largely
 empirical problem. This problem inevitably arises from the digital representation of non-integer data through the
-IEEE 754 floating point standard~\cite{ieee754}. The representation of data in this format consists of three
+IEEE-754 floating point standard~\cite{ieee754}. The representation of data in this format consists of three
 components: sign, exponent, and mantissa. These components are analogous to the traditional use of scientific notation
 in which the sign indicates whether the number is positive or negative, the exponent indicates the order of magnitude
 of the digits, and the mantissa contains the digits themselves. This standard is powerful given its ability to
@@ -198,20 +202,24 @@ floats), the sign, exponent, and mantissa are each allocated $1$, $8$, and $23$ 
 Alongside the ability to represent both large and small numbers in the same bit space comes the caveat of two impactful
 types of imprecision when involved in floating point arithmetic: roundoff error and catastrophic
 cancellation~\cite{muller2018handbook}. Roundoff error, the loss of information in the location(s) following the least
-significant bit, can be caused due to the addition, multiplication, or division of floating point numbers. This occurs
-when an arithmetic operation results in more digits that belong in the mantissa than can be
-stored~\cite{muller2018handbook}. Conversely, catastrophic cancellation occurs when subtracting similar numbers and
-results in a larger portion of the mantissa containing non-significant $0$ values populated beyond where either of the
-original values contained information~\cite{muller2018handbook}. The handling of these errors according to the IEEE 754
-standard is deterministic which importantly allows programs to repeatably obtain the same result~\cite{ieee754},
-however, this also leads to the masking of numerical errors within software.
+significant bit, can be caused due to any arithmetic operation on finite floating point numbers. This occurs when an
+operation results in more digits that belong in the mantissa than can be stored~\cite{muller2018handbook}. Conversely,
+catastrophic cancellation occurs when subtracting similar numbers and results in both a larger portion of the mantissa
+containing non-significant $0$ values populated beyond where either of the original values contained information, and
+the promotion of remaining significant bits that are possibly due to noise from previous errors, amplifying the
+numerical error further~\cite{muller2018handbook}. The handling of all floating point operations according to the
+IEEE-754 standard is deterministic which importantly allows programs to repeatably obtain the same
+results~\cite{ieee754}. However, when the repeated evaluation of floating point operations is unaccounted for by
+software developers or users, this also leads to the masking of propagated numerical errors within software.
 
 Stochastic arithmetic is an approach used to study the impact of numerical errors that emerged throughout floating
-point arithmetic~\cite{vignes1993stochastic,connolly2020stochastic}. In this approach, results of operations are
-considered to exist as both rounded-up and rounded-down quantities with equal validity. Considering this, the results
-of operations can be perturbed to either setting and the exhaustive space of all possible terminal results from an
-algorithm can be described (though in many cases, this would result in far too many conditions to actually realize).
-One example of stochastic arithmetic is Monte Carlo Arithmetic (MCA)~\cite{Parker1997-qq}. MCA approaches stochastic
+point arithmetic~\cite{vignes1993stochastic,connolly2020stochastic}. In this approach, errors associated with
+operations are treated as random variables. One such example is stochastic rounding, in which the results of
+operations are considered to exist as both rounded-up and rounded-down quantities with equal validity. Considering
+this method, let alone any possible other model for error, the results of each operation can be successively
+perturbed to either setting and the exhaustive space of all possible terminal results from an algorithm can be
+described (though in many cases, this would result in far too many conditions to actually realize). Another example
+of stochastic arithmetic is Monte Carlo Arithmetic (MCA)~\cite{Parker1997-qq}. MCA approaches stochastic
 arithmetic using a Monte Carlo~\cite{metropolis1949monte} framework in which algorithms or software pipelines are
 repeatedly evaluated and each floating point operation throughout the execution is randomly perturbed. By repeating the
 evaluation of a pipeline using MCA, it is possible to obtain a distribution of equally plausible results. Several
@@ -219,24 +227,24 @@ libraries have been developed which support the instrumentation of arbitrary too
 MCA~\cite{frechtling2015mcalib,Denis2016-wo}, making it a technique which can be readily introduced to a wide array of
 pipelines for exploring numerical stability. A major caveat of this technique is the large computational overhead. As
 instrumented through Verificarlo~\cite{Denis2016-wo}, MCA increases the run-time of floating point operations by
-approximately $100 \times$, and may require $10$s – $100$s of runs to well sample the distribution of
+approximately $100 \times$, and may require $10$s – $100$s of runs to well sample the distribution of plausible
 results~\cite{Sohier2018-ts}. As scientific pipelines are not solely built of floating point operations in practice,
-resulting in slowdowns may be considerably less dramatic when instrumented with MCA, however, the repeated execution
+resulting in slowdowns may be considerably less dramatic when instrumented with MCA. Regardless, the repeated execution
 of perturbed analyses unavoidably increases the run-time of experiments according to the number of simulations
 performed.
 
 While MCA allows for the perturbation of pipelines, the results cannot be evaluated in the conditioning context
-introduced above since the true change in inputs is unknown. It here becomes useful to consider stability a measure of
-precision; while stability and precision ``have nothing to do with accuracy''~\cite{kiusalaas2013numerical}, they can
-serve as valuable measures of consistency. One measure of precision applicable in this context is the number of
-significant digits~\cite{Parker1997-qq}. While there are distinct context-appropriate
-formulas~\cite{sohier2018confidence}, Parker~\cite{Parker1997-qq} first defined this in a stochastic arithmetic context
-as a function of the ratio between the mean and variance across simulations. In practice, this allows for the
-identification of which digits are unchanging across perturbations, and the construction of a margin of error around
-results. In contexts such as neuroimaging, performing MCA perturbations and evaluating the number of significant digits
-is particularly attractive as this method does not require a) a differentiable model of the given algorithm or pipeline,
-or b) an expected ground-truth result. Prior to this thesis these techniques had not been applied to the study of
-stability in neuroimaging pipelines.
+introduced above since the change in inputs is unknown, as perturbation happens iteratively throughout the pipeline. It
+here becomes useful to consider stability a measure of precision; while stability and precision ``have nothing to do
+with accuracy''~\cite{kiusalaas2013numerical}, they can serve as valuable measures of consistency. One measure of
+precision applicable in this context is the number of significant digits~\cite{Parker1997-qq}. While there are distinct
+context-appropriate formulas which have varying underlying assumptions about the error~\cite{sohier2018confidence},
+Parker~\cite{Parker1997-qq} first defined this in an MCA context as a function of the ratio between the mean and
+variance across simulations. In practice, this allows for the identification of which digits are unchanging across
+perturbations, and the construction of a margin of error around results. In contexts such as neuroimaging, performing
+MCA perturbations and evaluating the number of significant digits is particularly attractive as this method does not
+require a) a differentiable model of the given algorithm or pipeline, or b) an expected ground-truth result. Prior to
+this thesis these techniques had not been applied to the study of stability in neuroimaging pipelines.
 
 
 \subsection{Neuroimaging}

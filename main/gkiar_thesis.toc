@@ -15,8 +15,8 @@
 \contentsline {subsection}{\numberline {2.3}Stability}{11}{subsection.2.3}% 
 \contentsline {subsubsection}{\numberline {2.3.1}Numerical Analysis}{12}{subsubsection.2.3.1}% 
 \contentsline {subsection}{\numberline {2.4}Neuroimaging}{14}{subsection.2.4}% 
-\contentsline {subsubsection}{\numberline {2.4.1}Structural Connectome Estimation}{14}{subsubsection.2.4.1}% 
-\contentsline {subsection}{\numberline {2.5}Evidence of Instability in Neuroimaging}{16}{subsection.2.5}% 
+\contentsline {subsubsection}{\numberline {2.4.1}Structural Connectome Estimation}{15}{subsubsection.2.4.1}% 
+\contentsline {subsection}{\numberline {2.5}Evidence of Instability in Neuroimaging}{17}{subsection.2.5}% 
 \contentsline {part}{I\hspace {1em}\ignorespaces A Serverless Tool for Platform Agnostic Computational Experiment Management}{20}{part.1}% 
 \contentsline {secnonum}{\numberline {}\ignorespaces \hskip 2em\relax \hskip 2em\relax Abstract}{21}{secnonum.1}% 
 \contentsline {section}{\numberline {\hskip 1em\relax Ch.{I} - 1}\ignorespaces \hskip 2em\relax \hskip 2em\relax Introduction}{22}{section.1}% 
