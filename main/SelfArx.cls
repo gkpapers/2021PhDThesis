@@ -138,8 +138,9 @@ justification=raggedright]{caption}
 \titlecontents{part}[\tocsep]
   {\addvspace{8pt}\bfseries\sffamily\hspace{-1em}}
   {\contentslabel[\thecontentslabel]{\tocsep}}
-  {\hspace{-0.7em}Ch.}
-  {}
+  {\hspace{3.6em}Ch. }
+  % {\\[-0.4cm]\strut\hfill\small\thecontentspage}
+  {\\[-1.3cm]\strut\hfill\small\thecontentspage\vspace{0.5cm}}
   []
 \titlecontents{section}[\tocsep]
   {\addvspace{4pt}\sffamily}
@@ -176,6 +177,19 @@ justification=raggedright]{caption}
   {\hspace{1em}\contentslabel[\thecontentslabel]{\tocsep}\hspace{3em}}
   {}
   {\hfill\small\thecontentspage}
+  []
+
+\titlecontents{figure}[\tocsep]
+  {\addvspace{4pt}\sffamily}
+  {\hspace{0.5em}\contentslabel[\thecontentslabel]{\tocsep}\hspace{0.5em}}
+  {}
+  {\strut\hfill\small\thecontentspage}
+  []
+\titlecontents{table}[\tocsep]
+  {\addvspace{4pt}\sffamily}
+  {\hspace{0.5em}\contentslabel[\thecontentslabel]{\tocsep}\hspace{0.5em}}
+  {}
+  {\strut\hfill\small\thecontentspage}
   []
 
 %----------------------------------------------------------------------

@@ -55,13 +55,23 @@
 %----------------------------------------------------------------------------------------
 
 \usepackage{hyperref} % Required for hyperlinks
-\hypersetup{hidelinks,colorlinks,breaklinks=true,urlcolor=color2,citecolor=color1,linkcolor=color1,bookmarksopen=false,pdftitle={Your Brain on Disk},pdfauthor={Gregory Kiar}}
+\hypersetup{hidelinks,
+            colorlinks,
+            breaklinks=true,
+            hypertexnames=false,
+            urlcolor=color2,
+            citecolor=color1,
+            linkcolor=color1,
+            linktoc=page,
+            bookmarksopen=false,
+            pdftitle={Your Brain on Disk},
+            pdfauthor={Gregory Kiar}}
 
 %----------------------------------------------------------------------------------------
 % Macros that fit better here than the template
 %----------------------------------------------------------------------------------------
 \makeatletter
-\let\Hy@linktoc\Hy@linktoc@none
+% \let\Hy@linktoc\Hy@linktoc@none
 
 \let\l@secnonum\l@section
 \newcounter{secnonum}
@@ -170,12 +180,10 @@ Sciences and Engineering Research Council of Canada, Mitacs (Globalink), and The
 
 \tableofcontents % Print the contents section
 \clearpage
-{\sffamily
 \listoffigures
 \clearpage
 \listoftables
 \clearpage
-}
 %----------------------------------------------------------------------------------------
 %	Introduction
 %----------------------------------------------------------------------------------------
@@ -183,11 +191,11 @@ Sciences and Engineering Research Council of Canada, Mitacs (Globalink), and The
 \pagenumbering{arabic}
 
 \resetsections{0}
-\phantomsection
+% \phantomsection
 \section{Introduction}
 \input{sec/intro.tex}
 
-\phantomsection
+% \phantomsection
 \section{Background}
 \input{sec/bg.tex}
 
@@ -201,7 +209,7 @@ Sciences and Engineering Research Council of Canada, Mitacs (Globalink), and The
 \phantomsection
 \beginchapter{I}
 \includepdf[pages=-,pagecommand={\thispagestyle{fancy}},
-            addtotoc={1,part,1,A Serverless Tool for Platform Agnostic Computational Experiment Management,ch1p1,   
+            addtotoc={1,part,1,\strut\hspace{2em}A Serverless Tool for Platform Agnostic Computational\\\strut\hspace{15em}Experiment Management,ch1p1,   
                       2,secnonum,2,\qquad\qquad Abstract,ch1p2,
                       3,section,2,\qquad\qquad Introduction,ch1p2,
                       4,section,2,\qquad\qquad Emergent Technologies in Reproducible Neuroscience,ch1p3,
@@ -217,7 +225,7 @@ Sciences and Engineering Research Council of Canada, Mitacs (Globalink), and The
 \phantomsection
 \beginchapter{II}
 \includepdf[pages=-,pagecommand={\thispagestyle{fancy}},
-            addtotoc={1,part,1,Comparing Perturbation Models for Evaluating Stability of Neuroimaging Pipelines,ch2p1,
+            addtotoc={1,part,1,\strut\hspace{3em}Comparing Perturbation Models for Evaluating\\\strut\hspace{11.7em}Stability of Neuroimaging Pipelines,ch2p1,
                       2,secnonum,2,\qquad\qquad Abstract,ch2p2,
                       3,section,2,\qquad\qquad Introduction,ch2p3,
                       4,section,2,\qquad\qquad Methods,ch2p4,
@@ -237,11 +245,11 @@ Sciences and Engineering Research Council of Canada, Mitacs (Globalink), and The
 \phantomsection
 \beginchapter{III}
 \includepdf[pages=-,pagecommand={\thispagestyle{fancy}},
-            addtotoc={1,part,1,Numerical Instabilities in Analytical Pipelines Lead to Large and Meaningful \\ Variability in Brain Networks,ch3p1,
+            addtotoc={1,part,1,\strut\hspace{1.5em}Numerical Instabilities in Analytical Pipelines Lead to\\\strut\hspace{8.4em}Large and Meaningful Variability in Brain Networks,ch3p1,
                       2,secnonum,2,\qquad\qquad Abstract,ch3p2,
                       3,section,2,\qquad\qquad Graphs Vary Widely With Perturbations,ch3p3,
                       5,section,2,\qquad\qquad Subject-Specific Signal is Amplified While Off-Target Biases Are Reduced,ch3p5,
-                      7,section,2,\qquad\qquad {Distributions of Graph Statistics Are Reliable, But Individual Statistics Are Not},ch3p7,
+                      7,section,2,\qquad\qquad {Distributions of Graph Statistics Are Reliable, But Individual\\Statistics Are Not},ch3p7,
                       9,section,2,\qquad\qquad Uncertainty in Brain-Phenotype Relationships,ch3p9,
                       10,section,2,\qquad\qquad Discussion,ch3p10,
                       12,section,2,\qquad\qquad Materials \& Methods,ch3p12,
@@ -249,9 +257,9 @@ Sciences and Engineering Research Council of Canada, Mitacs (Globalink), and The
                       23,supsec,2,\qquad\qquad Complete Discriminability Analysis,ch3p23,
                       24,supsec,2,\qquad\qquad Univariate Graph Statistics,ch3p24},
             addtolist={4, figure,\qquad\qquad Exploration of perturbation-induced deviations from reference connectomes, ch3f1,
-                       5, table, \qquad\qquad {The impact of instabilities as evaluated through the separability of the dataset}, ch3t1,
+                       5, table, \qquad\qquad The impact of instabilities on the separability of a dataset, ch3t1,
                        8, figure,\qquad\qquad Distribution and stability assessment of multivariate graph statistics, ch3f2,
-                       9, figure,\qquad\qquad Variability in BMI classification across the sampling of an MCA-perturbed dataset, ch3f3,
+                       9, figure,\qquad\qquad Variability in BMI classification across an MCA-perturbed dataset, ch3f3,
                        22, figure,\qquad\qquad The correlation between perturbed connectomes and their reference, ch3f4,
                        23, table,\qquad\qquad The complete results from the Discriminability analysis, ch3t2,
                        25, figure,\qquad\qquad Distribution and stability assessment of univariate graph statistics, ch3f5}]
@@ -260,7 +268,7 @@ Sciences and Engineering Research Council of Canada, Mitacs (Globalink), and The
 \phantomsection
 \beginchapter{IV}
 \includepdf[pages=-,pagecommand={\thispagestyle{fancy}},
-            addtotoc={1,part,1,Data Augmentation Through Monte Carlo Arithmetic Leads to More Generalizable Classification in Connectomics,ch4p1,
+            addtotoc={1,part,1,\strut\hspace{1em}Data Augmentation Through Monte Carlo Arithmetic Leads\\\strut\hspace{8.8em}to More Generalizable Classification in Connectomics,ch4p1,
                       2,secnonum,2,\qquad\qquad Abstract,ch4p2,
                       3,section,2,\qquad\qquad Introduction,ch4p3a,
                       3,section,2,\qquad\qquad Materials \& Methods,ch4p3b,
@@ -269,9 +277,9 @@ Sciences and Engineering Research Council of Canada, Mitacs (Globalink), and The
                       16,section,2,\qquad\qquad Conclusion,ch4p16},
             addtolist={4, figure,\qquad\qquad Experiment workflow., ch4f1,
                        9, table, \qquad\qquad Statistically significant change in performance, ch4t1,
-                       10, figure,\qquad\qquad Relative change in classifier performance with respect to classifier type and dataset sampling strategies, ch4f2,
+                       10, figure,\qquad\qquad Relative change in classifier performance, ch4f2,
                        11, figure,\qquad\qquad Relationship between generalizability and resampling, ch4f3,
-                       12, figure,\qquad\qquad The generalizability of classifiers using each dataset sampling technique with respect to the number of MCA simulations, ch4f4}]
+                       12, figure,\qquad\qquad The generalizability of classifiers using dataset sampling techniques, ch4f4}]
             {../chapter4/chapter4.pdf}
 
 
