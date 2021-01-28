@@ -13,32 +13,63 @@ implications of the results presented here, I will propose ways in which perturb
 adopted in neuroimaging, and conclude with lessons learned both from my own pursuit of these projects and
 recommendations for the field at large.
 
-\subsection{The Sum of its Parts}
+\subsection{The Impact of Perturbing Structural Connectome Estimation}
 
-- we demonstrated that controlled perturbations had an impact on the outcomes of connectome estimation pipelines
+Throughout this thesis I have demonstrated that controlled perturbations serve as a viable and effective method
+to study the stability of structural connectome estimation pipelines. In each of the various methods tested, such
+as one-voxel noise injection, sparse Python-only Monte Carlo Arithmetic (MCA), or dense Full-stack MCA, we noticed
+that the distinct nature of the perturbations in each case led to distinct variance in the results. In the case of
+one-voxel perturbations, a small and localized form of noise, we noticed similarly localized changes in outputs.
+However, the MCA instrumentations led to outcomes with local, topographical, or scaling changes across different
+simulations of the same data. Perturbations with MCA were not only able to encapsulate similar effects and
+deviations as were observed with the one-voxel methods, but the independence of the MCA method from the dataset,
+the lack of introduced bias being introduced, and the global perturbation of operations makes MCA a more
+scalable and generalizable technique. While I recommend the adoption of the MCA technique generally, one-voxel
+methods can serve as a valuable method for the local evaluation of instabilities, such as an evaluation of the
+sensitivity of an algorithm in a region that is difficult model, or in proximity to unavoidable contrast changes
+such as in the presence of a lesion or significant atrophy.
 
-- we noticed that the nature of the perturbation lead to distinctly natured perturbations in the output, including
-both topographical and non-topographical changes across different conditions.
+The two MCA environments used throughout this thesis differed considerably in both their construction and the
+resulting behaviour of tools. In the sparse setting, referred to across the manuscripts as either ``Python-only''
+or ``Input Instrumentation'', a considerably smaller set of libraries were instrumented with MCA. In this case,
+all floating point operations performed directly by Python or Cython-compiled code were perturbed, however, while
+the widely adopted NumPy~\cite{harris2020array} library is a Python-installed module, it is largely
+uninstrumented as operations therein predominantly rely on lower-level libraries BLAS~\cite{lawson1979basic} and
+LAPACK~\cite{anderson1999lapack}. In the dense setting, predominantly referred to as ``Full-Stack'' or ``Pipeline
+Instrumentation'', BLAS, LAPACK, and NumPy were instrumented as well. This distinction meant that the operations
+perturbed in the sparse configuration were not those doing the ``heavy lifting'' of image, matrix, or array
+manipulation, but only those doing more simple manipulations of data in between these operations. This results in
+an important change to the MCA method as it was originally defined by Parker~\cite{Parker1997-qq}: the
+few-and-far-between nature of perturbations both limits the law of large numbers~\cite{hsu1947complete} and
+allows for the cascading of single perturbations without correction, and it is thus likely that there exists
+numerical bias in perturbations introduced in the spare implementation as a result. The realizations of this bias,
+however, is random across executions, such that an unbiased sampling of the distribution of results may still be
+possible.
 
-- while we tested one-voxel type perturbations alongside the MCA approach, the nature of this technique and its
-dependence on specific data formats and context limited its use to be applied at a grand unsupervised scale, so it
-was not pursued further. The global deviations observed with MCA encapulated those obtained with 1-voxel
-perturbations, though in specific use cases 1-voxel perturbations could serve as a strong method for testing local
-sensitivities.
+The observation that the bounds of variability were similar across the two MCA instrumentations, alongside
+considerably reduced computational overhead in the Python-only case, suggests that sparsely applied MCA could be a
+viable technique for approximating the bounds of pipeline variation as measured with dense (or, true) MCA. Just as
+the list of instrumented libraries in the sparse configuration is a strict subset of those instrumented in the
+dense case, it holds that the set of possible perturbed results in the sparse configuration is a strict subset of
+the possible results in the dense case. This relationships is potentially powerful as this means that problems can
+undergo a preliminary and less computationally intense stability evaluation prior to being evaluated more densely.
+The coherence of results across the two perturbation configurations presented throughout Chapter III suggest that
+the sparse Input Instrumentation is a high quality estimator of the true MCA distribution. Figure~\ref{ch3f2}
+shows that the sample distributions of network statistics derived from the perturbed connectomes are unchanged
+across both MCA configurations, and Table~\ref{ch3t1} demonstrates the ability of both techniques to increase the
+reliability of the dataset. Uniquely, the connectomes resulting from the sparse MCA instrumentation contained less
+session- and acquisition-dependent signal than either the original dataset or the true MCA results. While the
+specific cause of this is result unknown, it is impossible to make a statement on the generalizability of the
+effect, however, given its potential significance in brain imaging, it is an area of extreme interest for future
+work.
 
-- for each MCA setting we characterized the magnitude of instability across all combinations of
-tool and specific subject to span a broad range from nearly no perturbation-induced differences to those that
-individual differences.
-
-- While the MCA methods increased the variability of results for a given subjects, it was found that this variability
-actually led to more reliable datasets and decreased differences due to acquisition or subsampling variability.
-
-- This variability manifested itself in graph statistics, in which considerable variability for individual estimates
-of features had no impact on the group-wise aggregation of these statistics.
-
-- The variability also had a considerable impact on the application of the connectomes for learning brain-phenotype
-relationships, and randomly sampling the set of connectomes showed that the unperturbed performance led to neither
-the best nor worst performing models, but were merely a point within a distribution of performances.
+The variability introduced by MCA also had considerable impact on the modelling of brain-phenotype relationships.
+In the case of both MCA instrumentation methods, Figure~\ref{ch3f3} shows how random sampling of the perturbed
+networks led to a distribution of performance on a BMI classification task spanning an approximate range of
+$\pm 0.10$ relative to reference. The balance of performance about the original values lends credence to the
+interpretation of MCA derived connectomes as being sampled from the distribution of equally plausible results,
+and the unperturbed connectome is simply a point-estimate of this distribution. When exploring how to capture
+the added variance across...
 
 - Knowing that the perturbed results could lead to better brain-phenotype models, our aggregation efforts focused on
 capturing the introduced variance in a variety of ways. We found that regardless of the technique, capturing this
