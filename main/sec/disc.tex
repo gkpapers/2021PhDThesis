@@ -65,27 +65,44 @@ work.
 
 The variability introduced by MCA also had considerable impact on the modelling of brain-phenotype relationships.
 In the case of both MCA instrumentation methods, Figure~\ref{ch3f3} shows how random sampling of the perturbed
-networks led to a distribution of performance on a BMI classification task spanning an approximate range of
-$\pm 0.10$ relative to reference. The balance of performance about the original values lends credence to the
+networks led to a distribution of performance (F1 score) on a BMI classification task spanning an approximate range
+of $\pm 0.10$ relative to reference. The balance of performance about the original values lends credence to the
 interpretation of MCA derived connectomes as being sampled from the distribution of equally plausible results,
-and the unperturbed connectome is simply a point-estimate of this distribution. When exploring how to capture
-the added variance across...
+some of which may contain ``more'' or ``less'' signal for a given task, and the associated unperturbed connectomes
+are simply point-estimates of these distributions. Chapter IV demonstrates several techniques for considering
+these distributions on a similar classification task, including aggregation strategies which aim to capture the
+added variability and a truncation strategy which removes it. When exploring these techniques, the truncation
+strategy (which only retained unchanging bits for all observed intensities within a connectome) was the only method
+which did not improve the performance of the models, suggesting that the observed variability doesn't amount
+entirely to random fluctuation or noise, but that the variation observed across MCA evaluations contains meaningful
+signal. Each of the aggregation strategies led to improved performance of the classifiers, while three strategies
+led to the improved generalizability of these classifiers as well (e.g. similarity between performance on validation
+and test sets): distance-dependent consensus averaging~\cite{Betzel2018-eo}, mega-analytic consideration of all
+connectomes, and meta-analytic voting across classifiers trained on jackknife sampled datasets. The thing that each
+of these techniques have in common over the other methods tested (independent jackknife classifiers, median, mean),
+is that more of the variance observed across perturbations is captured rather than sampled or smoothed. The
+variance across perturbations isn't captured in the case of each jackknife classifier, it is just uniquely sampled,
+while median and mean consider the variance uniformly and without contextual importance, which introduces biases in
+structure that motivated the creation of the distance-dependent consensus technique~\cite{Betzel2018-eo}.
 
-- Knowing that the perturbed results could lead to better brain-phenotype models, our aggregation efforts focused on
-capturing the introduced variance in a variety of ways. We found that regardless of the technique, capturing this
-added variance improved the performance of models and often led to models which were more generalizable on the
-held-out datasets.
+The combination of results presented across my thesis, showing both the significance of numerical instabilities in
+structural connectome estimation and the utility of the associated variability, demonstrate that numerical analysis
+techniques such as MCA can serve as valuable tools towards studying and improving reproducibility in neuroimaging.
+Other efforts which have explored reproducibility from the angle of analytical
+flexibility~\cite{botvinik2020variability,schilling2020tractograph} sample a broad and rich space of approaches and
+tool configurations that is not directly comparable to the techniques demonstrated here. Combining these approaches
+would be of extreme interest and lead to a far richer description of the uncertainty associated with certain tasks,
+processing techniques, or analytic questions, and could be used to inform comparison of results obtained across
+software libraries.
 
-- These experiments show utility for perturbation analysis in neuroimaging both as a tool for the diagnosis of
-software instabilities and a method for obtaining variance estimates on results which can be used to form richer
-models.
+While I have yet to mention the Clowdr tool presented in Chapter I, it played an essential role in the execution of
+these experiments. Over the course of the four presented manuscripts, Clowdr has facillitated the launch, debugging,
+visualization, and provenance recording of over $20,000$ cluster and cloud tasks, totalling over $22$ CPU-years
+worth of resources. While many tools exist to facillitate large scale deployments of pipelines, Clowdr enables this
+for tools which are still in development while also providing a quick path to the FAIR~\cite{wilkinson2016fair}
+publication of tools and records through Boutiques~\cite{Glatard2018-tu}.
 
-- Other efforts which have explored the impact of analytical flexibility on findings sample a broad and rich space
-that is not directly comparable to the techniques demonstrated here. In fact, combining these approaches would lead
-to not only tool-specific characterizations of stability, but lead to a far richer capture of all possible
-variability in results when asking a specific question.
-
-\subsection{Extrapolating Conclusions}
+\subsection{Extrapolating Conclusions Across Domains}
 - This thesis focuses on the analysis of diffusion MRI data towards the construction of structural connectomes, and
 therefore does not make any strict claims about the relevance of these findings on other domains of neuroimaging.
 

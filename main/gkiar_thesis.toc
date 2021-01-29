@@ -51,11 +51,11 @@
 \contentsline {section}{\numberline {\hskip 1em\relax Ch.{IV} - 5}\ignorespaces \hskip 2em\relax \hskip 2em\relax Conclusion}{100}{section.109}% 
 \contentsline {section}{\numberline {3}Discussion}{104}{section.111}% 
 \contentsline {subsection}{\numberline {3.1}The Impact of Perturbing Structural Connectome Estimation}{104}{subsection.112}% 
-\contentsline {subsection}{\numberline {3.2}Extrapolating Conclusions}{107}{subsection.113}% 
+\contentsline {subsection}{\numberline {3.2}Extrapolating Conclusions Across Domains}{107}{subsection.113}% 
 \contentsline {subsection}{\numberline {3.3}Future Directions in Operationalizing Perturbation Analysis}{108}{subsection.114}% 
-\contentsline {subsubsection}{\numberline {3.3.1}Applications in Neuroimaging}{108}{subsubsection.115}% 
+\contentsline {subsubsection}{\numberline {3.3.1}Applications in Neuroimaging}{109}{subsubsection.115}% 
 \contentsline {subsubsection}{\numberline {3.3.2}Domain Agnostic Applications}{109}{subsubsection.116}% 
-\contentsline {subsection}{\numberline {3.4}20/20}{109}{subsection.117}% 
-\contentsline {section}{\numberline {4}Conclusion \& Summary}{110}{section.118}% 
-\contentsline {section}{\numberline {5}References}{110}{section.119}% 
+\contentsline {subsection}{\numberline {3.4}20/20}{110}{subsection.117}% 
+\contentsline {section}{\numberline {4}Conclusion \& Summary}{111}{section.118}% 
+\contentsline {section}{\numberline {5}References}{111}{section.119}% 
 \contentsfinish 
