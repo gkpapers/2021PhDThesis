@@ -254,17 +254,17 @@ in subsequent testing and modelling efforts. This would enable the evaluation of
 when combining the uncertainty in results and testing frameworks, and would lead to more reproducible findings.
 
 \subsection{20/20}
-The final component of this project I would like to discuss is centered on hindsight. Throughout this project I
-have developed tools for scientific infrastructure, built pipelines from modular pre-existing components,
-adapted a numerical analysis framework for a new scientific domain, modelled instability in connectomes through
-a wide array of commonly used and novel measures, and showed how numerical instability can be a strength of
-software. This process has not only been punctuated by scientific outputs which found their ways into papers,
-but by failures and lessons, both pertaining to my own work and the field of neuroimaging at large. I have
-published successes and failures from my degree milestones on my website throughout my
-degree\footnote{\url{https://gkiar.me/phd}} in an effort to not repeat my own mistakes and allow others to learn
-from them. While making an effort to be brief, I feel it necessary to provide some considerations and advice that
-would be relevant both to my previous-self and possibly the field of neuroimaging as a whole. None of this advice
-is intended to be perfect, but merely serve as some things to think about...
+The final topic I would like to discuss is centered on hindsight. Throughout this project I have developed tools
+for scientific infrastructure, built pipelines from modular pre-existing components, adapted a numerical analysis
+framework for a new scientific domain, modelled instability in connectomes through a wide array of commonly used
+and novel measures, and showed how numerical instability can be a strength of software. This process has not only
+been punctuated by scientific outputs which found their ways into papers, but by failures and lessons, both
+pertaining to my own work and the field of neuroimaging at large. I have published successes and failures from my
+Ph.D. on my website throughout my degree\footnote{\url{https://gkiar.me/phd}} in an effort to not repeat my own
+mistakes and allow others to learn from them. While making an effort to be brief, I feel it necessary to provide
+some considerations and advice that would be relevant both to my previous-self and possibly the field of
+neuroimaging as a whole. None of these reflections are intended to be perfect, but merely serve as some things to
+think about...
 
 \paragraph*{Be Aware of the Cost of Computing}
 While this advice may at first provoke thought about funding and the cost of either building machines or using the
@@ -280,44 +280,44 @@ to an upper-bounded offset cost of approximately $\$4.00$\footnote{\url{https://
 If I had performed my experiments in another environment, such as through Amazon Web Services instances residing in
 the United States where the rate of Carbon emissions averages over $400$ g
 CO\textsuperscript{2}/kWh\footnote{\url{https://www.eia.gov/tools/faqs/faq.php?id=74}}, the total environmental
-footprint would increase $20$-fold. This is not meant as an endorsement for running analyses in Canada, but merely
-as a reminder that we should be aware of the impact that our experiments have on the world more broadly than just
-our papers so that we can more clearly evaluate which experiments are worth doing, and offset any distant harm we
-may cause.
+footprint would increase $20$-fold, which would amount to the same Carbon emissions as an extra car on the road for
+half of a year\footnote{\url{https://www.nrcan.gc.ca/sites/www.nrcan.gc.ca/files/oee/pdf/transportation/fuel-efficient-technologies/autosmart_factsheet_6_e.pdf}}! This is not meant as an endorsement for running analyses in Canada, but merely as a reminder that we should be
+aware of the impact that our experiments have on the world more broadly than just our papers so that we can more
+clearly evaluate which experiments are worth doing, and offset any distant harm we may cause.
+
+\paragraph*{Keep Clear and Incremental Objectives}
+Over the last several years it has become clear to me that projects are rarely ``complete''. There is always
+another experiment, figure, analysis, or interpretation that we can explore. However, the longer we follow this
+rabbit hole (which is an interesting rabbit hole and very often worth following), I have found it becomes gradually
+easier to lose site of the original target and purpose. The experiments presented in Chapter~IV, for example, are a
+small subset of the models, conditions, and experimental permutations that I originally performed when aggregating
+connectomes. I did not remove the others because of their outcomes, but because they were the result of tinkering
+and provided answers that grew gradually further from the question I was asking. This led me into the territory of
+having answers that may have been interesting, but that were ultimately uninterpretable because I hadn't adressed
+the necessary question I sought out to answer first. I suspect that I am not the only scientist to fall into this
+trap, and I believe the field of neuroimaging as a whole may have experience with it, at least in appearance.
+Despite regularly defining possible real-world applications and outcomes, neuroimaging has received considerable
+criticism for lack of delivering on these claims~\cite{robinson2004fmri}. While this criticism is perhaps unfairly
+harsh~\cite{lyon2017dead}, it remains that neuroimaging hasn't become as ubiquitously relevant as may have been
+anticipated, and it is difficult to conceive of how all the threads of research being pulled in parallel may bring
+that goal into focus. While I believe this is in part due to an academic curiosity of exploration taking the reins,
+I think this ``image problem'' is also due to conflation of the \textit{eventual} objectives and those which are
+presently feasible. By clearly defining our goals and the incremental objectives we must meet along the way, both
+as individual scientists and as a field, I suspect we'll fall down fewer of these rabbit holes, and stop having to
+defend the reality that science takes time.
 
 \paragraph*{Avoid ``Not Invented Here'' Thinking}
 A point which I have mentioned repeatedly throughout this thesis is that there are a considerable number of
 libraries that have been built to accomplish similar tasks, often in isolation. In fact, I committed this taboo
-myself during this thesis with Clowdr. I built this tool out of the necessity to run experiments in the particular
-way I had envisioned, and I did so largely from the ground-up. As a result, the code has at various points become
-stale, of limited use across different usecases, and become difficult to maintain as its sole core contributor. In
-retrospect, the correct solution would have been for me to build my extension into an existing framework or library,
-such as Nipype~\cite{gorgolewski2011nipype}. While Nipype didn't do exactly what I wanted, had I built the
-extensions I needed in this ecosystem I would have not only gained the review and debugging support of its grand
-user and developer base, but also been able to provide a more accessible contribution to the community who were
-already familiar with this environment. I believe the same could likely be said for many tools that have been built
-in neuroimaging, both from the level of task management as I have done, and image processing as was discussed in my
-work. Though I don't believe there should be a single solution for every challenge, I do think that maintaining a
-collaborate-first and compete-second perspective would not only reduce possible redundancies in this space, but
-would lead to higher quality contributions.
-
-\paragraph*{Clearly Define the Objective}
-A lesson that I learned over the last several years and I suspect many scientists learn at some point in their careers
-is that projects are rarely ``complete''. There is always another experiment, figure, analysis, or interpretation that
-we can employ towards answering our questions. However, one 
- Define the objective, and keep it in mind. Too often we fall down rabbit holes and lose touch with the reality of what
-we're trying to accomplish. If the goal is academic, define milestones of understanding. If the goal is practical,
-define measure of success or failure and timelines for accomplishing them. It becomes far too easy to get swept away in
-it all as we pick up momentum, and that does a disservice to ourselves, our funders, and by extension our societies.
-
-don't become emotionally attached. Too many mistakes happen to loyalty to an idea or bias in interpreting our results
-towards an expected outcome. We are human, this is normal, but this is ultimately to our own dismay. Be objective when
-you can, and if you can't, call somebody who can be or who expects the opposite result from you so that you can learn
-from each other.
-
-\paragraph*{Test Early, Often, and Robustly}
-T
-walk, don't run. While it may be fun to sprint through an experiment or field of study, claiming success when we get to
-the finish line, it is far more likely that we lead a pack of our colleagues to a dead end than if we slowed down and
-checked the map after each step.
-
+myself during this thesis with Clowdr, in Chapter~I. I built this tool out of the necessity to run experiments in
+the particular way I had envisioned, and I did so largely from the ground-up. As a result, the code has at various
+points become stale, of limited use across different usecases, and become difficult to maintain as its sole core
+contributor. In retrospect, the correct solution would have been for me to build my extension into an existing
+framework or library, such as Nipype~\cite{gorgolewski2011nipype}. While Nipype didn't do exactly what I wanted,
+had I built the extensions I needed in this ecosystem I would have not only gained the review and debugging support
+of its grand user and developer base, but also been able to provide a more accessible contribution to the community
+who were already familiar with this environment. I believe the same could likely be said for many tools that have
+been built in neuroimaging, both from the level of task management as I have done, and image processing as was
+discussed in my work. Though I don't believe there should be a single solution for every challenge, I do think that
+maintaining a collaborate-first and compete-second perspective would not only reduce possible redundancies in this
+space, but would lead to higher quality contributions.
