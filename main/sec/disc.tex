@@ -16,13 +16,13 @@ recommendations for the field at large.
 \subsection{The Impact of Perturbing Structural Connectome Estimation}
 
 Throughout this thesis I have demonstrated that controlled perturbations serve as a viable and effective method
-to study the stability of structural connectome estimation pipelines. In each of the various methods tested, such
-as one-voxel noise injection, sparse Python-only Monte Carlo Arithmetic (MCA), or dense Full-stack MCA, we noticed
-that the distinct nature of the perturbations in each case led to distinct variance in the results. In the case of
-one-voxel perturbations, a small and localized form of noise, we noticed similarly localized changes in outputs.
-However, the MCA instrumentations led to outcomes with local, topographical, or scaling changes across different
-simulations of the same data. Perturbations with MCA were not only able to encapsulate similar effects and
-deviations as were observed with the one-voxel methods, but the independence of the MCA method from the dataset,
+to study the stability of structural connectome estimation pipelines. In each of the various methods tested in
+Chapter II, such as one-voxel noise injection, sparse Python-only Monte Carlo Arithmetic (MCA), or dense Full-stack
+MCA, we noticed that the distinct nature of the perturbations in each case led to distinct variance in the results.
+In the case of one-voxel perturbations, a small and localized form of noise, we noticed similarly localized changes
+in outputs. However, the MCA instrumentations led to outcomes with local, topographical, or scaling changes across
+different simulations of the same data. Perturbations with MCA were not only able to encapsulate similar effects
+and deviations as were observed with the one-voxel methods, but the independence of the MCA method from the dataset,
 the lack of introduced bias being introduced, and the global perturbation of operations makes MCA a more
 scalable and generalizable technique. While I recommend the adoption of the MCA technique generally, one-voxel
 methods can serve as a valuable method for the local evaluation of instabilities, such as an evaluation of the
@@ -35,7 +35,7 @@ or ``Input Instrumentation'', a considerably smaller set of libraries were instr
 all floating point operations performed directly by Python or Cython-compiled code were perturbed, however, while
 the widely adopted NumPy~\cite{harris2020array} library is a Python-installed module, it is largely
 uninstrumented as operations therein predominantly rely on lower-level libraries BLAS~\cite{lawson1979basic} and
-LAPACK~\cite{anderson1999lapack}. In the dense setting, predominantly referred to as ``Full-Stack'' or ``Pipeline
+LAPACK~\cite{anderson1999lapack}. In the dense setting, referred to as ``Full-Stack'' or ``Pipeline
 Instrumentation'', BLAS, LAPACK, and NumPy were instrumented as well. This distinction meant that the operations
 perturbed in the sparse configuration were not those doing the ``heavy lifting'' of image, matrix, or array
 manipulation, but only those doing more simple manipulations of data in between these operations. This results in
@@ -103,115 +103,196 @@ for tools which are still in development while also providing a quick path to th
 publication of tools and records through Boutiques~\cite{Glatard2018-tu}.
 
 \subsection{Extrapolating Conclusions Across Domains}
-- This thesis focuses on the analysis of diffusion MRI data towards the construction of structural connectomes, and
-therefore does not make any strict claims about the relevance of these findings on other domains of neuroimaging.
 
-- However, I will discuss here the components which likely play a role in the state of numerical stability, and how
-these components were resolved in the case of the analyses evaluated here, and a comparison drawn between the
-equivalent components in the context of other neuroimaging workflows and modalities.
+Throughout this thesis I have focused on the analysis of stability in the estimation of diffusion MRI-derived
+structural connectomes. Given this specific application, I do not make any strict claims about the generalizability
+of these findings on other domains of neuroimaging or beyond. However, if one wishes to participate in the thought
+experiment of forming a hypothesis about the stability of another domain, there are three components which must
+be considered: data, problem difficulty, and software quality. I will discuss what to look for in each of these
+components, and apply these questions to possible applications in structural and functional neuroimaging.
 
-- First up, data: signal to noise ratio, dimensionality, image contrast, all play a role on stability. These are
-relatively consistent across all MRI modalities. Though higher SNR in structural imaging would in theory lead to
-more robust results/less instability, if methods have been developed with underlying assumptions about the SNR then
-the associated tools may in fact be less stable in the face of perturbation.
+\paragraph{Data}
+The quality and dimensionality of datasets, summarized through features such as the signal to noise ratio (SNR),
+resolution, sparsity, and image contrast all play a role in the stability of operations performed on this data. The
+impact of each of these features can be considered through fixing the others and considering the implications in the
+context of the curse of dimensionality~\cite{friedman1997bias}. For example, for a setting in which equivalent
+datasets vary only by the sparsity of entries, applied models will arrive at more stable solutions in the case of
+the more dense dataset~\cite{geman1992neural}. Similarly, if a dataset has a higher SNR relative to an otherwise
+equivalent neighbour, the dataset with the higher SNR will lead to more stable solutions. In the context of
+neuroimaging, the resolution and sparsity are relatively consistent across all MRI modalities, however, the SNR and
+quality of contrasts differ significantly. Structural imaging methods generally have higher SNR and sharper
+contrast~\cite{bergamino2014review,chavhan2009principles} than either functional~\cite{logothetis2004nature} or
+diffusion~\cite{thomason2011diffusion} sequences, suggesting that the analysis of structural images may lead to more
+robust results. However, if analysis methods have been developed with underlying assumptions about the SNR or
+smoothness of these images, then the associated tools may in fact be less stable in the face of perturbation.
 
-- Next, software quality: the tools used are based on published literature and software implementations are open
-source, using commonly used libraries for all numerical operations that are adopted in all industries (i.e. numpy,
-scipy). This is perhaps the best case, the quality of code is obvious, it is thoroughly tested, and it is public
-and therefore has a high likelihood of benefitting from self correction. In the case of fMRI, this is the case for
-some libraries, however, for much of functional and structural MRI it is common that analytical tools have been
-developed in distinct silos, and have solved many difficult problems in isolation, each with their own set of
-distinct strengths and weaknesses. It is likely that because of this, tools will be very heterogeneous from one
-another, and the lack of complete adoption of public libraries makes errors more likely in these settings.
+\paragraph{Problem Difficulty}
+The difficulty of a given problem can also be thought of as the model's complexity. The theoretical difficulty of
+robustly fitting a model can be evaluated by calculating its conditioning, as was discussed in
+Section~\ref{sec:bg_stab}. While this remains practically difficult to evaluate, a reality which served as a large
+motivation for this thesis, complexity can be coarsely estimated by considering both the dimensionality of input
+data and the number of parameters produced in the output. For example, a diffusion MRI dataset containing $35$
+diffusion directions will provide a more stable solution when fitting a $6$ component tensor than an $60$ component
+orientation histogram, barring any fatal algorithmic flaws in the former. In reality, the difficulty of a pipeline
+is dependent on the specific steps, their sequence, and the specific algorithms chosen to accomplish them. While
+there are many stable diffusion tensor models~\cite{skare2000condition}, it is possible that this area provides a
+best-case given that each voxel is modelled independently and the models themselves summarize relatively simple
+phenomenon. On the other hand, techniques for the correction of topological errors in brain surfaces, a common
+component of both structural and functional analyses, have been developed over several decades and range in
+complexity from manual proof-reading to fitting high dimensional transformations~\cite{yotter2011topological}. It
+is likely that there is considerable heterogeneity in the stability of these methods given the dramatic range in
+flexibility, complexity, and conceptual approach. Similar to image registration, simpler (e.g. affine) approaches
+will tend to be considerably more stable than their more complex (e.g. diffeomorphic non-linear) counterparts.
+This balance between complexity or problem difficulty and stability is therefore a design decision which must be
+considered when constructing pipelines and, absent a context-specific evaluation, simpler methods should be
+preferred if variability in the results is undesired.
 
-- Finally, difficult of modelling tasks: All are hard, DWI is likely among the easier conceptual modelling
-frameworks, and produces much lower-dimensional results than structural surfaces, for example. It is conceptually
-difficult to compare the fundamental difficulty (and therefore fundamental condition) of solving each domain
-independently, but it is likely that the more high-dimensional a derivative in a given domain, the less stable it
-will be given the increased complexity of estimation and unchanging input signal.
 
-- Across arbitrary domains, a set of similar comparisons could be made, but the a priori assumption, if one had to
-be made, should be that the higher quality the data, the more open the code, and the more simple the model, the
-more stable the solution. This recommendation towards simplicity is not unlike the recommendation that ``linear
-regression is a sufficiently descriptive model for solving most problems''.
+\paragraph{Software Quality}
+There are many factors which determine the quality of software, though without explicit evaluation these can often
+best be approximated by meta-data properties of libraries. One such feature is the openness of a tool. Open science
+practices have recently been shown to lead to faster progress~\cite{munafo2017manifesto} and have been widely and
+effectively been adopted in both genomics~\cite{goecks2010galaxy} and for the ongoing COVID-19
+pandemic~\cite{besanccon2020open}. Aside from the ``two heads are better than one'' argument, this is likely
+because software quality has been shown to decrease in a competitive market~\cite{raghunathan2005open}, while open
+source software development fosters a collaborative environment. Another feature of library quality is modularity
+or size; smaller libraries solving fewer independent problems are generally of higher
+quality~\cite{raghunathan2005open}. With these criteria in mind, the diffusion workflows evaluated here relied
+solely on open source implementations of thoroughly tested and peer-review published
+algorithms in DiPy~\cite{Garyfallidis2014-ql,Garyfallidis2012-gg}, which makes the quality of software a likely
+best-case scenario. There exists considerable heterogeneity in both the openness and size of libraries across
+neuroimaging. While pipelines such as fMRIprep~\cite{esteban2019fmriprep} integrate functionality across a set of
+disparate libraries, it is likely that distinct branches therein will differ considerably in terms of their
+stability. Both FreeSurfer~\cite{fischl2012freesurfer} and CIVET~\cite{lepage2017human}, two tools commonly used
+for the estimation of cortical surfaces, have been largely developed in separate silos. While these tools are more
+mature than either Dipy or fMRIprep mentioned above, it has been shown that this maturity does not equate to a
+robustness to minor data perturbations~\cite{Lewis2017-ll} in either case. The estimation of software quality is
+undeniably the most difficult to perform from a surface level, making it imprudent to provide a general claim as
+to the expectation of which domains or analytic modalities may be more stable relative to others.
+
+While this exercise could be conducted across arbitrary domains, if one had to make an \textit{a priori} set of
+guidelines to follow it would unsurprisingly be that higher quality data, simpler problems, and more open and
+widely tested code will generally lead to more stable solutions\footnote{This recommendation towards simplicity
+is not unlike the fact that simple or heavily regularized models are more generalizable in machine
+learning~\cite{lever2016regularization}.}.
+
 
 \subsection{Future Directions in Operationalizing Perturbation Analysis}
-- friendly reminder, we don't just need to think about one way to interpret perturbed results or only perturb
-pipelines at a single portion of their execution. In fact, the flexibility of this method is precisely what makes
-it so valuable.
+An exciting finding from the work presented in this thesis is the realization that the variability resulting
+from numerical perturbations may contain meaningful signal. This suggests that perturbation analysis is not only
+valuable as a tool for measuring the stability of algorithms or workflows, but that it can be applied far more
+flexibly to improve their quality. Considering this, next steps in this area could be categorized into two
+broad questions: \textit{where}, and \textit{why}. I will discuss different components of neuroimaging workflows
+which may benefit from perturbation analysis, and identify several possible applications of the perturbed
+results for each. I will then more broadly discuss other applications of perturbation analysis as it may apply
+across each of these areas. Given that the intersection of numerical analysis and neuroimaging is in its
+infancy, many of these potential explorations remain as open questions that an interested reader could explore
+(or build a grant program around).
 
-- we'll discuss different components of workflows which would benefit from instrumentation in neuroimaging, as well
-as identify possible applications of the results of these perturbations. Given that the intersection of numerical
-analysis and neuroimaging is in its infancy, many of these potential explorations remain as open questions that an
-interested reader could explore (or build a grant program around).
+\subsubsection{Targets for Perturbation}
 
-\subsubsection{Applications in Neuroimaging}
-- Acquisition: initiatives such as gadgetron provide scanner-agnostic image reconstruction methods in an effort to
-both improve the quality of these reconstructions and reduce cross-manufacturer variances. The perturbation of
-reconstruction could be performed to identify which sequences are the most consistently robust across a set of
-manufacturers. Higher fidelity images could be generated through the ensemble of perturbation-reconstructed images,
-possibly achieving benefits like those found in HDR image enhancement.
+Beginning with image reconstruction, initiatives such as Gadgetron~\cite{hansen2013gadgetron} provide
+scanner-agnostic MRI reconstruction algorithms in an effort to both improve the quality of these reconstructions
+and reduce cross-manufacturer variances. The perturbation of these reconstructions could be performed to
+identify which algorithms are the most robust across a set of manufacturers and scanner models. In addition to
+the identification of robust reconstruction methods, higher fidelity images could be generated through the
+ensemble of perturbed images, possibly achieving benefits like those found in High Dynamic Range image
+enhancement. Similarly, this could be applied to influence the development of vendor-neutral pulse sequences
+themselves~\cite{karakuzu2020qmrlab}, and inform data collection which would ultimately lead to more robust
+reconstructed images.
 
-- Image processing and modelling: images typically undergo numerous alignments, corrections, denoising procedures,
-and phenomenological modelling. These processing steps, such as image registration which is relevant across all
-modalities of neuroimaging, are often known to solve poorly conditioned problems and exhibit sensitivity to initial
-conditions or noise. The application of perturbation analyses in these settings could be similarly used to either a)
-test the bounds of performance on the function, or b) be performed iterately so a stable solution can be estimated
-and applied.
+After reconstruction, images typically undergo numerous alignments, corrections, denoising steps, and
+modelling prior to their application in analytical experiments. These processing steps, such as image
+registration which is relevant across all modalities of neuroimaging, are often known to exhibit sensitivity
+to initial conditions or noise~\cite{salari2020file}. Perturbing any of these components in a workflow is
+similar to what was done in this thesis, where the results could be used to test the sensitivity of a given
+component to noise, identify unstable steps within pipelines, or be aggregated to form more stable solutions.
 
-- Machine Learning: in particular feature selection or other typically deterministic components of the process. This
-could happen on non-perturbed datasets, and would be much less computationally expensive if it worked.
+Once data are prepared for analytical interpretation, they are often used in statistical testing or machine
+learning frameworks. Commonly used frameworks often contain an element of random perturbation, such as
+Permutation Testing~\cite{oden1975arguments} or Stochastic Gradient Descent~\cite{bottou1991stochastic},
+likely making them less susceptible to minor perturbation. However, feature selection, a typically
+deterministic process, is commonly performed on neuroimaging data prior to their application in these
+frameworks~\cite{mwangi2014review}. It is possible that perturbation of the selection or construction of
+features will also lead to meaningful and signal-rich variability which, if true, would have a considerable
+benefit of being much less computationally expensive than the perturbation of image processing steps.
 
-\subsubsection{Domain Agnostic Applications}
-- localizing instabilities within pipelines and correcting them
+\subsubsection{Applications of Perturbations}
 
-- Mixed (declining) precision models for pipeline development, such that the stored precision never exceeds the number of
-significant digits throughout the evolution of a pipeline.
+This thesis focused on two specific applications and interpretations of perturbation analyses: the evaluation
+of pipeline stability and the aggregation of unstable derivatives. There are many possible extensions to this
+work and distinct functions that MCA-based perturbations can enable from both the perspective of tool
+development and analysis. One such opportunity from the perspective of tool development is the localization of
+instabilities. VeriTracer~\cite{chatelain2018veritracer} provides functionality to trace the execution of
+workflows and evaluate the propagation of numerical error throughout pipelines. By gradually improving or
+removing sources of instability within pipelines, it would be possible to construct workflows that are more
+robust to numerical error. A separate approach would be to introduce a mixed (declining) precision model for
+data in pipelines. In this case, MCA could be used to estimate the number of significant bits at each node of
+a pipeline, and use this information to truncate the bit-space allotted to subsequent results accordingly. This
+approach would not only remove the compounding effect of numerical instabilities at each node (defined at a
+context- and tool-appropriate resolution), but it would make explicit a priority for tool developers to err on
+the side of building simpler and more robust pipelines. I truncated the data associated with Chapter III after
+pre-processing was performed in preliminary exploration of this idea and found that a large portion of the
+variance was reduced in the input instrumentation case.
 
-- Aggregation across perturbations as the new ``mean $\pm$ variance'' for the development of more robust biomarkers
-
-Coming up with error bars of results, not just error bars on statistical tests performed on those results; subsequently
-creating a joint false-positive rate as a combined function of the two
-
-Consider the practice of obtaining single estimates of results as favouring bias in the bias-variance trade off, and
-instead we should apply confidence-interval logic around our estimates.
-(Bias-variance tradeoff https://ieeexplore.ieee.org/document/824819)
-(https://www.frontiersin.org/articles/10.3389/fnins.2015.00018/full)
+In cases where the re-engineering of pipelines is either non-feasible (e.g. closed source software) or of
+interest, I demonstrated that capturing the induced variability can improve the quality of derived results. An
+interesting comparison can be made here between pipeline variability and the Bias-Variance
+tradeoff~\cite{jain2000statistical}. Deterministic pipelines without perturbations will produce a single result
+with a single fixed (and possibly biased) error. When perturbations are introduced, the variability in this
+error becomes apparent and can be modelled, shifting the landscape away to contain less bias and more variance.
+Rather than then considiering any single result of the tool as the ``true'' result, we can model a series of
+results derived from the same data in the context a \textit{mean} $\pm$ \textit{variance}. This shift in
+perspective is powerful: statistics have long concerned themselves with accounting for measurement error in the
+collection of samples, and developing robust measure for estimating population-level statistics. Adopting such
+techniques across perturbed observations will not only allow for more richly descriptive individual
+measures, but it will provide a quantitative value of measurement uncertainty which can be accounted for
+in subsequent testing and modelling efforts. This would enable the evaluation of a joint false-positive rate
+when combining the uncertainty in results and testing frameworks, and would lead to more reproducible findings.
 
 \subsection{20/20}
-(find a place to add energy efficiency and awareness of where I compute things 
+The final component of this project I would like to discuss is centred on hindsight. Throughout this project I
+have developed tools for scientific infrastructure, built pipelines from modular pre-existing components,
+adapted a numerical analysis frameowrk for a new scientific domain, modelled instability in connecomes through
+a wide array of commonly used and novel measures, and showed how numerical instability can be a strength of
+software. This process has not only been punctuated by scientific outputs which found their ways into papers,
+but by failures and lessons, both pertaining to my own work and the field of neuroimaging at large. I have
+published my successes and failures on my website throughout my degree\footnote{\url{https://gkiar.me/phd}} in
+an effort to not repeat my own mistakes and allow others to learn from them as well. While making an effort to
+be brief, I will provide some considerations and advice that I feel would be relevant both to my previous-self
+and the field of neuroimaging as a whole. None of this advice is intended to be perfect, merely serve as a
+place to start...
 
-What is, ``hindsight'', Greg. 
+\paragraph{Be Aware of the True Cost of Computing}
+(find a place to add energy efficiency and awareness of where I compute things)
 
-all of these lessons are both for myself and for the community
-
-These recommendations may be in conflict with what the academic incentive structure may encourage, or contrary to what
-the ``correct'' decisions may have been when neuroimaging originated. They are not intended to be perfect, merely
-lessons that I feel are worth bearing in mind if one were to go start over today.
-
+\paragraph{Avoid ``Not Invented Here'' Thinking}
 (example: build clowdr as a part of an established ecosystem, such as nipype)
 collaborate, don't compete. build tools as part of supported ecosystems, not in isolation. ``two heads are better
 than one'', and the variability of bandwidth overtime makes tools going stale a challenging problem to stay ahead of
 unless you're part of a team.
-
-test. this hardly needs to be elaborated upon, but nothing works until you can prove it works
-
-walk, don't run. While it may be fun to sprint through an experiment or field of study, claiming success when we get to
-the finish line, it is far more likely that we lead a pack of our colleagues to a dead end than if we slowed down and
-checked the map after each step.
 
 Be humble. Be open about our strengths and weaknesses, and collaborate so that we not only all get to spend the most
 time using our strength, but we can learn from others around us. Science by definition is interdisciplinary, so we
 should admit this and let ourselves shine where we're experts while encouraging others to be the same, collectively
 learning and building towards something bigger.
 
+
+\paragraph{Clearly Define the Objective}
+Define the objective, and keep it in mind. Too often we fall down rabbit holes and lose touch with the reality of what
+we're trying to accomplish. If the goal is academic, define milestones of understanding. If the goal is practical,
+define measure of success or failure and timelines for accomplishing them. It becomes far too easy to get swept away in
+it all as we pick up momentum, and that does a disservice to ourselves, our funders, and by extension our societies.
+
 don't become emotionally attached. Too many mistakes happen to loyalty to an idea or bias in interpretting our results
 towards an expected outcome. We are human, this is normal, but this is ultimately to our own dismay. Be objective when
 you can, and if you can't, call somebody who can be or who expects the opposite result from you so that you can learn
 from each other.
 
-Define the objective, and keep it in mind. Too often we fall down rabbit holes and lose touch with the reality of what
-we're trying to accomplish. If the goal is academic, define milestones of understanding. If the goal is practical,
-define measure of success or failure and timelines for accomplishing them. It becomes far too easy to get swept away in
-it all as we pick up momentum, and that does a disservice to ourselves, our funders, and by extension our societies.
+\paragraph{Test Early, Often, and Robstly)
+test. this hardly needs to be elaborated upon, but nothing works until you can prove it works
+
+walk, don't run. While it may be fun to sprint through an experiment or field of study, claiming success when we get to
+the finish line, it is far more likely that we lead a pack of our colleagues to a dead end than if we slowed down and
+checked the map after each step.
 
