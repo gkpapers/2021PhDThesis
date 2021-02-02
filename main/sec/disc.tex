@@ -96,11 +96,11 @@ processing techniques, or analytic questions, and could be used to inform compar
 software libraries.
 
 While I have yet to mention the Clowdr tool presented in Chapter I, it played an essential role in the execution of
-these experiments. Over the course of the four presented manuscripts, Clowdr has facillitated the launch, debugging,
-visualization, and provenance recording of over $20,000$ cluster and cloud tasks, totalling over $22$ CPU-years
-worth of resources. While many tools exist to facillitate large scale deployments of pipelines, Clowdr enables this
-for tools which are still in development while also providing a quick path to the FAIR~\cite{wilkinson2016fair}
-publication of tools and records through Boutiques~\cite{Glatard2018-tu}.
+these experiments. Over the course of the four presented manuscripts, Clowdr has facilitated the launch, debugging,
+visualization, and provenance recording of over $20,000$ cluster and cloud tasks, totalling $22$ CPU-years worth of
+resources. While many tools exist to facilitate large scale deployments of pipelines, Clowdr enables this for tools
+which are still in development while also providing a quick path to the FAIR~\cite{wilkinson2016fair} publication of
+tools and records through Boutiques~\cite{Glatard2018-tu}.
 
 \subsection{Extrapolating Conclusions Across Domains}
 
@@ -111,7 +111,7 @@ experiment of forming a hypothesis about the stability of another domain, there 
 be considered: data, problem difficulty, and software quality. I will discuss what to look for in each of these
 components, and apply these questions to possible applications in structural and functional neuroimaging.
 
-\paragraph{Data}
+\paragraph*{Data}
 The quality and dimensionality of datasets, summarized through features such as the signal to noise ratio (SNR),
 resolution, sparsity, and image contrast all play a role in the stability of operations performed on this data. The
 impact of each of these features can be considered through fixing the others and considering the implications in the
@@ -126,7 +126,7 @@ diffusion~\cite{thomason2011diffusion} sequences, suggesting that the analysis o
 robust results. However, if analysis methods have been developed with underlying assumptions about the SNR or
 smoothness of these images, then the associated tools may in fact be less stable in the face of perturbation.
 
-\paragraph{Problem Difficulty}
+\paragraph*{Problem Difficulty}
 The difficulty of a given problem can also be thought of as the model's complexity. The theoretical difficulty of
 robustly fitting a model can be evaluated by calculating its conditioning, as was discussed in
 Section~\ref{sec:bg_stab}. While this remains practically difficult to evaluate, a reality which served as a large
@@ -148,7 +148,7 @@ considered when constructing pipelines and, absent a context-specific evaluation
 preferred if variability in the results is undesired.
 
 
-\paragraph{Software Quality}
+\paragraph*{Software Quality}
 There are many factors which determine the quality of software, though without explicit evaluation these can often
 best be approximated by meta-data properties of libraries. One such feature is the openness of a tool. Open science
 practices have recently been shown to lead to faster progress~\cite{munafo2017manifesto} and have been widely and
@@ -159,13 +159,13 @@ source software development fosters a collaborative environment. Another feature
 or size; smaller libraries solving fewer independent problems are generally of higher
 quality~\cite{raghunathan2005open}. With these criteria in mind, the diffusion workflows evaluated here relied
 solely on open source implementations of thoroughly tested and peer-review published
-algorithms in DiPy~\cite{Garyfallidis2014-ql,Garyfallidis2012-gg}, which makes the quality of software a likely
+algorithms in DIPY~\cite{Garyfallidis2014-ql,Garyfallidis2012-gg}, which makes the quality of software a likely
 best-case scenario. There exists considerable heterogeneity in both the openness and size of libraries across
 neuroimaging. While pipelines such as fMRIprep~\cite{esteban2019fmriprep} integrate functionality across a set of
 disparate libraries, it is likely that distinct branches therein will differ considerably in terms of their
 stability. Both FreeSurfer~\cite{fischl2012freesurfer} and CIVET~\cite{lepage2017human}, two tools commonly used
 for the estimation of cortical surfaces, have been largely developed in separate silos. While these tools are more
-mature than either Dipy or fMRIprep mentioned above, it has been shown that this maturity does not equate to a
+mature than either DIPY or fMRIprep mentioned above, it has been shown that this maturity does not equate to a
 robustness to minor data perturbations~\cite{Lewis2017-ll} in either case. The estimation of software quality is
 undeniably the most difficult to perform from a surface level, making it imprudent to provide a general claim as
 to the expectation of which domains or analytic modalities may be more stable relative to others.
@@ -209,13 +209,16 @@ similar to what was done in this thesis, where the results could be used to test
 component to noise, identify unstable steps within pipelines, or be aggregated to form more stable solutions.
 
 Once data are prepared for analytical interpretation, they are often used in statistical testing or machine
-learning frameworks. Commonly used frameworks often contain an element of random perturbation, such as
-Permutation Testing~\cite{oden1975arguments} or Stochastic Gradient Descent~\cite{bottou1991stochastic},
-likely making them less susceptible to minor perturbation. However, feature selection, a typically
-deterministic process, is commonly performed on neuroimaging data prior to their application in these
-frameworks~\cite{mwangi2014review}. It is possible that perturbation of the selection or construction of
-features will also lead to meaningful and signal-rich variability which, if true, would have a considerable
-benefit of being much less computationally expensive than the perturbation of image processing steps.
+learning frameworks. Commonly used frameworks for testing hypotheses or fitting models often contain an
+element of randomness, such as Permutation Testing~\cite{oden1975arguments} or Stochastic Gradient
+Descent~\cite{bottou1991stochastic}, likely making them less susceptible to minor perturbation. However,
+feature selection, a typically deterministic process, is commonly performed on neuroimaging data prior to
+their application in these frameworks~\cite{mwangi2014review}. In some cases the initialization of computing
+these features has considerable impact on their quality~\cite{kobak2021init}, making the perturbation of both
+the initializations and derived features an interesting avenue for exploration. It is possible that perturbing
+the selection or construction of features will also lead to meaningful and signal-rich variability, which
+would have a considerable benefit of being much less computationally expensive than the perturbation of image
+processing steps.
 
 \subsubsection{Applications of Perturbations}
 
@@ -238,10 +241,10 @@ variance was reduced in the input instrumentation case.
 In cases where the re-engineering of pipelines is either non-feasible (e.g. closed source software) or of
 interest, I demonstrated that capturing the induced variability can improve the quality of derived results. An
 interesting comparison can be made here between pipeline variability and the Bias-Variance
-tradeoff~\cite{jain2000statistical}. Deterministic pipelines without perturbations will produce a single result
+trade off~\cite{jain2000statistical}. Deterministic pipelines without perturbations will produce a single result
 with a single fixed (and possibly biased) error. When perturbations are introduced, the variability in this
 error becomes apparent and can be modelled, shifting the landscape away to contain less bias and more variance.
-Rather than then considiering any single result of the tool as the ``true'' result, we can model a series of
+Rather than then considering any single result of the tool as the ``true'' result, we can model a series of
 results derived from the same data in the context a \textit{mean} $\pm$ \textit{variance}. This shift in
 perspective is powerful: statistics have long concerned themselves with accounting for measurement error in the
 collection of samples, and developing robust measure for estimating population-level statistics. Adopting such
@@ -251,47 +254,69 @@ in subsequent testing and modelling efforts. This would enable the evaluation of
 when combining the uncertainty in results and testing frameworks, and would lead to more reproducible findings.
 
 \subsection{20/20}
-The final component of this project I would like to discuss is centred on hindsight. Throughout this project I
+The final component of this project I would like to discuss is centered on hindsight. Throughout this project I
 have developed tools for scientific infrastructure, built pipelines from modular pre-existing components,
-adapted a numerical analysis frameowrk for a new scientific domain, modelled instability in connecomes through
+adapted a numerical analysis framework for a new scientific domain, modelled instability in connectomes through
 a wide array of commonly used and novel measures, and showed how numerical instability can be a strength of
 software. This process has not only been punctuated by scientific outputs which found their ways into papers,
 but by failures and lessons, both pertaining to my own work and the field of neuroimaging at large. I have
-published my successes and failures on my website throughout my degree\footnote{\url{https://gkiar.me/phd}} in
-an effort to not repeat my own mistakes and allow others to learn from them as well. While making an effort to
-be brief, I will provide some considerations and advice that I feel would be relevant both to my previous-self
-and the field of neuroimaging as a whole. None of this advice is intended to be perfect, merely serve as a
-place to start...
+published successes and failures from my degree milestones on my website throughout my
+degree\footnote{\url{https://gkiar.me/phd}} in an effort to not repeat my own mistakes and allow others to learn
+from them. While making an effort to be brief, I feel it necessary to provide some considerations and advice that
+would be relevant both to my previous-self and possibly the field of neuroimaging as a whole. None of this advice
+is intended to be perfect, but merely serve as some things to think about...
 
-\paragraph{Be Aware of the True Cost of Computing}
-(find a place to add energy efficiency and awareness of where I compute things)
+\paragraph*{Be Aware of the Cost of Computing}
+While this advice may at first provoke thought about funding and the cost of either building machines or using the
+cloud, I actually do not intend to refer to money at all. Scientific computing is an expensive endeavour: over the
+course of my thesis, I have consumed nearly $22$ CPU-years worth of execution time for the project directly related
+to my thesis, and double that if considering collaborations. Even taking a lower-bound estimate, this means my
+experiments have consumed $2,000$ kWh of electricity\footnote{\url{https://www.top500.org/lists/green500/2019/11/}}.
+I have been fortunate to perform my research on computers residing in Quebec and Ontario, where the rate of Carbon
+emissions at the time of writing peaks at approximatley $20$ g
+CO\textsubscript{2}/kWh\footnote{\url{http://bit.ly/canada-energy-consumption}}. In this relatively green
+environment my research has produced $80$ kg CO\textsubscript{2} emissions which, for reference, currently equates
+to an upper-bounded offset cost of approximately $\$4.00$\footnote{\url{https://www.energysage.com/other-clean-options/carbon-offsets/costs-and-benefits-carbon-offsets/}}.
+If I had performed my experiments in another environment, such as through Amazon Web Services instances residing in
+the United States where the rate of Carbon emissions averages over $400$ g
+CO\textsuperscript{2}/kWh\footnote{\url{https://www.eia.gov/tools/faqs/faq.php?id=74}}, the total environmental
+footprint would increase $20$-fold. This is not meant as an endorsement for running analyses in Canada, but merely
+as a reminder that we should be aware of the impact that our experiments have on the world more broadly than just
+our papers so that we can more clearly evaluate which experiments are worth doing, and offset any distant harm we
+may cause.
 
-\paragraph{Avoid ``Not Invented Here'' Thinking}
-(example: build clowdr as a part of an established ecosystem, such as nipype)
-collaborate, don't compete. build tools as part of supported ecosystems, not in isolation. ``two heads are better
-than one'', and the variability of bandwidth overtime makes tools going stale a challenging problem to stay ahead of
-unless you're part of a team.
+\paragraph*{Avoid ``Not Invented Here'' Thinking}
+A point which I have mentioned repeatedly throughout this thesis is that there are a considerable number of
+libraries that have been built to accomplish similar tasks, often in isolation. In fact, I committed this taboo
+myself during this thesis with Clowdr. I built this tool out of the necessity to run experiments in the particular
+way I had envisioned, and I did so largely from the ground-up. As a result, the code has at various points become
+stale, of limited use across different usecases, and become difficult to maintain as its sole core contributor. In
+retrospect, the correct solution would have been for me to build my extension into an existing framework or library,
+such as Nipype~\cite{gorgolewski2011nipype}. While Nipype didn't do exactly what I wanted, had I built the
+extensions I needed in this ecosystem I would have not only gained the review and debugging support of its grand
+user and developer base, but also been able to provide a more accessible contribution to the community who were
+already familiar with this environment. I believe the same could likely be said for many tools that have been built
+in neuroimaging, both from the level of task management as I have done, and image processing as was discussed in my
+work. Though I don't believe there should be a single solution for every challenge, I do think that maintaining a
+collaborate-first and compete-second perspective would not only reduce possible redundancies in this space, but
+would lead to higher quality contributions.
 
-Be humble. Be open about our strengths and weaknesses, and collaborate so that we not only all get to spend the most
-time using our strength, but we can learn from others around us. Science by definition is interdisciplinary, so we
-should admit this and let ourselves shine where we're experts while encouraging others to be the same, collectively
-learning and building towards something bigger.
-
-
-\paragraph{Clearly Define the Objective}
-Define the objective, and keep it in mind. Too often we fall down rabbit holes and lose touch with the reality of what
+\paragraph*{Clearly Define the Objective}
+A lesson that I learned over the last several years and I suspect many scientists learn at some point in their careers
+is that projects are rarely ``complete''. There is always another experiment, figure, analysis, or interpretation that
+we can employ towards answering our questions. However, one 
+ Define the objective, and keep it in mind. Too often we fall down rabbit holes and lose touch with the reality of what
 we're trying to accomplish. If the goal is academic, define milestones of understanding. If the goal is practical,
 define measure of success or failure and timelines for accomplishing them. It becomes far too easy to get swept away in
 it all as we pick up momentum, and that does a disservice to ourselves, our funders, and by extension our societies.
 
-don't become emotionally attached. Too many mistakes happen to loyalty to an idea or bias in interpretting our results
+don't become emotionally attached. Too many mistakes happen to loyalty to an idea or bias in interpreting our results
 towards an expected outcome. We are human, this is normal, but this is ultimately to our own dismay. Be objective when
 you can, and if you can't, call somebody who can be or who expects the opposite result from you so that you can learn
 from each other.
 
-\paragraph{Test Early, Often, and Robstly)
-test. this hardly needs to be elaborated upon, but nothing works until you can prove it works
-
+\paragraph*{Test Early, Often, and Robustly}
+T
 walk, don't run. While it may be fun to sprint through an experiment or field of study, claiming success when we get to
 the finish line, it is far more likely that we lead a pack of our colleagues to a dead end than if we slowed down and
 checked the map after each step.
