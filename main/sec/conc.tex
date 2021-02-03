@@ -3,18 +3,18 @@ began with the development of a scalable library for the deployment, management,
 provenance-rich capture of computational experiments. This tool significantly lowered the barrier to adopting high
 performance computing infrastructures for large neuroimaging experiments. With the computational backbone in place,
 I compared various perturbation methods for the evaluation of numerical instabilities in structural connectome
-estimation pipelines. Through perturbation of either the inputs or adding stochasticity to inevitable numerical
-error, I was able to demonstrate instability in structural connectome estimation that peaked at the level of
-observing cross-subject differences. Building upon this proof-of-concept for the effective perturbation of pipelines,
-I performed a series of experiments, comparisons, and evaluations of perturbed structural connectomes to quantify the
-analytical impact of the induced instabilities. While individual estimates of connectivity and subsequently derived
-features varied considerably, in some cases retaining no signal, it became evident that the perturbation of
-connectome generation led to variability that both improved the reliability of the dataset and had potential for
-improving the downstream modelling of brain-phenotype relationships. In an effort to capture this variance, I devised
-and tested several strategies for the aggregation of this variance across perturbed connectomes and evaluated their
-impact on the performance of several classifiers tasked with modelling a relationship between structural connectivity
-and age. I found that the aggregation of induced variability lead to more performant predictive models which were
-more generalizable to unseen data.
+estimation pipelines. Through perturbation of either the inputs directly or adding stochasticity to existing
+numerical error, I was able to demonstrate instability in structural connectome estimation that peaked at the level
+of observing cross-subject differences. Building upon this proof-of-concept for the effective perturbation of
+pipelines, I performed a series of experiments, comparisons, and evaluations of perturbed structural connectomes to
+quantify the analytical impact of the induced instabilities. While individual estimates of connectivity and
+subsequently derived features varied considerably, in some cases retaining no signal, it became evident that the
+perturbation of connectome generation led to variability that both improved the reliability of the dataset and had
+potential for improving the downstream modelling of brain-phenotype relationships. In an effort to capture this
+variance, I devised and tested several strategies for the aggregation of this variance across perturbed connectomes
+and evaluated their impact on the performance of several classifiers tasked with modelling a relationship between
+structural connectivity and age. I found that the aggregation of induced variability lead to more performant
+predictive models which were more generalizable to unseen data.
 
 I believe that my thesis clearly demonstrates the impact that numerical instabilities may have on neuroimaging
 results, and provided a compelling solution to this problem that can be immediately adopted by the community.
