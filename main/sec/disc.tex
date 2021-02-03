@@ -178,53 +178,51 @@ learning~\cite{lever2016regularization}.}.
 
 
 \subsection{Future Directions in Operationalizing Perturbation Analysis}
-An exciting finding from the work presented in this thesis is the realization that the variability resulting
-from numerical perturbations may contain meaningful signal. This suggests that perturbation analysis is not only
-valuable as a tool for measuring the stability of algorithms or workflows, but that it can be applied far more
-flexibly to improve their quality. Considering this, next steps in this area could be categorized into two
-broad questions: \textit{where}, and \textit{why}. I will discuss different components of neuroimaging workflows
-which may benefit from perturbation analysis, and identify several possible applications of the perturbed
-results for each. I will then more broadly discuss other applications of perturbation analysis as it may apply
-across each of these areas. Given that the intersection of numerical analysis and neuroimaging is in its
-infancy, many of these potential explorations remain as open questions that an interested reader could explore
-(or build a grant program around).
+The initial aim of this thesis was to identify instabilities within neuroimaging pipelines. An exciting evolution
+of this plan was the finding that the variability arising from numerical perturbations may contain meaningful signal.
+This suggests that perturbation analysis is not only valuable as a tool for measuring the stability of algorithms or
+workflows, but that it can be applied far more flexibly to improve their quality. Considering this, next steps in
+this area could be categorized into two broad questions: \textit{where} to perturb, and \textit{what} to do with the
+induced variability. I will discuss different components of neuroimaging workflows which may benefit from perturbation
+analysis and identify several possible applications of the results for each. I will then more broadly discuss other
+applications of perturbation analysis as it may apply across each of these areas. Given that the intersection of
+numerical analysis and neuroimaging is in its infancy, many of these potential explorations remain as open questions
+that an interested reader could explore (or build a grant program around).
 
 \subsubsection{Targets for Perturbation}
 
 Beginning with image reconstruction, initiatives such as Gadgetron~\cite{hansen2013gadgetron} provide
 scanner-agnostic MRI reconstruction algorithms in an effort to both improve the quality of these reconstructions
-and reduce cross-manufacturer variances. The perturbation of these reconstructions could be performed to
-identify which algorithms are the most robust across a set of manufacturers and scanner models. In addition to
-the identification of robust reconstruction methods, higher fidelity images could be generated through the
-ensemble of perturbed images, possibly achieving benefits like those found in High Dynamic Range image
-enhancement. Similarly, this could be applied to influence the development of vendor-neutral pulse sequences
-themselves~\cite{karakuzu2020qmrlab}, and inform data collection which would ultimately lead to more robust
-reconstructed images.
+and reduce cross-vendor variances. The perturbation of image reconstruction could be performed to identify which
+algorithms are the most robust across a set of manufacturers and scanner models. In addition to the identification of
+robust reconstruction methods, higher fidelity images could be generated through the ensemble of perturbed images,
+possibly achieving benefits like those found in High Dynamic Range image enhancement. Similarly, this could be applied
+to influence the development of vendor-neutral pulse sequences themselves~\cite{karakuzu2020qmrlab}, and inform the
+adoption of stable data collection and reconstruction pairs.
 
-After reconstruction, images typically undergo numerous alignments, corrections, denoising steps, and
-modelling prior to their application in analytical experiments. These processing steps, such as image
-registration which is relevant across all modalities of neuroimaging, are often known to exhibit sensitivity
-to initial conditions or noise~\cite{salari2020file}. Perturbing any of these components in a workflow is
-similar to what was done in this thesis, where the results could be used to test the sensitivity of a given
-component to noise, identify unstable steps within pipelines, or be aggregated to form more stable solutions.
+Reconstructed images typically undergo numerous alignments, corrections, denoising steps, and modelling prior to their
+application in experiments. These processing steps, such as image registration which is relevant across all modalities
+of neuroimaging, are often known to exhibit sensitivity to initial conditions or noise~\cite{salari2020file}.
+Perturbing any of these components in a workflow is similar to what was done in this thesis, where the results could
+be used to test the sensitivity of a given component to numerical error, identify unstable steps within pipelines, or
+be aggregated to form more stable solutions.
 
-Once data are prepared for analytical interpretation, they are often used in statistical testing or machine
-learning frameworks. Commonly used frameworks for testing hypotheses or fitting models often contain an
-element of randomness, such as Permutation Testing~\cite{oden1975arguments} or Stochastic Gradient
-Descent~\cite{bottou1991stochastic}, likely making them less susceptible to minor perturbation. However,
-feature selection, a typically deterministic process, is commonly performed on neuroimaging data prior to
-their application in these frameworks~\cite{mwangi2014review}. In some cases the initialization of computing
-these features has considerable impact on their quality~\cite{kobak2021init}, making the perturbation of both
-the initializations and derived features an interesting avenue for exploration. It is possible that perturbing
-the selection or construction of features will also lead to meaningful and signal-rich variability, which
-would have a considerable benefit of being much less computationally expensive than the perturbation of image
-processing steps.
+Processed data are often terminally used in statistical testing or machine learning frameworks. Commonly used
+frameworks for testing hypotheses or fitting models often contain an element of randomness, such as Permutation
+Testing~\cite{oden1975arguments} or Stochastic Gradient Descent~\cite{bottou1991stochastic}, likely making them less
+susceptible minor perturbation. However, feature selection, a typically deterministic process, is commonly performed
+on neuroimaging data prior to their application in these frameworks~\cite{mwangi2014review}. In cases where
+initialization of these features has considerable impact on their quality~\cite{kobak2021init}, the perturbation of
+both the initializations and feature selection process serves as an interesting avenue for exploration. It is possible
+that perturbing feature selection will lead to similarly meaningful variability as was observed here, which would
+have a considerable benefit of being much less computationally expensive than the perturbation of image processing
+steps.
 
 \subsubsection{Applications of Perturbations}
 
-This thesis focused on two specific applications and interpretations of perturbation analyses: the evaluation
-of pipeline stability and the aggregation of unstable derivatives. There are many possible extensions to this
-work and distinct functions that MCA-based perturbations can enable from both the perspective of tool
+This thesis ultimately focused on two specific applications and interpretations of perturbation analyses: the
+evaluation of pipeline stability and the aggregation of unstable derivatives. There are many possible extensions to
+this work and distinct functions that MCA-based perturbations can enable from both the perspective of tool
 development and analysis. One such opportunity from the perspective of tool development is the localization of
 instabilities. VeriTracer~\cite{chatelain2018veritracer} provides functionality to trace the execution of
 workflows and evaluate the propagation of numerical error throughout pipelines. By gradually improving or
@@ -234,31 +232,31 @@ data in pipelines. In this case, MCA could be used to estimate the number of sig
 a pipeline, and use this information to truncate the bit-space allotted to subsequent results accordingly. This
 approach would not only remove the compounding effect of numerical instabilities at each node (defined at a
 context- and tool-appropriate resolution), but it would make explicit a priority for tool developers to err on
-the side of building simpler and more robust pipelines. I truncated the data associated with Chapter III after
-pre-processing was performed in preliminary exploration of this idea and found that a large portion of the
+the side of building simpler and more robust pipelines. In a prelimiary exploration of this idea, I truncated the
+data associated with Chapter III after pre-processing was performed and found that a large portion of the induced
 variance was reduced in the input instrumentation case.
 
-In cases where the re-engineering of pipelines is either non-feasible (e.g. closed source software) or of
+In cases where the re-engineering of pipelines is either non-feasible (e.g. closed source software) or not of
 interest, I demonstrated that capturing the induced variability can improve the quality of derived results. An
-interesting comparison can be made here between pipeline variability and the Bias-Variance
-trade off~\cite{jain2000statistical}. Deterministic pipelines without perturbations will produce a single result
-with a single fixed (and possibly biased) error. When perturbations are introduced, the variability in this
-error becomes apparent and can be modelled, shifting the landscape away to contain less bias and more variance.
-Rather than then considering any single result of the tool as the ``true'' result, we can model a series of
-results derived from the same data in the context a \textit{mean} $\pm$ \textit{variance}. This shift in
-perspective is powerful: statistics have long concerned themselves with accounting for measurement error in the
-collection of samples, and developing robust measure for estimating population-level statistics. Adopting such
-techniques across perturbed observations will not only allow for more richly descriptive individual
-measures, but it will provide a quantitative value of measurement uncertainty which can be accounted for
-in subsequent testing and modelling efforts. This would enable the evaluation of a joint false-positive rate
-when combining the uncertainty in results and testing frameworks, and would lead to more reproducible findings.
+interesting comparison can be made here between pipeline variability and the Bias-Variance trade
+off~\cite{jain2000statistical}. Deterministic pipelines without perturbations will produce a single result with a
+single fixed (and possibly biased) error. When perturbations are introduced, the variability in this error becomes
+apparent and can be modelled, shifting the trade off in favour of variance. Rather than then considering any single
+result of the tool as the ``true'' result, we can model a series of results derived from the same data in the form
+of a \textit{mean} $\pm$ \textit{variance}. This shift in perspective is powerful: statistics have long concerned
+themselves with accounting for measurement error in the collection of samples and developing robust measure for
+estimating population-level statistics. Adopting such techniques across perturbed observations will not only allow
+for more richly descriptive individual measures, but it will provide a quantitative value of measurement uncertainty
+which can be accounted for in subsequent testing and modelling efforts. This would enable the construction of a
+joint false-positive rate when combining the uncertainty in results and testing frameworks, and would lead to more
+reproducible findings.
 
 \subsection{20/20}
 The final topic I would like to discuss is centered on hindsight. Throughout this project I have developed tools
 for scientific infrastructure, built pipelines from modular pre-existing components, adapted a numerical analysis
-framework for a new scientific domain, modelled instability in connectomes through a wide array of commonly used
-and novel measures, and showed how numerical instability can be a strength of software. This process has not only
-been punctuated by scientific outputs which found their ways into papers, but by failures and lessons, both
+framework to a new scientific domain, modelled instability in connectomes through a wide array of commonly used
+and novel measures, and showed how numerical instability can be a useful property of software. This process has not
+only been punctuated by scientific outputs which found their ways into papers, but by failures and lessons, both
 pertaining to my own work and the field of neuroimaging at large. I have published successes and failures from my
 Ph.D. on my website throughout my degree\footnote{\url{https://gkiar.me/phd}} in an effort to not repeat my own
 mistakes and allow others to learn from them. While making an effort to be brief, I feel it necessary to provide
@@ -268,56 +266,54 @@ think about...
 
 \paragraph*{Be Aware of the Cost of Computing}
 While this advice may at first provoke thought about funding and the cost of either building machines or using the
-cloud, I actually do not intend to refer to money at all. Scientific computing is an expensive endeavour: over the
-course of my thesis, I have consumed nearly $22$ CPU-years worth of execution time for the project directly related
-to my thesis, and double that if considering collaborations. Even taking a lower-bound estimate, this means my
-experiments have consumed $2,000$ kWh of electricity\footnote{\url{https://www.top500.org/lists/green500/2019/11/}}.
-I have been fortunate to perform my research on computers residing in Quebec and Ontario, where the rate of Carbon
-emissions at the time of writing peaks at approximatley $20$ g
-CO\textsubscript{2}/kWh\footnote{\url{http://bit.ly/canada-energy-consumption}}. In this relatively green
-environment my research has produced $80$ kg CO\textsubscript{2} emissions which, for reference, currently equates
-to an upper-bounded offset cost of approximately $\$4.00$\footnote{\url{https://www.energysage.com/other-clean-options/carbon-offsets/costs-and-benefits-carbon-offsets/}}.
+cloud, I do not intend to refer to money, but energy. Scientific computing is an expensive endeavour: over the course
+of my thesis, I have consumed nearly $22$ CPU-years worth of execution time for the project directly related to my
+thesis, and double that if considering collaborations. Even taking a lower-bound estimate, this means my experiments
+have consumed $2,000$ kWh of electricity\footnote{\url{https://www.top500.org/lists/green500/2019/11/}}. I have been
+fortunate to perform my research on computers residing in Quebec and Ontario, where the rate of Carbon emissions at
+the time of writing peaks at approximatley $20$ g CO\textsubscript{2}/kWh\footnote{\url{http://bit.ly/canada-energy-consumption}}.
+In this relatively green environment my research has produced $80$ kg CO\textsubscript{2} emissions which, for
+reference, currently equates to an upper-bounded offset cost of approximately $\$4.00$\footnote{\url{https://www.energysage.com/other-clean-options/carbon-offsets/costs-and-benefits-carbon-offsets/}}.
 If I had performed my experiments in another environment, such as through Amazon Web Services instances residing in
-the United States where the rate of Carbon emissions averages over $400$ g
-CO\textsuperscript{2}/kWh\footnote{\url{https://www.eia.gov/tools/faqs/faq.php?id=74}}, the total environmental
-footprint would increase $20$-fold, which would amount to the same Carbon emissions as an extra car on the road for
-half of a year\footnote{\url{https://www.nrcan.gc.ca/sites/www.nrcan.gc.ca/files/oee/pdf/transportation/fuel-efficient-technologies/autosmart_factsheet_6_e.pdf}}! This is not meant as an endorsement for running analyses in Canada, but merely as a reminder that we should be
-aware of the impact that our experiments have on the world more broadly than just our papers so that we can more
-clearly evaluate which experiments are worth doing, and offset any distant harm we may cause.
+the United States where the rate of Carbon emissions averages over $400$ g CO\textsuperscript{2}/kWh\footnote{\url{https://www.eia.gov/tools/faqs/faq.php?id=74}},
+the total environmental footprint would increase $20$-fold, which would amount to the same Carbon footprint as putting
+and extra car on the road for half of a year\footnote{\url{https://www.nrcan.gc.ca/sites/www.nrcan.gc.ca/files/oee/pdf/transportation/fuel-efficient-technologies/autosmart_factsheet_6_e.pdf}}!
+This is not meant as an endorsement for running analyses in Canada, but merely as a reminder that we should be aware
+of the impact that our experiments have on the world more broadly than just our papers. This is important so we can
+clearly evaluate which experiments are worth doing and offset any distant harm we may cause.
 
 \paragraph*{Keep Clear and Incremental Objectives}
 Over the last several years it has become clear to me that projects are rarely ``complete''. There is always
-another experiment, figure, analysis, or interpretation that we can explore. However, the longer we follow this
-rabbit hole (which is an interesting rabbit hole and very often worth following), I have found it becomes gradually
-easier to lose site of the original target and purpose. The experiments presented in Chapter~IV, for example, are a
-small subset of the models, conditions, and experimental permutations that I originally performed when aggregating
-connectomes. I did not remove the others because of their outcomes, but because they were the result of tinkering
-and provided answers that grew gradually further from the question I was asking. This led me into the territory of
-having answers that may have been interesting, but that were ultimately uninterpretable because I hadn't adressed
-the necessary question I sought out to answer first. I suspect that I am not the only scientist to fall into this
-trap, and I believe the field of neuroimaging as a whole may have experience with it, at least in appearance.
-Despite regularly defining possible real-world applications and outcomes, neuroimaging has received considerable
-criticism for lack of delivering on these claims~\cite{robinson2004fmri}. While this criticism is perhaps unfairly
-harsh~\cite{lyon2017dead}, it remains that neuroimaging hasn't become as ubiquitously relevant as may have been
-anticipated, and it is difficult to conceive of how all the threads of research being pulled in parallel may bring
-that goal into focus. While I believe this is in part due to an academic curiosity of exploration taking the reins,
-I think this ``image problem'' is also due to conflation of the \textit{eventual} objectives and those which are
-presently feasible. By clearly defining our goals and the incremental objectives we must meet along the way, both
-as individual scientists and as a field, I suspect we'll fall down fewer of these rabbit holes, and stop having to
-defend the reality that science takes time.
+another experiment, figure, analysis, or interpretation that we can explore. However, the longer we follow these
+rabbit holes (which often provide their fair share of excitement), I have found it becomes gradually easier to lose
+sight of the original target and purpose. The experiments I presented in Chapter~IV, for example, are a small
+subset of the models, conditions, and experimental permutations that I originally performed when aggregating
+connectomes. I did not remove the others because of their outcomes, but because they were the result of iteratively
+asking refining my experiment that brought me gradually further from answering the question I sought out to explore.
+This led me into the territory of having answers that may have been interesting, but that were ultimately
+uninterpretable because I hadn't answered a question that they depended upon. I suspect that I am not the only
+scientist to fall into this trap, and I believe the field of neuroimaging as a whole may have experience with it, at
+least in appearance. Despite regularly defining possible real-world applications and outcomes in papers, neuroimaging
+has received considerable criticism for lack of delivering on this promise~\cite{robinson2004fmri}. While this
+criticism is perhaps unfairly harsh~\cite{lyon2017dead}, it remains that neuroimaging hasn't become as relevant as
+may have once been anticipated. While I believe this is in part due to an academic curiosity taking the reins, I
+think this in reality is an ``image problem'' due to conflation of the \textit{eventual} objectives and those which
+are presently feasible and being built towards. By clearly defining our goals and the incremental objectives we must
+meet along the way, both as individual scientists and as a field, I suspect we'll fall down fewer of these rabbit
+holes, and stop having to defend the reality that science is an incremental process that takes time.
 
 \paragraph*{Avoid ``Not Invented Here'' Thinking}
 A point which I have mentioned repeatedly throughout this thesis is that there are a considerable number of
 libraries that have been built to accomplish similar tasks, often in isolation. In fact, I committed this taboo
-myself during this thesis with Clowdr, in Chapter~I. I built this tool out of the necessity to run experiments in
-the particular way I had envisioned, and I did so largely from the ground-up. As a result, the code has at various
-points become stale, of limited use across different usecases, and become difficult to maintain as its sole core
-contributor. In retrospect, the correct solution would have been for me to build my extension into an existing
-framework or library, such as Nipype~\cite{gorgolewski2011nipype}. While Nipype didn't do exactly what I wanted,
-had I built the extensions I needed in this ecosystem I would have not only gained the review and debugging support
-of its grand user and developer base, but also been able to provide a more accessible contribution to the community
-who were already familiar with this environment. I believe the same could likely be said for many tools that have
-been built in neuroimaging, both from the level of task management as I have done, and image processing as was
-discussed in my work. Though I don't believe there should be a single solution for every challenge, I do think that
-maintaining a collaborate-first and compete-second perspective would not only reduce possible redundancies in this
-space, but would lead to higher quality contributions.
+myself during this thesis in Chapter~I with the creation of Clowdr. I built this tool out of the necessity to run
+experiments in the particular way I had envisioned, and I did so largely from the ground-up. As a result, the code
+has at various points required development to function in new use cases, or become difficult to maintain as its sole
+core contributor. In retrospect, a more sustainable solution may have been for me to build my extension into an
+existing framework or library, such as Nipype~\cite{gorgolewski2011nipype}. While the creation of this toool was
+necessary and relevant for the completion of my thesis, if I built the extensions I needed in an ecosystem I would
+have not only gained the review and debugging support of its user and developer base, but also been able to provide a
+more accessible contribution to the community who were already familiar with a given environment. I believe the same
+could likely be said for many tools that have been built in neuroimaging (and likely science more broadly). Though I
+don't believe there should be a single solution for every challenge, I do think that maintaining a collaborate-first
+and compete-second perspective would not only reduce possible redundancies in this space, but would lead to higher
+quality and more sustainable contributions.
