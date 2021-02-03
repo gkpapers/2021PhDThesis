@@ -1,57 +1,31 @@
-Neuroscience has been carried into the domain of big data and high performance computing (HPC) on the backs of
-initiatives in data collection and an increasingly compute-intensive tools. While managing HPC experiments requires
-considerable technical acumen, platforms, and standards have been developed to ease this burden on scientists. While
-web-portals make resources widely accessible, data organizations such as the Brain Imaging Data Structure and tool
-description languages such as Boutiques provide researchers with a foothold to tackle these problems using their own
-datasets, pipelines, and environments. While these standards lower the barrier to adoption of HPC and cloud systems
-for neuroscience applications, they still require the consolidation of disparate domain-specific knowledge. We present
-Clowdr, a lightweight tool to launch experiments on HPC systems and clouds, record rich execution records, and enable
-the accessible sharing and re-launch of experimental summaries and results. Clowdr uniquely sits between web platforms
-and bare-metal applications for experiment management by preserving the flexibility of do-it-yourself solutions while
-providing a low barrier for developing, deploying and disseminating neuroscientific analysis.
+Neuroimaging, a field focused on understanding structure and function within the brain, has evolved into a
+discipline of computational science. In recent years, through the collection and evaluation of rich and
+descriptive datasets, countless studies have explored the possible utility of these images and began the
+development of relationships between them and phenotypic information such as disease, sex, stage of development,
+and more. Like many modern scientific disciplines, however, the robustness and generalizability of these
+relationships depends on the trustworthiness of the methods used in their generation. With an increasing
+awareness on issues of reproducibility in science, preliminary explorations in neuroimaging have led to some
+skepticism regarding the robustness of findings. While impactful differences have been observed across
+scientific teams, methods, toolboxes, or even the operating system of the computer being used, no studies
+have enabled or characterized the effect that unavoidable machine error has on this variability. Throughout
+this thesis I have developed infrastructure for high performance computing environments to enable the large
+scale numerical analysis of neuroimaging experiments, and used it to evaluate the role that numerical
+uncertainty in computing plays in the reproducibility or stability of results. Focusing on the application of
+mapping connections between brain regions, called structural connectomics, I perturbed the generation of
+networks and subsequently evaluated the observed variability to characterize the impact of small numerical
+errors as they accumulate over the course of an analysis. I found that not only do unavoidable computational
+errors have a considerable impact on results, but that they can in some cases be so significant as to obscure
+individual differences in maps of connectivity. This finding importantly demonstrates a best-case bound of
+error and its propagation throughout scientific pipelines. Moving beyond the perturbation of error, efforts to
+interpret the observed variability as a feature of a given analysis rather than a bug showed that not only did
+this variability increase the reliability of datasets, but it ultimately could be harnessed to produce stronger
+and more generalizable brain-phenotype relationships. The combination of these results importantly demonstrates
+that unavoidable computational errors inherent to pipelines lead to impactful differences in a set of
+neuroimaging analyses. Whether that impact is for better or worse, however, depends entirely on whether these
+errors are being considered and accounted for, or ignored. Alongside the execution of these analyses, this
+thesis presents tools and a schematic which can be followed for the further exploration of numerical
+uncertainty and the role it may play in our understanding of the brain.
 
-With an increase in awareness regarding a troubling lack of reproducibility in analytical software tools, the degree of
-validity in scientific derivatives and their downstream results has become unclear. The nature of reproducibility
-issues may vary across domains, tools, datasets, and computational infrastructures, but numerical instabilities are
-thought to be a core contributor. In neuroimaging, unexpected deviations have been observed when varying operating
-systems, software implementations, or adding negligible quantities of noise. In the field of numerical analysis these
-issues have recently been explored through Monte Carlo Arithmetic, a method involving the instrumentation of floating
-point operations with probabilistic noise injections at a target precision. Exploring multiple simulations in this
-context allows the characterization of the result space for a given tool or operation. In this paper we compare various
-perturbation models to introduce instabilities within a typical neuroimaging pipeline, including i) targeted noise,
-ii) Monte Carlo Arithmetic, and iii) operating system variation, to identify the significance and quality of their
-impact on the resulting derivatives. We demonstrate that even low-order models in neuroimaging such as the structural
-connectome estimation pipeline evaluated here are sensitive to numerical instabilities, suggesting that stability is a
-relevant axis upon which tools are compared, alongside more traditional criteria such as biological feasibility,
-computational efficiency, or, when possible, accuracy. Heterogeneity was observed across participants which clearly
-illustrates a strong interaction between the tool and dataset being processed, requiring that the stability of a given
-tool be evaluated with respect to a given cohort. We identify use cases for each perturbation method tested, including
-quality assurance, pipeline error detection, and local sensitivity analysis, and make recommendations for the
-evaluation of stability in a practical and analytically-focused setting. Identifying how these relationships and
-recommendations scale to higher-order computational tools, distinct datasets, and their implication on biological
-feasibility remain exciting avenues for future work.
 
-The analysis of brain-imaging data requires complex processing pipelines to support findings on brain function or
-pathologies. Recent work has shown that variability in analytical decisions can lead to substantial differences in the
-results, endangering the trust in conclusions. We explored the instability of results by instrumenting a connectome
-estimation pipeline with Monte Carlo Arithmetic8,9 to introduce random noise throughout. We evaluated the reliability
-of the connectomes, their features, and the impact on analysis. The stability of results was found to range from
-perfectly stable to highly unstable. This paper highlights the potential of leveraging induced variance in estimates of
-brain connectivity to reduce the bias in networks alongside increasing the robustness of their applications in the
-classification of individual differences. We demonstrate that stability evaluations are necessary for understanding
-error inherent to scientific computing, and how numerical analysis can be applied to typical analytical workflows.
-Overall, while the extreme variability in results due to analytical instabilities could severely hamper our
-understanding of brain organization, it also leads to an increase in the reliability of datasets.
 
-Machine learning models are commonly applied to human brain imaging datasets in an effort to associate function or
-structure with behaviour, health, or other individual phenotypes. Such models often rely on low-dimensional maps
-generated by complex processing pipelines. However, the numerical instabilities inherent to pipelines limit the
-fidelity of these maps and introduce computational bias. Monte Carlo Arithmetic, a technique for introducing
-controlled amounts of numerical noise, was used to perturb a structural connectome estimation pipeline, ultimately
-producing a range of plausible networks for each sample. The variability in the perturbed networks was captured in an
-augmented dataset, which was then used for an age classification task. We found that resampling brain networks across a
-series of such numerically perturbed outcomes led to improved performance in all tested classifiers, preprocessing
-strategies, and dimensionality reduction techniques. Importantly, we find that this benefit does not hinge on a large
-number of perturbations, suggesting that even minimally perturbing a dataset adds meaningful variance which can be
-captured in the subsequently designed models.
 
