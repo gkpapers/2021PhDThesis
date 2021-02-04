@@ -1,13 +1,16 @@
 Neuroimaging, a field focused on understanding structure and function within the brain, has evolved into a
 discipline of computational science. In recent years, through the collection and evaluation of rich and
-descriptive datasets, countless studies have explored the possible utility of these images and began the
-development of relationships between them and phenotypic information such as disease, sex, stage of development,
-and more. Like many modern scientific disciplines, however, the robustness and generalizability of these
-relationships depends on the trustworthiness of the methods used in their generation. With an increasing
-awareness on issues of reproducibility in science, preliminary explorations in neuroimaging have led to some
-skepticism regarding the robustness of findings. While impactful differences have been observed across
-scientific teams, methods, toolboxes, or even the operating system of the computer being used, no studies
-have enabled or characterized the effect that unavoidable machine error has on this variability. Throughout
+descriptive datasets, countless studies have explored the possible utility of Magnetic Resonance Imaging data
+of the brain and began the development of relationships between them and phenotypic information such as
+disease, sex, stage of development, and more. Like many modern scientific disciplines, however, the
+reliability of these relationships depends on the trustworthiness and openness of methods used in their
+generation. With an increasing awareness on issues of reproducibility, preliminary explorations in
+neuroimaging have led to some skepticism regarding the robustness of findings. In some cases, these issues
+can be resolved through the federated sharing of datasets or the harmonization of software tools. In others,
+the sensitivity or stability of underlying numerical algorithms used to process the complex and high
+dimensional datasets may lead to unexpected variability. While impactful differences have been observed in
+neuroimaging across scientific teams, methods, toolboxes, or even the operating system of the computer being
+used, no studies have enabled or characterized the effect that machine error has on findings. Throughout
 this thesis I have developed infrastructure for high performance computing environments to enable the large
 scale numerical analysis of neuroimaging experiments, and used it to evaluate the role that numerical
 uncertainty in computing plays in the reproducibility or stability of results. Focusing on the application of
@@ -17,10 +20,10 @@ errors as they accumulate over the course of an analysis. I found that not only 
 errors have a considerable impact on results, but that they can in some cases be so significant as to obscure
 individual differences in maps of connectivity. This finding importantly demonstrates a best-case bound of
 error and its propagation throughout scientific pipelines. Moving beyond the perturbation of error, efforts to
-interpret the observed variability as a feature of a given analysis rather than a bug showed that not only did
+interpret the observed variability as a feature of a given analysis rather than a flaw showed that not only did
 this variability increase the reliability of datasets, but it ultimately could be harnessed to produce stronger
 and more generalizable brain-phenotype relationships. The combination of these results importantly demonstrates
-that unavoidable computational errors inherent to pipelines lead to impactful differences in a set of
+that computational errors inherent to pipelines lead to impactful differences in a set of
 neuroimaging analyses. Whether that impact is for better or worse, however, depends entirely on whether these
 errors are being considered and accounted for, or ignored. Alongside the execution of these analyses, this
 thesis presents tools and a schematic which can be followed for the further exploration of numerical
