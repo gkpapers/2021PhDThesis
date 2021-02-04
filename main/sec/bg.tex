@@ -1,10 +1,10 @@
 In this section I will first define and discuss the state of reproducibility in science across a range of domains, and
-explore several specific examples. Next, I will discuss the role that software re-executability and numerical stability
-play in these problems, and advances which have been made in each of these spaces. I will then approach neuroimaging,
+explore several specific examples. Next, I will discuss the role that software reusability and numerical stability
+play in these problems, and advances which have been made in each of these fields. I will then approach neuroimaging,
 with a brief overview of the field and commonly used methods that are of relevance, finally presenting several case
 studies in neuroimaging to demonstrate the necessity of exploring numerical stability in this space.
 
-\subsection{Reproducibility}
+\subsection{Scientific Reproducibility}
 At the heart of science is the ability for researchers to build upon previous work, incrementally advancing a given
 field of research~\cite{salmon1999introduction,platt1964strong}. Despite being accepted as a cornerstone for progress,
 there is not a fully unified vocabulary around this
@@ -29,17 +29,17 @@ equipment. The definitions presented here, often referred to colloquially as ``P
 referred to throughout this thesis.
 
 In addition to the definitions of reproducibility and replicability accepted above, I will refer to an additional term
-in this space: re-executability, which simply refers to the ability of being able to ``hit go'' on the analysis
+in this space: reusability, which simply refers to the ability of being able to ``hit go'' on the analysis
 subsequent to its original execution. This definition closely matches a definition of reproducibility mentioned above,
 but no analog exists within the Peng framework, so it is added here for clarity.
 
-With a rich and growing space of conceptual frameworks through which re-executability, reproducibility, and
+With a rich and growing space of conceptual frameworks through which reusability, reproducibility, and
 replicability can be evaluated, it is perhaps self-evident that the level of trustworthiness across many disciplines
 has recently become a topic of interest. I will now introduce the so-called ``Reproducibility Crisis'', an umbrella
 phrase which captures this movement, and highlight its relevance in both psychological and neurological sciences,
 serving as motivation for the work carried out in this thesis.
 
-\subsubsection{The Reproducibility Crisis}
+\subsection{The Reproducibility Crisis}
 
 The reproducibility of findings has long been a topic of concern to researchers in the life
 sciences~\cite{ioannidis2005most,begley2012raise,prinz2011believe,mcnutt2014reproducibility}. However, several recent
@@ -59,13 +59,13 @@ $21\%$. This work, however, assumed the robustness of data and methods used thro
 purely statistical evaluation, so any inconsistencies in the analytical methods used may in reality lead to an even
 lower statistical power across published results.
 
-In neuroimaging studies began to dive deeper into the intermediate processing methods and explored their compounded
+In neuroimaging, studies began to dive deeper into the intermediate processing methods and explored their compounded
 effect on null hypothesis significance testing. A study evaluating the accuracy of significance testing frameworks within
 commonly used libraries for the analysis of functional MRI (fMRI) data found that under certain conditions false-positive
 rates were as high as $70\%$~\cite{eklund2016cluster}. While the presentation of this result may misleadingly construe an
 inflated significance of these errors (see associated
-letters~\footnote{\url{https://www.pnas.org/content/114/17/E3368}}\footnote{\url{https://www.pnas.org/content/114/17/E3370}}
-and correction~\footnote{\url{https://www.pnas.org/content/113/33/E4929}}), undeniable attributes of these findings are
+letters\footnote{\url{https://www.pnas.org/content/114/17/E3368}}\footnote{\url{https://www.pnas.org/content/114/17/E3370}}
+and correction\footnote{\url{https://www.pnas.org/content/113/33/E4929}}), undeniable attributes of these findings are
 both that a) there is considerable variability in the quality of tools under certain conditions and b) there are
 often-dramatic differences between supposedly-equivalent software libraries. The impact that cross-library differences have
 on analytical workflows was well summarized in an attempted replication of experiments on real fMRI
@@ -81,18 +81,18 @@ inadequate description of the specific implementations, environments, or how too
 likely due to the commonly accepted phenomenon of ``Software Aging''~\cite{parnas1994software}. Regardless of the specific
 causes, this inability to re-execute workflows makes claims derived from these workflows irreproducible at the most
 fundamental level. Prior to exploring possible numerical underpinnings behind reproducibility, it is essential to ensure
-the re-executability of analyses. The following section will discuss advances made prior to this thesis which facilitate
+the reusability of analyses. The following section will discuss advances made prior to this thesis which facilitate
 the construction and distribution of re-executable scientific workflows.
 
-\subsection{Software Re-executability}
-There are a number of factors which limit the re-executability scientific workflows, including incomplete specification
+\subsection{Software Reusability}
+There are a number of factors which limit the re-executability or reuse of scientific workflows, including incomplete specification
 of processing detail or lack of data and tool availability~\cite{ioannidis2009repeatability}. While the public sharing
 and dissemination of data may not always be possible in the life sciences due to concerns around ethics or the informed
 consent of participants~\cite{ross2018ethical,duke2013ethics}, there exist practical guides which can help researchers
 overcome this hurdle in certain cases (e.g. for neuroimaging~\cite{brakewood2013ethics} and
 psychology~\cite{meyer2018practical}). Given that ethical barriers should not exist limiting the reusability of
 software, this section will focus on tangible efforts which have been made to increase the re-executability of
-analyses.
+scientific pipelines.
 
 \subsubsection{Virtual Environments}
 The configuration of tools and software environments is a necessary step prior to the execution of computational
@@ -109,15 +109,16 @@ interoperability between libraries.
 Traditionally, the issue of environment configuration has been solved through the use of Virtual Machines
 (VMs)~\cite{smith2005virtual}. VMs are a method for packaging and sharing tools that are pre-installed in an executable
 environment which can be run across computers. A drawback of these machines is that they are often require considerable
-storage and computational overhead, as they contain complete operating systems which must be launched with dedicated
-processors and memory, limiting their portability. Over the last few years, techniques for the virtual encapsulation of
-tools have shifted towards a ``container'' approach, which does not suffer from similar overheads. Container environments,
+storage and computational overhead, as they contain complete operating systems which must be launched in virtualized
+hardware, limiting their portability. Over the last few years, techniques for the virtual encapsulation of tools have
+shifted towards a ``container'' approach, which does not suffer from similar overheads. Container environments,
 made accessible primarily through Docker~\cite{merkel2014docker} and Singularity~\cite{kurtzer2017singularity}, rely on
-the kernel and other libraries of the host operating system, leading to smaller bundles that are less computationally
-expensive to run. While containers are not a perfect solution that guarantee re-executability\footnote{Due to problems
-which may arise by violating some of the best-practices described here:
+the Linux kernel and other libraries of the host operating system, leading to smaller bundles that are less computationally
+expensive to run. While containers are not a perfect solution that guarantee reusability\footnote{Due to problems which
+may arise by violating some of the best-practices described here:
 \url{https://developers.redhat.com/blog/2016/02/24/10-things-to-avoid-in-docker-containers/}}, they are an important
-advancement which greatly increases the ability to distribute and consume scientific software.
+advancement which greatly increases the ability to distribute and consume scientific software, and provide a salve
+against the problem of software aging.
 
 \subsubsection{Tool \& Analysis Descriptions Standards}
 Beyond tool configuration, the most fundamental components of re-executability are a clear characterization of the
@@ -155,42 +156,44 @@ re-executability of software, prior to this thesis there was no single tool in t
 software virtualization, command-line tool descriptions, and provenance capture that supported the iterative
 development and deployment of analysis pipelines across high performance computing systems.
 
-\subsection{Stability}
+\subsection{Numerical Stability}
 \label{sec:bg_stab}
-In cases where the reproduction of claims can be attempted, there are myriad possible sources of observed variability
-between results. While some of these may be avoided when following best practices~\cite{prlic2012ten},
-such as the dependence of an analysis on a pseudo-random number, there are algorithmic properties which may
-persistently affect outcomes. One such property is the stability of an algorithm or tool~\cite{higham2002accuracy}.
-While there are various theoretical and empirical techniques used for evaluating stability, each conceptually refers to
-stability as measure of sensitivity to small perturbations. Issues in stability emerge for one of two reasons: the
-evaluation of poorly conditioned functions (i.e. those containing or nearby singularities), or the accumulation and
-propagation of numerical error~\cite{higham2002accuracy}.
+In cases where the re-execution of software can be attempted and reproduction of claims can be tested, there are myriad
+possible sources of observed variability between results. While some of these may be avoided when following best
+practices~\cite{prlic2012ten}, such as the dependence of an analysis on a pseudo-random number, there are algorithmic
+properties which may persistently affect outcomes and would benefit from characterization. One such property is the
+numerical stability of an algorithm or tool~\cite{higham2002accuracy}. While there are various theoretical and empirical
+techniques used for evaluating stability, each conceptually refers to stability as measure of sensitivity to small
+perturbations. Issues in stability emerge for one of two reasons: the evaluation of poorly conditioned functions (i.e.
+those containing or nearby singularities), or the accumulation and propagation of numerical error~\cite{higham2002accuracy}.
 
 In the case of poorly conditioned functions, instability may often be detected both theoretically and empirically. One
 such measure for evaluating this is the ``condition number'' of a matrix or function~\cite{belsley2005regression}. While
 the mathematical form can be simplified for different contexts (i.e. matrices or linear functions), its general
 definition ultimately describes the worst-case error in the output for a relative change in input, as that change to input
 asymptotically approaches $0$~\cite{belsley2005regression}. This allows functions to be evaluated with respect to
-their sensitivity to minor perturbations of their inputs, where a smaller condition number refers to smaller change.
-While this can in some cases be linked to a more stable function, it ultimately does not consider the implementation used
-so more accurately refers to how ``easy'' a function is to solve. In doing so, the condition number relates two distinct
-components of the stability of a problem: the forward error and backward error. The forward error is defined as the
-deviation of an output from the true result, while the backward error is defined as the smallest change to an input such
-that the theoretical result matches the empirical result~\cite{higham2002accuracy}. The condition number is bounded by a
-relationship of these values, such that it will always be greater than or equal to the ratio of the forward error to the
-backward error~\cite{belsley2005regression}. In practice, forward and backward error are often combined into a measure of
-mixed stability which evaluates how closely a solution matches another when the input is perturbed slightly. In the case
-of problems where there is no ground-truth solution (e.g. alignment of an image to a template) it is impossible to
-explore the forward error independently, while the backward error may be evaluated in certain cases (e.g. if the
-approximation of a ground-truth alignment exists). Given that there is no guarantee that the backward error is measurable
-for an arbitrary problem, the mixed stability is commonly evaluated.
+their sensitivity to minor perturbations of their inputs, where a smaller condition number refers to smaller effect of
+perturbations.
+
+While the condition number of a function can in some cases refer to its practical robustness to perturbations, it ultimately
+does not consider implementation so more accurately refers to how ``easy'' a function is to evaluate. In doing so, the
+condition number relates two distinct components of the stability of a problem: the forward error and backward error. The
+forward error is defined as the deviation of an output from the true result, while the backward error is defined as the
+smallest change to an input such that the theoretical result matches the empirical result~\cite{higham2002accuracy}. The
+condition number is bounded by a relationship of these values, such that it will always be greater than or equal to the
+ratio of the forward error to the backward error~\cite{belsley2005regression}. In practice, forward and backward error are
+often combined into a measure of mixed stability which evaluates how closely a solution matches another when the input is
+perturbed slightly. In the case of problems where there is no ground-truth solution (e.g. alignment of an image to a
+template) it is impossible to explore the forward error independently, while the backward error may be evaluated in certain
+cases (e.g. if the approximation of a ground-truth alignment exists). Given that there is no guarantee that the backward
+error is measurable for an arbitrary problem, the mixed stability is commonly evaluated.
 
 While in some cases it is possible to compute measures of stability analytically, is difficult for all but linear and
 differentiable systems~\cite{kiusalaas2013numerical}, neither of which can be assumed to be the case in complex
 scientific pipelines. In these cases, as well as when exploring the role of numerical errors in the stability of an
 algorithm, numerical analysis~\cite{hildebrand1987introduction} approaches can be used.
 
-\subsubsection{Numerical Analysis}
+\subsection{Numerical Analysis}
 Unlike in the analytical setting discussed above, the propagation and accumulation of numerical error is a largely
 empirical problem. This problem inevitably arises from the digital representation of non-integer data through the
 IEEE-754 floating point standard~\cite{ieee754}. The representation of data in this format consists of three
@@ -205,33 +208,37 @@ types of imprecision when involved in floating point arithmetic: roundoff error 
 cancellation~\cite{muller2018handbook}. Roundoff error, the loss of information in the location(s) following the least
 significant bit, can be caused due to any arithmetic operation on finite floating point numbers. This occurs when an
 operation results in more digits that belong in the mantissa than can be stored~\cite{muller2018handbook}. Conversely,
-catastrophic cancellation occurs when subtracting similar numbers and results in both a larger portion of the mantissa
+catastrophic cancellation occurs when subtracting similar numbers. Results in both a larger portion of the mantissa
 containing non-significant $0$ values populated beyond where either of the original values contained information, and
 the promotion of remaining significant bits that are possibly due to noise from previous errors, amplifying the
-numerical error further~\cite{muller2018handbook}. The handling of all floating point operations according to the
-IEEE-754 standard is deterministic which importantly allows programs to repeatably obtain the same
-results~\cite{ieee754}. However, when the repeated evaluation of floating point operations is unaccounted for by
-software developers or users, this also leads to the masking of propagated numerical errors within software.
+numerical error further~\cite{muller2018handbook}. For example, consider a system with $4$ decimal digits of precision
+which is tasked with evaluating the following expression: $(2.126 + 100.2) - 102.1$. The addition would first be
+evaluated, and rounding error would be introduced in the truncation of $102.226$ to $102.2$. While the result still
+has $4$ significant digits of information, the subtraction will return the value $0.100$, which contains only a single
+significant digit of information.
 
-Stochastic arithmetic is an approach used to study the impact of numerical errors that emerged throughout floating
-point arithmetic~\cite{vignes1993stochastic,connolly2020stochastic}. In this approach, errors associated with
-operations are treated as random variables. One such example is stochastic rounding, in which the results of
-operations are considered to exist as both rounded-up and rounded-down quantities with equal validity. Considering
-this method, let alone any possible other model for error, the results of each operation can be successively
-perturbed to either setting and the exhaustive space of all possible terminal results from an algorithm can be
-described (though in many cases, this would result in far too many conditions to actually realize). Another example
-of stochastic arithmetic is Monte Carlo Arithmetic (MCA)~\cite{Parker1997-qq}. MCA approaches stochastic
-arithmetic using a Monte Carlo~\cite{metropolis1949monte} framework in which algorithms or software pipelines are
-repeatedly evaluated and each floating point operation throughout the execution is randomly perturbed. By repeating the
-evaluation of a pipeline using MCA, it is possible to obtain a distribution of equally plausible results. Several
-libraries have been developed which support the instrumentation of arbitrary tools with
-MCA~\cite{frechtling2015mcalib,Denis2016-wo}, making it a technique which can be readily introduced to a wide array of
-pipelines for exploring numerical stability. A major caveat of this technique is the large computational overhead. As
-instrumented through Verificarlo~\cite{Denis2016-wo}, MCA increases the run-time of floating point operations by
-approximately $100 \times$, and may require $10$s – $100$s of runs to well sample the distribution of plausible
-results~\cite{Sohier2018-ts}. As scientific pipelines are not solely built of floating point operations in practice,
-resulting in slowdowns may be considerably less dramatic when instrumented with MCA. Regardless, the repeated execution
-of perturbed analyses unavoidably increases the run-time of experiments according to the number of simulations
+The handling of all floating point operations according to the IEEE-754 standard is deterministic which importantly
+allows programs to repeatably obtain the same results~\cite{ieee754}. However, when the repeated evaluation of floating
+point operations is unaccounted for by software developers or users, this also leads to the masking of propagated
+numerical errors within software. Stochastic arithmetic is an approach used to study the impact of numerical errors that
+emerged throughout floating point arithmetic~\cite{vignes1993stochastic,connolly2020stochastic}. In this approach, errors
+associated with operations are treated as random variables. One such example is stochastic rounding, in which the results
+of operations are considered to exist as both rounded-up and rounded-down quantities with equal validity. Considering
+this method, let alone any possible other model for error in the stochastic arithmetic context, the results of each
+operation can be successively perturbed to either setting and the exhaustive space of all possible terminal results
+from an algorithm can be described (though in many cases, this would result in far too many conditions to actually
+realize). Another example of stochastic arithmetic is Monte Carlo Arithmetic (MCA)~\cite{Parker1997-qq}. MCA
+approaches stochastic arithmetic using a Monte Carlo~\cite{metropolis1949monte} framework in which algorithms or software
+pipelines are repeatedly evaluated and each floating point operation throughout the execution is randomly perturbed. By
+repeating the evaluation of a pipeline using MCA, it is possible to obtain a distribution of equally plausible results at
+a configurable machine precision. Several libraries have been developed which support the instrumentation of arbitrary
+tools with MCA~\cite{frechtling2015mcalib,Denis2016-wo}, making it a technique which can be readily introduced to a wide
+array of pipelines for exploring numerical stability. A major caveat of this technique is the large computational
+overhead. As instrumented through Verificarlo~\cite{Denis2016-wo}, MCA increases the run-time of floating point
+operations by approximately $100 \times$, and may require $10$s – $100$s of runs to well sample the distribution of
+plausible results~\cite{Sohier2018-ts}. As scientific pipelines are not solely built of floating point operations in
+practice, resulting slowdowns may be considerably less dramatic when instrumented with MCA. Regardless, the repeated
+execution of perturbed analyses unavoidably increases the run-time of experiments according to the number of simulations
 performed.
 
 While MCA allows for the perturbation of pipelines, the results cannot be evaluated in the conditioning context
@@ -245,10 +252,11 @@ variance across simulations. In practice, this allows for the identification of 
 perturbations, and the construction of a margin of error around results. In contexts such as neuroimaging, performing
 MCA perturbations and evaluating the number of significant digits is particularly attractive as this method does not
 require a) a differentiable model of the given algorithm or pipeline, or b) an expected ground-truth result. Prior to
-this thesis these techniques had not been applied to the study of stability in neuroimaging pipelines.
+this thesis the estimation of significant digits through MCA had not been applied to the study of stability in
+neuroimaging pipelines.
 
 
-\subsection{Neuroimaging}
+\subsection{Neuroimaging Data \& Pipelines}
 Understanding the structure and function of the brain has long been a topic of exploration~\cite{raichle2006brain}, and
 neuroimaging enables this exploration \textit{in vivo} in humans. Modern neuroimaging techniques rely on complex image
 acquisition techniques, such as Magnetic Resonance Imaging (MRI)~\cite{young1987magnetic}, Electroencephalography
@@ -260,10 +268,8 @@ structures (e.g. T1w~\cite{bergamino2014review}, T2w~\cite{chavhan2009principles
 BOLD~\cite{logothetis2004nature}), or the diffusion of water in the brain (e.g. DWI~\cite{bammer2003basic}). Each of
 these techniques provides a unique look at the structure and function of the brain, and neuroimaging pipelines often
 consider one-or-more of these modalities at once~\cite{esteban2019fmriprep,garyfallidis2014dipy}. For the purpose of
-this thesis, I will focus on evaluating the analysis of a diffusion imaging method towards the reconstruction structural
-connectivity maps, or, connectomes.
-
-\subsubsection{Structural Connectome Estimation}
+this thesis, I will focus on evaluating the analysis of a diffusion imaging method towards the reconstruction of
+structural connectivity maps, or, connectomes.
 
 Diffusion weighted imaging, DWI, is an imaging method that can be used for the identification of connective tissue
 (white matter tracts) within the brain~\cite{wandell2016clarifying,thomason2011diffusion}. These images are acquired by
@@ -279,10 +285,10 @@ images can be conceptually decoupled into two components: pre-processing and mod
 
 \paragraph*{Pre-processing}
 While distinct datasets and libraries may present slight deviations in the pre-processing of data, I will here describe
-the backbone of a widely applicable and community-accepted pre-processing workflow using the FSL
-library~\cite{WOOLRICH2009S173,jenkinson2012fsl,Glasser2013-vf} and briefly discuss the rationale behind each
-component. The required data for the pre-processing workflow described here is: a set of 4-D diffusion images and
-associated acquisition parameters, a structural T1w image, and a template reference image (such as the ICBM152
+the backbone of a widely applicable and community-accepted pre-processing
+workflow~\cite{WOOLRICH2009S173,jenkinson2012fsl,Glasser2013-vf} and briefly discuss the rationale behind each component.
+The required data for the pre-processing workflow described here is: a set of 4-D diffusion images and associated
+acquisition parameters, a structural T1w image, and a template reference image (such as the ICBM152
 template~\cite{lancaster2007bias}). The diffusion images are first de-noised and aligned to one another alongside the
 removal of structured eddy-current artifacts~\cite{andersson2016integrated} commonly found in the images. The structural
 image is then aligned to the template and a single reference diffusion volume separately via an affine
@@ -329,10 +335,10 @@ underlying accuracy of models being evaluated.
 In an effort to tie together the previous explorations of reproducibility and stability to neuroimaging, I will
 conclude this section with a summary of studies which shed light on these issues in the context of brain imaging.
 Examples of issues in reproducibility have arisen in neuroimaging across all operational scales from differences in
-experimental configuration across teams to numerical sensitivity in to minor numerical perturbations.
+experimental configuration across teams to numerical sensitivity with respect to minor numerical perturbations.
 
-As neuroimaging is a relatively young and quickly growing field, there exist many libraries and tools which exist in
-parallel and have been designed to accomplish similar tasks. Depending on the local preferences and expertise, scientists
+As neuroimaging is a relatively young and quickly growing field, there co-exist many libraries and tools which have been
+designed to accomplish similar tasks in parallel. Depending on the local preferences and expertise, scientists
 may elect to use one process over another at any stage throughout their analysis. In practice, this may lead researchers
 to many distinct answers to the same question. This effect of ``researcher's degrees of freedom'' was recently explored
 for the dissection of white matter bundles derived from Diffusion MRI~\cite{schilling2020tractography}. Independent teams
@@ -344,7 +350,10 @@ exploring the variability across teams in the context of a set of task-based fMR
 experiments found that not only did no two teams of the $70$ included use the same technique, but that findings were in
 considerable disagreement across groups~\cite{botvinik2020variability}. Across $9$ tested hypotheses, on average $20\%$
 of the teams arrived at different conclusions from the majority, clearly demonstrating the impact of analytical
-flexibility on the generation of consistent results.
+flexibility on the generation of consistent results. Interestingly, the two aforementioned studies which explored the
+variability across teams came to differing conclusions: while in the case of diffusion, the authors recommend removing
+heterogeneity in this technique, in the functional case this broad characterization of the space was deemed an essential
+building block.
 
 The variability observed across these distinct-but-similar pipelines was likely introduced not at a single point, but
 at various stages within the pipelines. In the case of non-linear registration, for example, a comparison of $14$
@@ -353,23 +362,23 @@ results~\cite{klein2009evaluation}. Not only did this evaluation demonstrate tha
 demonstrated that no single method was universally more performant than the others. Even when an effort is made to
 match workflows as closely as possible across libraries, considerable differences have been found in the terminal
 results. When replicating a series of fMRI experiments using the three most commonly used analysis libraries, the
-location and strength of brain activations were found to vary considerably~\cite{bowring2019exploring}. These
-inconsistencies may be the result of methodological differences in some cases (e.g. the possible use of global signal
-regression~\cite{murphy2017towards}), while in others they may be due to implementation differences or software bugs.
-When evaluating the statistical testing frameworks in these same libraries, false-positive rates were found to peak at
-$70\%$ in some cases when reporting a p-value of $0.05$~\cite{eklund2016cluster}, and further demonstrated that the
+location and strength of brain activations were found to vary considerably~\cite{bowring2019exploring,bowringerratum}.
+These inconsistencies may be the result of methodological differences in some cases (e.g. the possible use of global
+signal regression~\cite{murphy2017towards}), while in others they may be due to implementation differences or software
+bugs. When evaluating the statistical testing frameworks in these same libraries, false-positive rates were found to peak
+at $70\%$ in some cases when reporting a p-value of $0.05$~\cite{eklund2016cluster}, and further demonstrated that the
 conditions under which each method performed the best was variable across tools. We can see from these studies that not
 only do differences exist across tools at each stage of analysis pipelines, but also that each tool has a unique
 relationship between the quality of their performance and the data being used. The extreme variability-in-variability
-that we observe is likely due to underlying numerical properties of the algorithms, and must be explored on a
+that we observe might be due to underlying numerical properties of the algorithms, and must be explored on a
 tool-by-tool basis.
 
 The stability of neuroimaging pipelines has begun to be explored in specific use-cases through the perturbation of data
 or libraries prior to processing. In the case of Diffusion MRI, the stability of tensor models were studied
 analytically and validated experimentally~\cite{skare2000condition}. In this study, the stability of each tensor
-reconstruction was first evaluated and found considerable variability in stability across algorithms, ranging from
-nearly $1$ (relatively stable) to nearly $10$ (highly unstable). The models were then tested across a range of operating
-points, and showed a tight relationship between the observed variability and the theoretical
+reconstruction was first evaluated and found to contain considerable variability in stability across algorithms, ranging
+from nearly $1$ (relatively stable) to nearly $10$ (highly unstable). The models were then tested across a range of
+operating points, and showed a tight relationship between the observed variability and the theoretical
 conditioning~\cite{skare2000condition}. Importantly, this work clearly demonstrated that experimental variability may
 serve as a proxy for theoretical conditioning. This work also illustrated an often overlooked feature of variability: that
 the stability of models varies across the space of inputs, and thus any evaluation of stability is inextricably linked to
