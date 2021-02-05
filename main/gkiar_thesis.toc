@@ -13,48 +13,48 @@
 \contentsline {subsubsection}{\numberline {2.3.1}Virtual Environments}{9}{subsubsection.22}% 
 \contentsline {subsubsection}{\numberline {2.3.2}Tool \& Analysis Descriptions Standards}{10}{subsubsection.24}% 
 \contentsline {subsection}{\numberline {2.4}Numerical Stability}{11}{subsection.25}% 
-\contentsline {subsection}{\numberline {2.5}Numerical Analysis}{13}{subsection.26}% 
-\contentsline {subsection}{\numberline {2.6}Neuroimaging Data \& Pipelines}{15}{subsection.27}% 
-\contentsline {subsection}{\numberline {2.7}Evidence of Instability in Neuroimaging}{18}{subsection.28}% 
-\contentsline {part}{I\hspace {1em}\ignorespaces \relax \unhcopy \strutbox \hspace {2em}A Serverless Tool for Platform Agnostic Computational\\\relax \unhcopy \strutbox \hspace {15em}Experiment Management}{21}{part.30}% 
-\contentsline {secnonum}{\numberline {}\ignorespaces \hskip 2em\relax \hskip 2em\relax Abstract}{22}{secnonum.31}% 
-\contentsline {section}{\numberline {\hskip 1em\relax Ch.{I} - 1}\ignorespaces \hskip 2em\relax \hskip 2em\relax Introduction}{23}{section.32}% 
-\contentsline {section}{\numberline {\hskip 1em\relax Ch.{I} - 2}\ignorespaces \hskip 2em\relax \hskip 2em\relax Emergent Technologies in Reproducible Neuroscience}{24}{section.33}% 
-\contentsline {section}{\numberline {\hskip 1em\relax Ch.{I} - 3}\ignorespaces \hskip 2em\relax \hskip 2em\relax The Clowdr Microtool}{27}{section.34}% 
-\contentsline {section}{\numberline {\hskip 1em\relax Ch.{I} - 4}\ignorespaces \hskip 2em\relax \hskip 2em\relax Performing Experiments With Clowdr}{30}{section.39}% 
-\contentsline {section}{\numberline {\hskip 1em\relax Ch.{I} - 5}\ignorespaces \hskip 2em\relax \hskip 2em\relax Discussion}{33}{section.42}% 
-\contentsline {part}{II\hspace {1em}\ignorespaces \relax \unhcopy \strutbox \hspace {3em}Comparing Perturbation Models for Evaluating\\\relax \unhcopy \strutbox \hspace {11.7em}Stability of Neuroimaging Pipelines}{39}{part.44}% 
-\contentsline {secnonum}{\numberline {}\ignorespaces \hskip 2em\relax \hskip 2em\relax Abstract}{40}{secnonum.45}% 
-\contentsline {section}{\numberline {\hskip 1em\relax Ch.{II} - 1}\ignorespaces \hskip 2em\relax \hskip 2em\relax Introduction}{41}{section.46}% 
-\contentsline {section}{\numberline {\hskip 1em\relax Ch.{II} - 2}\ignorespaces \hskip 2em\relax \hskip 2em\relax Methods}{42}{section.47}% 
-\contentsline {section}{\numberline {\hskip 1em\relax Ch.{II} - 3}\ignorespaces \hskip 2em\relax \hskip 2em\relax Results}{48}{section.54}% 
-\contentsline {section}{\numberline {\hskip 1em\relax Ch.{II} - 4}\ignorespaces \hskip 2em\relax \hskip 2em\relax Discussion}{53}{section.59}% 
-\contentsline {section}{\numberline {\hskip 1em\relax Ch.{II} - 5}\ignorespaces \hskip 2em\relax \hskip 2em\relax Conclusion}{57}{section.64}% 
-\contentsline {part}{III\hspace {1em}\ignorespaces \relax \unhcopy \strutbox \hspace {1.5em}Numerical Instabilities in Analytical Pipelines Lead to\\\relax \unhcopy \strutbox \hspace {8.4em}Large and Meaningful Variability in Brain Networks}{61}{part.66}% 
-\contentsline {secnonum}{\numberline {}\ignorespaces \hskip 2em\relax \hskip 2em\relax Abstract}{62}{secnonum.67}% 
-\contentsline {section}{\numberline {\hskip 1em\relax Ch.{III} - 1}\ignorespaces \hskip 2em\relax \hskip 2em\relax Graphs Vary Widely With Perturbations}{63}{section.68}% 
-\contentsline {section}{\numberline {\hskip 1em\relax Ch.{III} - 2}\ignorespaces \hskip 2em\relax \hskip 2em\relax Subject-Specific Signal is Amplified While Off-Target Biases Are Reduced}{65}{section.71}% 
-\contentsline {section}{\numberline {\hskip 1em\relax Ch.{III} - 3}\ignorespaces \hskip 2em\relax \hskip 2em\relax {Distributions of Graph Statistics Are Reliable, But Individual\\Statistics Are Not}}{67}{section.74}% 
-\contentsline {section}{\numberline {\hskip 1em\relax Ch.{III} - 4}\ignorespaces \hskip 2em\relax \hskip 2em\relax Uncertainty in Brain-Phenotype Relationships}{69}{section.77}% 
-\contentsline {section}{\numberline {\hskip 1em\relax Ch.{III} - 5}\ignorespaces \hskip 2em\relax \hskip 2em\relax Discussion}{70}{section.80}% 
-\contentsline {section}{\numberline {\hskip 1em\relax Ch.{III} - 6}\ignorespaces \hskip 2em\relax \hskip 2em\relax Materials \& Methods}{72}{section.81}% 
-\contentsline {supsec}{\numberline {\hskip 1em\relax Ch.{III} - S1}\ignorespaces \hskip 2em\relax \hskip 2em\relax Graph Correlation}{82}{supsec.82}% 
-\contentsline {supsec}{\numberline {\hskip 1em\relax Ch.{III} - S2}\ignorespaces \hskip 2em\relax \hskip 2em\relax Complete Discriminability Analysis}{83}{supsec.85}% 
-\contentsline {supsec}{\numberline {\hskip 1em\relax Ch.{III} - S3}\ignorespaces \hskip 2em\relax \hskip 2em\relax Univariate Graph Statistics}{84}{supsec.88}% 
-\contentsline {part}{IV\hspace {1em}\ignorespaces \relax \unhcopy \strutbox \hspace {1em}Data Augmentation Through Monte Carlo Arithmetic Leads\\\relax \unhcopy \strutbox \hspace {8.8em}to More Generalizable Classification in Connectomics}{86}{part.92}% 
-\contentsline {secnonum}{\numberline {}\ignorespaces \hskip 2em\relax \hskip 2em\relax Abstract}{87}{secnonum.93}% 
-\contentsline {section}{\numberline {\hskip 1em\relax Ch.{IV} - 1}\ignorespaces \hskip 2em\relax \hskip 2em\relax Introduction}{88}{section.94}% 
-\contentsline {section}{\numberline {\hskip 1em\relax Ch.{IV} - 2}\ignorespaces \hskip 2em\relax \hskip 2em\relax Materials \& Methods}{88}{section.95}% 
-\contentsline {section}{\numberline {\hskip 1em\relax Ch.{IV} - 3}\ignorespaces \hskip 2em\relax \hskip 2em\relax Results}{93}{section.98}% 
-\contentsline {section}{\numberline {\hskip 1em\relax Ch.{IV} - 4}\ignorespaces \hskip 2em\relax \hskip 2em\relax Discussion}{98}{section.107}% 
-\contentsline {section}{\numberline {\hskip 1em\relax Ch.{IV} - 5}\ignorespaces \hskip 2em\relax \hskip 2em\relax Conclusion}{101}{section.108}% 
-\contentsline {section}{\numberline {3}Discussion}{105}{section.110}% 
-\contentsline {subsection}{\numberline {3.1}The Impact of Perturbing Structural Connectome Estimation}{105}{subsection.111}% 
-\contentsline {subsection}{\numberline {3.2}Extrapolating Conclusions Across Domains}{109}{subsection.112}% 
-\contentsline {subsection}{\numberline {3.3}Future Directions in Operationalizing Perturbation Analysis}{112}{subsection.114}% 
-\contentsline {subsubsection}{\numberline {3.3.1}Targets for Perturbation}{112}{subsubsection.115}% 
-\contentsline {subsubsection}{\numberline {3.3.2}Applications of Perturbations \& Open Questions}{113}{subsubsection.116}% 
-\contentsline {subsection}{\numberline {3.4}Hindsight}{115}{subsection.117}% 
-\contentsline {section}{\numberline {4}Conclusion}{118}{section.124}% 
-\contentsline {section}{\numberline {5}References}{119}{section.125}% 
+\contentsline {subsection}{\numberline {2.5}Numerical Analysis}{13}{subsection.27}% 
+\contentsline {subsection}{\numberline {2.6}Neuroimaging Data \& Pipelines}{16}{subsection.29}% 
+\contentsline {subsection}{\numberline {2.7}Evidence of Instability in Neuroimaging}{18}{subsection.30}% 
+\contentsline {part}{I\hspace {1em}\ignorespaces \relax \unhcopy \strutbox \hspace {2em}A Serverless Tool for Platform Agnostic Computational\\\relax \unhcopy \strutbox \hspace {15em}Experiment Management}{23}{part.33}% 
+\contentsline {secnonum}{\numberline {}\ignorespaces \hskip 2em\relax \hskip 2em\relax Abstract}{24}{secnonum.34}% 
+\contentsline {section}{\numberline {\hskip 1em\relax Ch.{I} - 1}\ignorespaces \hskip 2em\relax \hskip 2em\relax Introduction}{25}{section.35}% 
+\contentsline {section}{\numberline {\hskip 1em\relax Ch.{I} - 2}\ignorespaces \hskip 2em\relax \hskip 2em\relax Emergent Technologies in Reproducible Neuroscience}{26}{section.36}% 
+\contentsline {section}{\numberline {\hskip 1em\relax Ch.{I} - 3}\ignorespaces \hskip 2em\relax \hskip 2em\relax The Clowdr Microtool}{29}{section.37}% 
+\contentsline {section}{\numberline {\hskip 1em\relax Ch.{I} - 4}\ignorespaces \hskip 2em\relax \hskip 2em\relax Performing Experiments With Clowdr}{32}{section.42}% 
+\contentsline {section}{\numberline {\hskip 1em\relax Ch.{I} - 5}\ignorespaces \hskip 2em\relax \hskip 2em\relax Discussion}{35}{section.45}% 
+\contentsline {part}{II\hspace {1em}\ignorespaces \relax \unhcopy \strutbox \hspace {3em}Comparing Perturbation Models for Evaluating\\\relax \unhcopy \strutbox \hspace {11.7em}Stability of Neuroimaging Pipelines}{41}{part.47}% 
+\contentsline {secnonum}{\numberline {}\ignorespaces \hskip 2em\relax \hskip 2em\relax Abstract}{42}{secnonum.48}% 
+\contentsline {section}{\numberline {\hskip 1em\relax Ch.{II} - 1}\ignorespaces \hskip 2em\relax \hskip 2em\relax Introduction}{43}{section.49}% 
+\contentsline {section}{\numberline {\hskip 1em\relax Ch.{II} - 2}\ignorespaces \hskip 2em\relax \hskip 2em\relax Methods}{44}{section.50}% 
+\contentsline {section}{\numberline {\hskip 1em\relax Ch.{II} - 3}\ignorespaces \hskip 2em\relax \hskip 2em\relax Results}{50}{section.57}% 
+\contentsline {section}{\numberline {\hskip 1em\relax Ch.{II} - 4}\ignorespaces \hskip 2em\relax \hskip 2em\relax Discussion}{55}{section.62}% 
+\contentsline {section}{\numberline {\hskip 1em\relax Ch.{II} - 5}\ignorespaces \hskip 2em\relax \hskip 2em\relax Conclusion}{59}{section.67}% 
+\contentsline {part}{III\hspace {1em}\ignorespaces \relax \unhcopy \strutbox \hspace {1.5em}Numerical Instabilities in Analytical Pipelines Lead to\\\relax \unhcopy \strutbox \hspace {8.4em}Large and Meaningful Variability in Brain Networks}{63}{part.69}% 
+\contentsline {secnonum}{\numberline {}\ignorespaces \hskip 2em\relax \hskip 2em\relax Abstract}{64}{secnonum.70}% 
+\contentsline {section}{\numberline {\hskip 1em\relax Ch.{III} - 1}\ignorespaces \hskip 2em\relax \hskip 2em\relax Graphs Vary Widely With Perturbations}{65}{section.71}% 
+\contentsline {section}{\numberline {\hskip 1em\relax Ch.{III} - 2}\ignorespaces \hskip 2em\relax \hskip 2em\relax Subject-Specific Signal is Amplified While Off-Target Biases Are Reduced}{67}{section.74}% 
+\contentsline {section}{\numberline {\hskip 1em\relax Ch.{III} - 3}\ignorespaces \hskip 2em\relax \hskip 2em\relax {Distributions of Graph Statistics Are Reliable, But Individual\\Statistics Are Not}}{69}{section.77}% 
+\contentsline {section}{\numberline {\hskip 1em\relax Ch.{III} - 4}\ignorespaces \hskip 2em\relax \hskip 2em\relax Uncertainty in Brain-Phenotype Relationships}{71}{section.80}% 
+\contentsline {section}{\numberline {\hskip 1em\relax Ch.{III} - 5}\ignorespaces \hskip 2em\relax \hskip 2em\relax Discussion}{72}{section.83}% 
+\contentsline {section}{\numberline {\hskip 1em\relax Ch.{III} - 6}\ignorespaces \hskip 2em\relax \hskip 2em\relax Materials \& Methods}{74}{section.84}% 
+\contentsline {supsec}{\numberline {\hskip 1em\relax Ch.{III} - S1}\ignorespaces \hskip 2em\relax \hskip 2em\relax Graph Correlation}{84}{supsec.85}% 
+\contentsline {supsec}{\numberline {\hskip 1em\relax Ch.{III} - S2}\ignorespaces \hskip 2em\relax \hskip 2em\relax Complete Discriminability Analysis}{85}{supsec.88}% 
+\contentsline {supsec}{\numberline {\hskip 1em\relax Ch.{III} - S3}\ignorespaces \hskip 2em\relax \hskip 2em\relax Univariate Graph Statistics}{86}{supsec.91}% 
+\contentsline {part}{IV\hspace {1em}\ignorespaces \relax \unhcopy \strutbox \hspace {1em}Data Augmentation Through Monte Carlo Arithmetic Leads\\\relax \unhcopy \strutbox \hspace {8.8em}to More Generalizable Classification in Connectomics}{88}{part.95}% 
+\contentsline {secnonum}{\numberline {}\ignorespaces \hskip 2em\relax \hskip 2em\relax Abstract}{89}{secnonum.96}% 
+\contentsline {section}{\numberline {\hskip 1em\relax Ch.{IV} - 1}\ignorespaces \hskip 2em\relax \hskip 2em\relax Introduction}{90}{section.97}% 
+\contentsline {section}{\numberline {\hskip 1em\relax Ch.{IV} - 2}\ignorespaces \hskip 2em\relax \hskip 2em\relax Materials \& Methods}{90}{section.98}% 
+\contentsline {section}{\numberline {\hskip 1em\relax Ch.{IV} - 3}\ignorespaces \hskip 2em\relax \hskip 2em\relax Results}{95}{section.101}% 
+\contentsline {section}{\numberline {\hskip 1em\relax Ch.{IV} - 4}\ignorespaces \hskip 2em\relax \hskip 2em\relax Discussion}{100}{section.110}% 
+\contentsline {section}{\numberline {\hskip 1em\relax Ch.{IV} - 5}\ignorespaces \hskip 2em\relax \hskip 2em\relax Conclusion}{103}{section.111}% 
+\contentsline {section}{\numberline {3}Discussion}{107}{section.113}% 
+\contentsline {subsection}{\numberline {3.1}The Impact of Perturbing Structural Connectome Estimation}{107}{subsection.114}% 
+\contentsline {subsection}{\numberline {3.2}Extrapolating Conclusions Across Domains}{111}{subsection.115}% 
+\contentsline {subsection}{\numberline {3.3}Future Directions in Operationalizing Perturbation Analysis}{114}{subsection.117}% 
+\contentsline {subsubsection}{\numberline {3.3.1}Targets for Perturbation}{115}{subsubsection.118}% 
+\contentsline {subsubsection}{\numberline {3.3.2}Applications of Perturbations \& Open Questions}{117}{subsubsection.119}% 
+\contentsline {subsection}{\numberline {3.4}Hindsight}{119}{subsection.120}% 
+\contentsline {section}{\numberline {4}Conclusion}{122}{section.128}% 
+\contentsline {section}{\numberline {5}References}{123}{section.129}% 
 \contentsfinish 

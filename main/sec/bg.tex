@@ -186,7 +186,18 @@ often combined into a measure of mixed stability which evaluates how closely a s
 perturbed slightly. In the case of problems where there is no ground-truth solution (e.g. alignment of an image to a
 template) it is impossible to explore the forward error independently, while the backward error may be evaluated in certain
 cases (e.g. if the approximation of a ground-truth alignment exists). Given that there is no guarantee that the backward
-error is measurable for an arbitrary problem, the mixed stability is commonly evaluated.
+error is measurable for an arbitrary problem, the mixed stability is commonly evaluated (Figure~\ref{fig:stability}).
+
+\begin{figure}[b!]
+\centering
+\includegraphics[width=0.4\textwidth]{./figs/forward_stab.pdf}
+\includegraphics[width=0.4\textwidth]{./figs/mixed_stab.pdf}
+\caption[Illustration of forward, backward, and mixed stability]{Illustration of forward and backward (left) or mixed
+stability (right) definitions. Originally published in the public domain with the following captions. Left: Diagram showing
+the forward error $\Delta y$ and the backward error $\Delta x$, and their relation to the exact solution map $f$ and the
+numerical solution $f*$. Right: Mixed stability combines the concepts of forward error and backward error.\cite{stability_wiki}}
+\label{fig:stability}
+\end{figure}
 
 While in some cases it is possible to compute measures of stability analytically, is difficult for all but linear and
 differentiable systems~\cite{kiusalaas2013numerical}, neither of which can be assumed to be the case in complex
@@ -241,19 +252,30 @@ practice, resulting slowdowns may be considerably less dramatic when instrumente
 execution of perturbed analyses unavoidably increases the run-time of experiments according to the number of simulations
 performed.
 
+\begin{figure}[b!]
+\centering
+\includegraphics[width=0.4\textwidth]{./figs/low_accuracy.pdf}
+\includegraphics[width=0.4\textwidth]{./figs/low_precision.pdf}
+\caption[Relationship between accuracy and precision]{The relationship between accuracy and precision, and therefore
+stability. While precise/stable models may be inaccurate and contain bias (left), imprecision limits the trustworthiness
+of even accurate models (right). Originally published in the public domain with the following captions. Left: Low accuracy due
+to low trueness. Right: Low accuracy due to low precision.~\cite{accuracy_wiki}}
+\label{fig:acc_pre}
+\end{figure}
+
 While MCA allows for the perturbation of pipelines, the results cannot be evaluated in the conditioning context
 introduced above since the change in inputs is unknown, as perturbation happens iteratively throughout the pipeline. It
 here becomes useful to consider stability a measure of precision; while stability and precision ``have nothing to do
-with accuracy''~\cite{kiusalaas2013numerical}, they can serve as valuable measures of consistency. One measure of
-precision applicable in this context is the number of significant digits~\cite{Parker1997-qq}. While there are distinct
-context-appropriate formulas which have varying underlying assumptions about the error~\cite{sohier2018confidence},
-Parker~\cite{Parker1997-qq} first defined this in an MCA context as a function of the ratio between the mean and
-variance across simulations. In practice, this allows for the identification of which digits are unchanging across
-perturbations, and the construction of a margin of error around results. In contexts such as neuroimaging, performing
-MCA perturbations and evaluating the number of significant digits is particularly attractive as this method does not
-require a) a differentiable model of the given algorithm or pipeline, or b) an expected ground-truth result. Prior to
-this thesis the estimation of significant digits through MCA had not been applied to the study of stability in
-neuroimaging pipelines.
+with accuracy''~\cite{kiusalaas2013numerical}, they can serve as valuable measures of consistency
+(Figure~\ref{fig:acc_pre}). One measure of precision applicable in this context is the number of significant
+digits~\cite{Parker1997-qq}. While there are distinct context-appropriate formulas which have varying underlying
+assumptions about the error~\cite{sohier2018confidence}, Parker~\cite{Parker1997-qq} first defined this in an MCA
+context as a function of the ratio between the mean and variance across simulations. In practice, this allows for the
+identification of which digits are unchanging across perturbations, and the construction of a margin of error around
+results. In contexts such as neuroimaging, performing MCA perturbations and evaluating the number of significant digits
+is particularly attractive as this method does not require a) a differentiable model of the given algorithm or pipeline,
+or b) an expected ground-truth result. Prior to this thesis the estimation of significant digits through MCA had not been
+applied to the study of stability in neuroimaging pipelines.
 
 
 \subsection{Neuroimaging Data \& Pipelines}
@@ -373,6 +395,16 @@ relationship between the quality of their performance and the data being used. T
 that we observe might be due to underlying numerical properties of the algorithms, and must be explored on a
 tool-by-tool basis.
 
+\begin{figure}[b!]
+\centering
+\includegraphics[width=0.6\textwidth]{./figs/onevoxel_civetfs.png}
+\caption[Instability due to one-voxel perturbations]{Instability due to one-voxel perturbations of two cortical surface
+estimation pipelines. Originally published with the following caption: Projected distance from perturbed to original
+gray surface. Warm colors indicate that the original lies above the perturbed surface, while cool colors indicate that
+the perturbed lies above the original surface. Green values near 0 are the ideal.~\cite{Lewis2017-ll}.}
+\label{fig:onevox_cortical}
+\end{figure}
+
 The stability of neuroimaging pipelines has begun to be explored in specific use-cases through the perturbation of data
 or libraries prior to processing. In the case of Diffusion MRI, the stability of tensor models were studied
 analytically and validated experimentally~\cite{skare2000condition}. In this study, the stability of each tensor
@@ -385,7 +417,7 @@ the stability of models varies across the space of inputs, and thus any evaluati
 both the tool and data being used.
 
 Another exploration of stability through experimental perturbation compared two tools for cortical and sub-cortical
-surface estimation~\cite{Lewis2017-ll}. In this experiment, grey matter surfaces were estimated from a single image using
+surface estimation~\cite{Lewis2017-ll} (Figure~\ref{fig:onevox_cortical}). In this experiment, grey matter surfaces were estimated from a single image using
 two toolboxes. Subsequently, the intensity of a single voxel within the white matter (centre of the Corpus Callosum) of
 the image was amplified by $1\%$ of its original value, and the tools were re-run. This analysis showed significant
 differences between not only the original and perturbed surfaces, but showed non-uniformity in the variability across

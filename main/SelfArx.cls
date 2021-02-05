@@ -222,11 +222,13 @@ justification=raggedright]{caption}
 %----------------------------------------------------------------------
 %	CREATE SUPPLEMENT SECTIONS
 %----------------------------------------------------------------------  
-\newcommand{\resetsections}[1]{%
+\newcommand{\resetsections}[2]{%
         \setcounter{section}{#1}
         \setcounter{supsec}{0}
         \renewcommand{\thesection}{\arabic{section}}%
         \renewcommand{\thesupsec}{}%
+        \setcounter{figure}{#2}
+        \renewcommand{\thefigure}{\arabic{figure}}%
 }
 
 \newcommand{\beginfront}{%
