@@ -1,1 +1,35 @@
-Je ferais la traduction après avoir completé le resumé en anglais...
+La neuroimagerie, un domaine axé sur la compréhension de la structure et de la fonction du cerveau, a
+évolué pour devenir une discipline informatique. Ces dernières années, grâce à la collecte et à
+l'évaluation de riches ensembles de données descriptifs, d'innombrables études ont exploré les
+relations entre l'imagerie par résonance magnétique du cerveau et des informations phénotypiques
+telles que les pathologies, le sexe ou différents stades de développement. Cependant, comme pour de
+nombreuses disciplines scientifiques modernes, la fiabilité de ces relations dépend de la fiabilité
+et de l'accessibilité des méthodes et des logiciels de calcul utilisés. Avec l'émergence de
+problématiques liées à la reproductibilité, les études de neuroimagerie sont l'objet d'un certain
+scepticisme quant à la robustesse de leurs résultats. Dans certains cas, la reproductibilité peut être
+garantie par la publication des ensembles de données et des logiciels utilisés. Dans d'autres cas, la
+sensibilité ou l'instabilité des algorithmes numériques utilisés pour traiter ces données complexes peut
+générer une variabilité importante et inattendue. Bien qu'une variabilité importante des analyses de
+neuroimagerie ait été observée à travers la communauté scientifique, du fait de variations dans le choix
+des méthodes, des suites logicielles, ou même du système d'exploitation utilisé, à ce jour aucune étude
+n'a caractérisé l'effet de l'erreur machine sur les résultats. Dans cette thèse, j'ai développé une
+infrastructure pour les environnements de calcul haute performance qui permet l'analyse à grande échelle
+de la stabilité numérique des expériences en neuroimagerie. J’ai utilisé cette infrastructure pour
+évaluer le rôle que l'incertitude numérique joue dans le calcul de la reproductibilité des résultats. En
+me concentrant sur la cartographie des connexions entre les régions du cerveau, appelée aussi la
+connectomique structurelle, j'ai perturbé la création des connectomes  et j'ai ensuite évalué la
+variabilité observée pour caractériser l'accumulation de l'erreur numérique au cours d'une analyse. J'ai
+découvert que non seulement les erreurs de calcul liées à la représentation des nombres réels en virgule
+flottante ont un impact considérable sur les résultats, mais qu'elles peuvent aussi aller dans certains
+cas jusqu'à masquer les différences entre les connectomes de sujets différents. Ces résultats montre de
+manière empirique l'erreur minimale induite par le modèle flottant dans la chaîne de traitement. Mes
+travaux s'efforcent aussi d'interpréter la variabilité observée comme un atout de l’analyse de données
+plutôt que comme une limitation.  Mes résultats montrent que non seulement cette variabilité augmente la
+fiabilité des ensembles de données, mais qu'elle peut aussi être exploitée pour produire des relations
+cerveau-phénotype plus fortes et plus généralisables. La combinaison de ces résultats démontre, de manière
+significative, que les erreurs de calcul présentes dans les logiciels de traitement de données conduisent
+à des différences importantes dans les analyses de neuroimagerie. Toutefois, lorsqu'elles sont prises en
+compte et expliquées,ces différences peuvent devenir un atout pour les analyses plutôt qu'une limitation.
+Parallèlement à la présentation de ces analyses, cette thèse présente des outils et un schéma qui peuvent
+être suivis pour l'exploration plus approfondie de l'incertitude numérique et le rôle qu'elle peut jouer
+dans notre compréhension du cerveau.

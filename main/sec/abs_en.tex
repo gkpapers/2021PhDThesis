@@ -6,7 +6,7 @@ disease, sex, stage of development, and more. Like many modern scientific discip
 reliability of these relationships depends on the trustworthiness and openness of methods used in their
 generation. With an increasing awareness on issues of reproducibility, preliminary explorations in
 neuroimaging have led to some skepticism regarding the robustness of findings. In some cases, these issues
-can be resolved through the federated sharing of datasets or the harmonization of software tools. In others,
+can be resolved through the federated sharing of datasets or the availability of software tools. In others,
 the sensitivity or stability of underlying numerical algorithms used to process the complex and high
 dimensional datasets may lead to unexpected variability. While impactful differences have been observed in
 neuroimaging across scientific teams, methods, toolboxes, or even the operating system of the computer being
@@ -18,17 +18,14 @@ mapping connections between brain regions, called structural connectomics, I per
 networks and subsequently evaluated the observed variability to characterize the impact of small numerical
 errors as they accumulate over the course of an analysis. I found that not only do unavoidable computational
 errors have a considerable impact on results, but that they can in some cases be so significant as to obscure
-individual differences in maps of connectivity. This finding importantly demonstrates a best-case bound of
-error and its propagation throughout scientific pipelines. Moving beyond the perturbation of error, efforts to
-interpret the observed variability as a feature of a given analysis rather than a flaw showed that not only did
-this variability increase the reliability of datasets, but it ultimately could be harnessed to produce stronger
-and more generalizable brain-phenotype relationships. The combination of these results importantly demonstrates
-that computational errors inherent to pipelines lead to impactful differences in a set of
-neuroimaging analyses. Whether that impact is for better or worse, however, depends entirely on whether these
-errors are being considered and accounted for, or ignored. Alongside the execution of these analyses, this
-thesis presents tools and a schematic which can be followed for the further exploration of numerical
-uncertainty and the role it may play in our understanding of the brain.
-
-
-
+individual differences in maps of connectivity. This finding empirically shows the minimal/ground error
+induced and propagated by the floating-point model throughout scientific pipelines. Moving beyond the
+perturbation of error, efforts to interpret the observed variability as a feature of a given analysis rather
+than a flaw showed that not only did this variability increase the reliability of datasets, but it ultimately
+could be harnessed to produce stronger and more generalizable brain-phenotype relationships. The combination
+of these results importantly demonstrates that computational errors inherent to pipelines lead to impactful
+differences in a set of neuroimaging analyses. Whether that impact is for better or worse, however, depends
+entirely on whether these errors are being considered and accounted for, or ignored. Alongside the execution
+of these analyses, this thesis presents tools and a schematic which can be followed for the further
+exploration of numerical uncertainty and the role it may play in our understanding of the brain.
 
