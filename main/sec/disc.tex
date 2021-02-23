@@ -95,8 +95,8 @@ observations of each connectome were available and considered equally valid for 
 relationships. Unlike all other methods tested, the improvement of this method scaled with the number of MCA samples
 used. Finally, the meta-analytic voting across classifiers was performed with the construction of a ensemble model
 which fit a Logistic Regression classifier across the outputs of each of the independently-trained jackknife
-classifiers. Each jackknife model was trained with no attempt to capture within-subject across perturbations, but
-rather sampled the space of possible population-level relationships by repeatedly considering single observations
+classifiers. Each jackknife model was trained with no attempt to capture within-subject variance across perturbations,
+but rather sampled the space of possible population-level relationships by repeatedly considering single observations
 of each individual. These models were then considered as an ensemble, and a relationship was learned across their
 predictions and various levels of confidence. An important conceptual difference between this technique and the
 mega-analytic classification above is that each component classifier here performs a unique feature selection step,
@@ -116,12 +116,14 @@ experiments have been published on Zenodo.
 The combination of results presented across my thesis, showing both the significance of numerical instabilities in
 structural connectome estimation and the utility of the associated variability, demonstrate that numerical analysis
 techniques such as MCA can serve as valuable tools towards studying and improving reproducibility in neuroimaging.
-Other efforts which have explored reproducibility from the angle of analytical
-flexibility~\cite{botvinik2020variability,schilling2020tractography} sample a broad and rich space of approaches and
-tool configurations that is not directly comparable to the techniques demonstrated here. Combining these approaches
-would be of extreme interest and lead to a far richer description of the uncertainty associated with certain tasks,
-processing techniques, or analytic questions more broadly, and could be used to inform comparison of results
-obtained across distinct libraries where such comparisons are currently impractical.
+This counter-intuitive finding importantly highlights how variability may be regarded as a \textit{feature} rather
+than a \textit{flaw} both in the neuroimaging and more broadly, and suggests that capturing rather than removing
+this variability may improve the robustness of scientific findings. Other efforts which have explored reproducibility
+from the angle of analytical flexibility~\cite{botvinik2020variability,schilling2020tractography} sample a broad and
+rich space of approaches and tool configurations that is not directly comparable to the techniques demonstrated here.
+Combining these approaches would be of extreme interest and lead to a far richer description of the uncertainty
+associated with certain tasks, processing techniques, or analytic questions more broadly, and could be used to inform
+comparison of results obtained across distinct libraries where such comparisons are currently impractical.
 
 
 \subsection{Extrapolating Conclusions Across Domains}

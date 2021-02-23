@@ -15,7 +15,7 @@
 \contentsline {subsection}{\numberline {2.4}Numerical Stability}{11}{subsection.25}% 
 \contentsline {subsection}{\numberline {2.5}Numerical Analysis}{13}{subsection.27}% 
 \contentsline {subsection}{\numberline {2.6}Neuroimaging Data \& Pipelines}{16}{subsection.29}% 
-\contentsline {subsection}{\numberline {2.7}Evidence of Instability in Neuroimaging}{18}{subsection.30}% 
+\contentsline {subsection}{\numberline {2.7}Evidence of Instability in Neuroimaging}{19}{subsection.30}% 
 \contentsline {part}{I\hspace {1em}\ignorespaces \relax \unhcopy \strutbox \hspace {2em}A Serverless Tool for Platform Agnostic Computational\\\relax \unhcopy \strutbox \hspace {15em}Experiment Management}{23}{part.33}% 
 \contentsline {secnonum}{\numberline {}\ignorespaces \hskip 2em\relax \hskip 2em\relax Abstract}{24}{secnonum.34}% 
 \contentsline {section}{\numberline {\hskip 1em\relax Ch.{I} - 1}\ignorespaces \hskip 2em\relax \hskip 2em\relax Introduction}{25}{section.35}% 
@@ -50,9 +50,9 @@
 \contentsline {section}{\numberline {\hskip 1em\relax Ch.{IV} - 5}\ignorespaces \hskip 2em\relax \hskip 2em\relax Conclusion}{103}{section.111}% 
 \contentsline {section}{\numberline {3}Discussion}{107}{section.113}% 
 \contentsline {subsection}{\numberline {3.1}The Impact of Perturbing Structural Connectome Estimation}{107}{subsection.114}% 
-\contentsline {subsection}{\numberline {3.2}Extrapolating Conclusions Across Domains}{111}{subsection.115}% 
-\contentsline {subsection}{\numberline {3.3}Future Directions in Operationalizing Perturbation Analysis}{114}{subsection.117}% 
-\contentsline {subsubsection}{\numberline {3.3.1}Targets for Perturbation}{115}{subsubsection.118}% 
+\contentsline {subsection}{\numberline {3.2}Extrapolating Conclusions Across Domains}{112}{subsection.115}% 
+\contentsline {subsection}{\numberline {3.3}Future Directions in Operationalizing Perturbation Analysis}{115}{subsection.117}% 
+\contentsline {subsubsection}{\numberline {3.3.1}Targets for Perturbation}{116}{subsubsection.118}% 
 \contentsline {subsubsection}{\numberline {3.3.2}Applications of Perturbations \& Open Questions}{117}{subsubsection.119}% 
 \contentsline {subsection}{\numberline {3.4}Hindsight}{119}{subsection.120}% 
 \contentsline {section}{\numberline {4}Conclusion}{122}{section.128}% 
