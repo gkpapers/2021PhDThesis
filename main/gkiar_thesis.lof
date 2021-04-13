@@ -1,24 +1,24 @@
 \babel@toc {english}{}
-\contentsline {figure}{\numberline {1}{\ignorespaces Illustration of forward, backward, and mixed stability}}{13}{figure.caption.26}% 
-\contentsline {figure}{\numberline {2}{\ignorespaces Relationship between accuracy and precision}}{15}{figure.caption.28}% 
-\contentsline {figure}{\numberline {3}{\ignorespaces Instability due to one-voxel perturbations}}{21}{figure.caption.31}% 
-\contentsline {figure}{\numberline {Ch.{I} - 1}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax Clowdr Workflow\relax }}{29}{figure.39}% 
-\contentsline {figure}{\numberline {Ch.{I} - 2}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax {Clowdr Data Flow, tool descriptor, and parameter invocation}\relax }}{31}{figure.41}% 
-\contentsline {figure}{\numberline {Ch.{I} - 3}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax Clowdr Experiment Viewer\relax }}{33}{figure.44}% 
-\contentsline {figure}{\numberline {Ch.{II} - 1}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax Example Connectome\relax }}{46}{figure.52}% 
-\contentsline {figure}{\numberline {Ch.{II} - 2}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax Comparison of perturbation modes\relax }}{49}{figure.56}% 
-\contentsline {figure}{\numberline {Ch.{II} - 3}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax Structure of deviations\relax }}{52}{figure.59}% 
-\contentsline {figure}{\numberline {Ch.{II} - 4}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax Perturbation introduced structural differences\relax }}{53}{figure.61}% 
-\contentsline {figure}{\numberline {Ch.{II} - 5}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax Gain and loss of edges in aggregation of simulations\relax }}{55}{figure.64}% 
-\contentsline {figure}{\numberline {Ch.{II} - 6}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax Computation time for each perturbation method\relax }}{57}{figure.66}% 
-\contentsline {figure}{\numberline {Ch.{III} - 1}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax Exploration of perturbation-induced deviations from reference connectomes\relax }}{66}{figure.73}% 
-\contentsline {figure}{\numberline {Ch.{III} - 2}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax Distribution and stability assessment of multivariate graph statistics\relax }}{70}{figure.79}% 
-\contentsline {figure}{\numberline {Ch.{III} - 3}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax Variability in BMI classification across an MCA-perturbed dataset\relax }}{71}{figure.82}% 
-\contentsline {figure}{\numberline {Ch.{III} - 4}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax The correlation between perturbed connectomes and their reference\relax }}{84}{figure.87}% 
-\contentsline {figure}{\numberline {Ch.{III} - 5}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax Distribution and stability assessment of univariate graph statistics\relax }}{87}{figure.93}% 
-\contentsline {figure}{\numberline {Ch.{IV} - 1}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax Experiment workflow.\relax }}{91}{figure.100}% 
-\contentsline {figure}{\numberline {Ch.{IV} - 2}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax Relative change in classifier performance\relax }}{97}{figure.105}% 
-\contentsline {figure}{\numberline {Ch.{IV} - 3}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax Relationship between generalizability and resampling\relax }}{98}{figure.107}% 
-\contentsline {figure}{\numberline {Ch.{IV} - 4}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax The generalizability of classifiers using dataset sampling techniques\relax }}{99}{figure.109}% 
-\contentsline {figure}{\numberline {4}{\ignorespaces Example of hierarchical software design}}{115}{figure.caption.116}% 
+\contentsline {figure}{\numberline {1}{\ignorespaces Illustration of forward, backward, and mixed stability}}{14}{figure.caption.27}% 
+\contentsline {figure}{\numberline {2}{\ignorespaces Relationship between accuracy and precision}}{16}{figure.caption.29}% 
+\contentsline {figure}{\numberline {3}{\ignorespaces Instability due to one-voxel perturbations}}{22}{figure.caption.32}% 
+\contentsline {figure}{\numberline {Ch.{I} - 1}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax Clowdr Workflow\relax }}{31}{figure.40}% 
+\contentsline {figure}{\numberline {Ch.{I} - 2}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax {Clowdr Data Flow, tool descriptor, and parameter invocation}\relax }}{33}{figure.42}% 
+\contentsline {figure}{\numberline {Ch.{I} - 3}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax Clowdr Experiment Viewer\relax }}{35}{figure.45}% 
+\contentsline {figure}{\numberline {Ch.{II} - 1}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax Example Connectome\relax }}{48}{figure.53}% 
+\contentsline {figure}{\numberline {Ch.{II} - 2}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax Comparison of perturbation modes\relax }}{51}{figure.57}% 
+\contentsline {figure}{\numberline {Ch.{II} - 3}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax Structure of deviations\relax }}{54}{figure.60}% 
+\contentsline {figure}{\numberline {Ch.{II} - 4}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax Perturbation introduced structural differences\relax }}{55}{figure.62}% 
+\contentsline {figure}{\numberline {Ch.{II} - 5}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax Gain and loss of edges in aggregation of simulations\relax }}{57}{figure.65}% 
+\contentsline {figure}{\numberline {Ch.{II} - 6}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax Computation time for each perturbation method\relax }}{59}{figure.67}% 
+\contentsline {figure}{\numberline {Ch.{III} - 1}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax Exploration of perturbation-induced deviations from reference connectomes\relax }}{68}{figure.74}% 
+\contentsline {figure}{\numberline {Ch.{III} - 2}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax Distribution and stability assessment of multivariate graph statistics\relax }}{72}{figure.80}% 
+\contentsline {figure}{\numberline {Ch.{III} - 3}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax Variability in BMI classification across an MCA-perturbed dataset\relax }}{73}{figure.83}% 
+\contentsline {figure}{\numberline {Ch.{III} - 4}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax The correlation between perturbed connectomes and their reference\relax }}{86}{figure.88}% 
+\contentsline {figure}{\numberline {Ch.{III} - 5}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax Distribution and stability assessment of univariate graph statistics\relax }}{89}{figure.94}% 
+\contentsline {figure}{\numberline {Ch.{IV} - 1}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax Experiment workflow.\relax }}{93}{figure.101}% 
+\contentsline {figure}{\numberline {Ch.{IV} - 2}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax Relative change in classifier performance\relax }}{99}{figure.106}% 
+\contentsline {figure}{\numberline {Ch.{IV} - 3}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax Relationship between generalizability and resampling\relax }}{100}{figure.108}% 
+\contentsline {figure}{\numberline {Ch.{IV} - 4}{\ignorespaces \ignorespaces \hskip 2em\relax \hskip 2em\relax The generalizability of classifiers using dataset sampling techniques\relax }}{101}{figure.110}% 
+\contentsline {figure}{\numberline {4}{\ignorespaces Example of hierarchical software design}}{117}{figure.caption.117}% 
 \contentsfinish 

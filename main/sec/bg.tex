@@ -308,16 +308,25 @@ images can be conceptually decoupled into two components: pre-processing and mod
 
 \paragraph*{Pre-processing}
 While distinct datasets and libraries may present slight deviations in the pre-processing of data, I will here describe
-the backbone of a widely applicable and community-accepted pre-processing
+the backbone of a widely applicable and community-accepted diffusion MRI pre-processing
 workflow~\cite{WOOLRICH2009S173,jenkinson2012fsl,Glasser2013-vf} and briefly discuss the rationale behind each component.
 The required data for the pre-processing workflow described here is: a set of 4-D diffusion images and associated
 acquisition parameters, a structural T1w image, and a template reference image (such as the ICBM152
 template~\cite{lancaster2007bias}). The diffusion images are first de-noised and aligned to one another alongside the
-removal of structured eddy-current artifacts~\cite{andersson2016integrated} commonly found in the images. The structural
-image is then aligned to the template and a single reference diffusion volume separately via an affine
-registration~\cite{jenkinson2001global}, and an optional non-linear registration may be subsequently applied between
-the structural image and template~\cite{jenkinson2012fsl}. The transformations are combined such that there exists a
-mapping from the template space to the subject-specific diffusion space so that images can be meaningfully compared via
+removal of structured eddy-current artifacts~\cite{andersson2016integrated} commonly found in the images. The
+eddy-current artifacts found in diffusion images are due to induced currents within subject tissue as the direction of
+imposed magnetic fields shifted across acquired images. These artifacts are estimated globally between neighbouring
+images, and corrected alongside a rigid alignment to account for any image differences which may be the result of
+spatial shift. The structural image is then aligned to the template and a single reference diffusion volume separately
+via an affine registration~\cite{jenkinson2001global}, and an optional non-linear registration may be subsequently
+applied between the structural image and template~\cite{jenkinson2012fsl}. An affine registration allows for the
+adjustment of image scale, reflection, rotation, shear, and translation, and are applied consistently across all voxels
+within the image. Non-linear transformations, however, perform local mappings such that structures may not be mapped
+consistently across the entire images. In the case of high-fidelity data, this technique is considered superior as it
+allows for the independent transformation of various unique structures within the images, which ultimately may increase
+the accuracy of applied anatomical parcellations. A warp-image which contains the transformation for each voxel is the
+result of non-linear registration. The warp image and transformations are combined such that there exists a mapping
+from the template space to the subject-specific diffusion space so that images can be meaningfully compared via
 brain region atlases (or parcellations) and tissue masks defined in the template space. These atlases can be transformed
 and applied to the diffusion image in subsequent modelling. Optionally, subject-specific tissue masks may also be
 generated from the structural image and transformed into the space of the diffusion image~\cite{zhang2001segmentation}.
@@ -332,12 +341,17 @@ parcellation~\cite{roncal2013migraine,sporns2005human,Kiar2018-jt,Glasser2013-vf
 direction or directions of water diffusion to each voxel within the image. These models range in complexity from
 $6$-component tensors to orientation distribution function (ODF) histograms on the order of $100$
 components~\cite{tournier2011diffusion}. Higher order ODF models require higher fidelity data, but are necessary for
-many tractography algorithms. Tractography is applied following the evaluation of a diffusion model, and involves
+many tractography algorithms. The reconstruction of ODFs is performed by mapping the diffusion weighted images to a
+spherical harmonic basis, such that the data can then be used by one of a number of techniques to estimate flow, such
+as spherical deconvolution. Tractography is applied following the evaluation of a diffusion model, and involves
 tracing the local estimates of diffusion or ``flow'' to form larger tracts of coherent connectivity~\cite{behrens2014mr}.
 Across the many available tractography algorithms, they can be conceptually grouped into two categories: deterministic
 and probabilistic models~\cite{jeurissen2019diffusion}. Deterministic models assign flow based on the single direction of
 maximum diffusion for each voxel, whereas probabilistic models assign fiber probabilities rather than making a unique
-decision. Finally, fiber streamlines are used to assign edges in a network. Regions of the network are often defined by a
+decision. In the case of both techniques, the perceived directional flow for each voxel is used to inform the ``growth''
+of tracts. Spatial constraints, such as limiting the sharpness of a turn within a streamline as is the case in the EuDX
+deterministic tracing algorithm~\cite{garyfallidis2014dipy}, exist across in various forms across each of these techniques.
+Finally, fiber streamlines are used to assign edges in a network. Regions of the network are often defined by a
 parcellation, such as the common Desikan-Killianey-Tourville~\cite{Klein2012-vi} atlas, and edges correspond to tracts
 which connect them. The weights of edges are often defined as either a feature of the tracts, such as the average
 strength of diffusion across tracts, or the total number of tracts between regions. The networks are often stored in an
