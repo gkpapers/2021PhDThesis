@@ -208,6 +208,7 @@ justification=raggedright]{caption}
 %----------------------------------------------------------------------  
 
 \RequirePackage{enumitem}
+\usepackage{ragged2e}
 %\setlist{nolistsep} % Uncomment to remove spacing between items in lists (enumerate, itemize)
 
 %----------------------------------------------------------------------
@@ -221,6 +222,7 @@ justification=raggedright]{caption}
 \newcommand{\DOI}[1]{\def\@DOI{#1}}
 \newcommand{\Status}[1]{\def\@Status{#1}}
 \newcommand{\Abstract}[1]{\def\@Abstract{#1}}
+\newcommand{\Foreword}[1]{\def\@Foreword{#1}}
 \newcommand{\Keywords}[1]{\def\@Keywords{#1}}
 
 % ---------------------------------------------------------------------
@@ -242,7 +244,32 @@ justification=raggedright]{caption}
 \vskip35pt%
 {\raggedright \@Status:\\\quad\textit{\sffamily\@JournalInfo}\\\quad{\sffamily\href{\@DOI}{\@DOI}}\par}%
 \endgroup%%
+
+\vskip35pt
+\justify
+\sffamily\textbf{Foreword}\\\@Foreword\\[4pt]%
 }%
+}]%
+}
+
+\newcommand{\makeforeword}{%
+\twocolumn[{%
+\thispagestyle{empty}%
+\fcolorbox{white}{white}{%
+\parbox{\textwidth-2\fboxsep-2\fboxrule}{\centering%
+\colorbox{white}{%
+\parbox{\textwidth-4\fboxsep-2\fboxrule}{%
+\sffamily\textbf{Foreword}\\\@Foreword\\[4pt]%
+}%
+}%
+\vskip4pt%
+\begingroup%
+\raggedright\sffamily\small%
+\footnotesize\@affiliation\par%
+\endgroup%%
+}%
+}%
+\vskip25pt%
 }]%
 }
 
